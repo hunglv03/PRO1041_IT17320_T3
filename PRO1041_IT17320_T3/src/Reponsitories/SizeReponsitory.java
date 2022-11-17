@@ -6,6 +6,7 @@
 package Reponsitories;
 
 import DomainModel.Size;
+import ViewModels.SizeVM;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,8 +28,8 @@ public class SizeReponsitory {
             ps.setString(2, s.getTen());
             ps.execute();
             System.out.println("Thêm thành công");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
@@ -42,8 +43,8 @@ public class SizeReponsitory {
             ps.setString(3, id);
             ps.executeUpdate();
             System.out.println("Sửa thành công");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
@@ -55,16 +56,16 @@ public class SizeReponsitory {
             ps.setString(1, id);
             ps.executeUpdate();
             System.out.println("Xóa thành công");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
-    public ArrayList<Size> all() {
-        ArrayList<Size> listSize = new ArrayList<>();
+    public ArrayList<SizeVM> all() {
+        ArrayList<SizeVM> listSize = new ArrayList<>();
         try {
             Connection conn = Util.DBContext.getConnection();
-            String sql = "SELECT * FROM ChucVu";
+            String sql = "SELECT * FROM Size";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
@@ -73,12 +74,12 @@ public class SizeReponsitory {
                 String ma = rs.getString("Ma");
                 String ten = rs.getString("Ten");
 
-                Size s = new Size(id, ma, ten);
+                SizeVM s = new SizeVM(id, ma, ten);
                 listSize.add(s);
             }
             System.out.println("Truy vấn thành công");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.getMessage();
         }
         return listSize;
     }

@@ -7,13 +7,15 @@ package Services.impl;
 
 import DomainModel.Size;
 import Reponsitories.SizeReponsitory;
+import Services.SizeService;
+import ViewModels.SizeVM;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class SizeServiceImpl {
+public class SizeServiceImpl implements SizeService{
     
     private SizeReponsitory sRepo;
 
@@ -33,7 +35,7 @@ public class SizeServiceImpl {
         this.sRepo.delete(id);
     }
 
-    public ArrayList<Size> getListSize() {
+    public ArrayList<SizeVM> getListSize() {
         return this.sRepo.all();
     }
 }

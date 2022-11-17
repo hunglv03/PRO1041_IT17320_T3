@@ -6,28 +6,56 @@
 package Util;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Admin
  */
 public class DBContext {
-        private static Connection conn;
-    public static Connection getConnection(){
-        if(DBContext.conn==null){
-            try {
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                String dbUser="sa",dbPass="0123456789",dbUrl="jdbc:sqlserver://localhost:1433"+";databaseName=DBDUAN1__NHOM3";
-                DBContext.conn=DriverManager.getConnection(dbUrl, dbUser, dbPass);
-                System.out.println("Kết nối thành công");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }catch(SQLException e){
-                e.printStackTrace();
+    private static final String USERNAME = "sa";
+    private static final String PASSWORD = "0123456789";
+    private static final String SERVER = "localhost";
+    private static final String PORT = "1433";
+    private static final String DATABASE_NAME = "DBDUAN1_NHOM3";
+    private static final boolean USING_SSL = false;
+    
+    private static String CONNECT_STRING;
+        
+    static {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            
+            StringBuilder connectStringBuilder = new StringBuilder();
+            connectStringBuilder.append("jdbc:sqlserver://")
+                    .append(SERVER).append(":").append(PORT).append(";")
+                    .append("databaseName=").append(DATABASE_NAME).append(";")
+                    .append("user=").append(USERNAME).append(";")
+                    .append("password=").append(PASSWORD).append(";")
+                    ;
+            if (USING_SSL) {
+                connectStringBuilder.append("encrypt=true;trustServerCertificate=true;");
             }
+            CONNECT_STRING = connectStringBuilder.toString();
+            System.out.println("Connect String có dạng: " + CONNECT_STRING);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBContext1.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return conn;
+    }
+    
+    public static Connection getConnection() throws Exception {
+        return DriverManager.getConnection(CONNECT_STRING);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Connection conn = getConnection();
+        DatabaseMetaData dbmt = conn.getMetaData();
+        System.out.println(dbmt.getDriverName());
+        System.out.println(dbmt.getDatabaseProductName());
+        System.out.println(dbmt.getDatabaseProductVersion());
     }
 }
