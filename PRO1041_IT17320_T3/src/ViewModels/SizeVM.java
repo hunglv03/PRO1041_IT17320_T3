@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DomainModel;
+package ViewModels;
 
 /**
  *
  * @author Admin
  */
-public class Size {
-        
+public class SizeVM {
+           
     private String id;
     private String ma;
     private String ten;
 
-    public Size() {
+    public SizeVM() {
     }
 
-    public Size(String id, String ma, String ten) {
+    public SizeVM(String id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -47,4 +47,10 @@ public class Size {
     public void setTen(String ten) {
         this.ten = ten;
     }
+
+    @Override
+    public String toString() {
+        return "SizeVM{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+    }
+    
 }

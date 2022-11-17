@@ -5,10 +5,35 @@
  */
 package Services.impl;
 
+import DomainModel.Size;
+import Reponsitories.SizeReponsitory;
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
  */
 public class SizeServiceImpl {
     
+    private SizeReponsitory sRepo;
+
+    public SizeServiceImpl() {
+        this.sRepo = new SizeReponsitory();
+    }
+
+    public void insert(Size s) {
+        this.sRepo.insert(s);
+    }
+
+    public void update(Size s, String id) {
+        this.sRepo.update(s, id);
+    }
+
+    public void delete(String id) {
+        this.sRepo.delete(id);
+    }
+
+    public ArrayList<Size> getListSize() {
+        return this.sRepo.all();
+    }
 }
