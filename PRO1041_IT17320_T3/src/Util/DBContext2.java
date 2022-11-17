@@ -16,12 +16,6 @@ import javax.swing.text.Utilities;
  * @author NamNguyenTien
  */
 public class DBContext2 {
-//    private static final String USERNAME = "NAMNTPH25455";
-//    private static final String PASSWORD = "555999";
-//    private static final String SERVER = "NAMNGUYENTIEN\\SQLEXPRESS";
-//    private static final String PORT = "1433";
-//    private static final String DATABASE_NAME = "DBDUAN1_NHOM3";
-//    private static final boolean USING_SSL = false;
 
     private static Connection conn;
     public static Connection getConnection(){
