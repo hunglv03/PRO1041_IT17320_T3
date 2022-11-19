@@ -213,6 +213,7 @@ public class ChucVuForm extends javax.swing.JFrame {
         }
         idwhenclick = " ";
         LoadTable();
+        this.Clear();
     }//GEN-LAST:event_btnsuaActionPerformed
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
@@ -226,6 +227,7 @@ public class ChucVuForm extends javax.swing.JFrame {
         }
         idwhenclick = " ";
         LoadTable();
+        Clear();
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void tblcvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblcvMouseClicked
