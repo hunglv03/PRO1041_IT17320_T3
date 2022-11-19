@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author Admin
  */
 public class ACCOUNTRepo {
-            
+
     public void insert(ACCOUNT a) {
         try {
             Connection conn = Util.DBContext.getConnection();

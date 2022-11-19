@@ -6,6 +6,7 @@
 package Views;
 
 import DomainModel.ACCOUNT;
+import Services.ACCOUNTService;
 import Services.impl.ACCOUNTServiceimpl;
 import ViewModels.ACCOUNTVM;
 import javax.swing.JOptionPane;
@@ -20,13 +21,13 @@ public class ACCOUNTForm extends javax.swing.JFrame {
     /**
      * Creates new form ACCOUNTForm
      */
-    private ACCOUNTServiceimpl aService;
+    private ACCOUNTService aService;
 
     public ACCOUNTForm() {
-
         this.aService = new ACCOUNTServiceimpl();
         initComponents();
         this.getData();
+        this.ClearForm();
     }
 
     public void getData() {
@@ -180,7 +181,7 @@ public class ACCOUNTForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = tbACCOUNT.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Hãy chọn dòng cần sửa");
+            JOptionPane.showMessageDialog(this, "Hãy chọn dòng cần xóa");
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Xác nhận xóa??");
             if (confirm == JOptionPane.YES_NO_OPTION) {
@@ -195,14 +196,13 @@ public class ACCOUNTForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         ACCOUNT a = this.getLoadData();
         int row = tbACCOUNT.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Thêm thành công");
-        }
         if (a == null) {
             return;
         }
         this.aService.insert(a);
         this.getData();
+        JOptionPane.showMessageDialog(this, "Thêm thành công");
+        this.ClearForm();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -217,6 +217,8 @@ public class ACCOUNTForm extends javax.swing.JFrame {
         }
         this.aService.update(a, a.getId());
         this.getData();
+        this.ClearForm();
+        JOptionPane.showMessageDialog(this, "Sửa thành công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void tbACCOUNTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbACCOUNTMouseClicked
@@ -236,6 +238,12 @@ public class ACCOUNTForm extends javax.swing.JFrame {
         String mk = this.txamk.getText().trim();
         ACCOUNT a = new ACCOUNT(id, mk, tenCV);
         return a;
+    }
+
+    private void ClearForm() {
+        lbId.setText("");
+        txtTenCV.setText("");
+        txamk.setText("");
     }
 
     public static void main(String args[]) {

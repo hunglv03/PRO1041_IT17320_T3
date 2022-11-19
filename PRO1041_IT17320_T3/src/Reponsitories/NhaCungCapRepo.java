@@ -73,6 +73,7 @@ public class NhaCungCapRepo {
             }
             System.out.println("Truy vấn thành công");
         } catch (Exception e) {
+            e.getMessage();
         }
         return listNCC;
         

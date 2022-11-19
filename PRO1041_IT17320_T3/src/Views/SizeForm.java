@@ -26,6 +26,7 @@ public class SizeForm extends javax.swing.JFrame {
         this.sService = new SizeServiceImpl();
         initComponents();
         this.getData();
+        this.ClearForm();
     }
 
     public void getData() {
@@ -192,6 +193,8 @@ public class SizeForm extends javax.swing.JFrame {
         }
         this.sService.insert(s);
         this.getData();
+        this.ClearForm();
+        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -206,6 +209,8 @@ public class SizeForm extends javax.swing.JFrame {
         }
         this.sService.update(s, s.getId());
         this.getData();
+        this.ClearForm();
+        JOptionPane.showMessageDialog(this, "Sửa thành công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -219,6 +224,8 @@ public class SizeForm extends javax.swing.JFrame {
                 String id = tbSize.getValueAt(row, 0).toString();
                 this.sService.delete(id);
                 this.getData();
+                this.ClearForm();
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -236,6 +243,11 @@ public class SizeForm extends javax.swing.JFrame {
         String ten = this.txtTen.getText().trim();
         Size s = new Size(id, ma, ten);
         return s;
+    }
+    private void ClearForm(){
+        lbId.setText("");
+        txtMa.setText("");
+        txtTen.setText("");
     }
 
     /**

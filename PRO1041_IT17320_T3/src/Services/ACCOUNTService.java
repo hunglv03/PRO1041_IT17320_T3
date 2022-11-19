@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Admin
  */
 public interface ACCOUNTService {
-    
+
     ArrayList<ACCOUNTVM> getListACC();
 
     void insert(ACCOUNT a);
