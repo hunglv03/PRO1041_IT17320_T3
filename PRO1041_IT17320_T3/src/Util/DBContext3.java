@@ -19,7 +19,7 @@ public class DBContext3 {
        
     private static final String USERNAME = "sa";
     private static final String PASSWORD = "zxcvbnm2003";
-    private static final String SERVER = "DESKTOP-NUU3QTR\\SQLEXPRESS";
+    private static final String SERVER = "localhost";
     private static final String PORT = "1433";
     private static final String DATABASE_NAME = "DBDUAN1_NHOM3";
     private static final boolean USING_SSL = false;
