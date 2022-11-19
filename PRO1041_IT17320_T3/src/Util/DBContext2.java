@@ -8,18 +8,11 @@ package Util;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author MyPC
- */
-public class DBContext2 {
-      private static final String USERNAME = "sa";
-    private static final String PASSWORD = "0123456789";
-    private static final String SERVER = "localhost";
     private static final String PORT = "1433";
     private static final String DATABASE_NAME = "DBDUAN1_NHOM3";
     private static final boolean USING_SSL = false;
@@ -58,4 +51,5 @@ public class DBContext2 {
         System.out.println(dbmt.getDatabaseProductName());
         System.out.println(dbmt.getDatabaseProductVersion());
     }
+
 }
