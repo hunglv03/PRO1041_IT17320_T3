@@ -2,22 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DomainModel;
+package ViewModels;
 
 /**
  *
  * @author Lvh9x
  */
-public class ChatLieu {
-
+public class ChatLieuViewModel {
     String id;
     String ma;
     String ten;
 
-    public ChatLieu() {
+    public ChatLieuViewModel() {
     }
 
-    public ChatLieu(String id, String ma, String ten) {
+    public ChatLieuViewModel(String id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -49,7 +48,10 @@ public class ChatLieu {
 
     @Override
     public String toString() {
-        return "ChatLieu{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+        return "ChatLieuViewModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
     }
 
+    
+    
+    
 }
