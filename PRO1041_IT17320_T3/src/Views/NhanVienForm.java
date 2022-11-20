@@ -6,11 +6,10 @@
 
 package Views;
 
-import DomainModel.ChucVu;
+
 import DomainModel.NhanVien;
 import Reponsitories.NhanVienReponsitory;
 import Services.impl.NhanVienServiceImpl;
-import ViewModels.ChucVuViewModel;
 import ViewModels.NhanVienViewModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

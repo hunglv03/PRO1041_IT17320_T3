@@ -29,7 +29,6 @@ public class QuanLyForm extends javax.swing.JFrame {
         initComponents();
         rdGioiTinh();
         rdTrangThai();
-        
         getData();
     }
 
