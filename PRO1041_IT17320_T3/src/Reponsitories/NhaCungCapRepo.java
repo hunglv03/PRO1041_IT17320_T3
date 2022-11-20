@@ -6,7 +6,7 @@
 package Reponsitories;
 
 import DomainModel.NhaCungCap;
-import Util.DBContext3;
+import Util.DBContext11;
 import ViewModels.NhaCungCapVM;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class NhaCungCapRepo {
         public void insert(NhaCungCap ncc) {
         try {
-            Connection conn = DBContext3.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql = "INSERT INTO NhaCungCap" + "(Ma,Ten)" + "VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ncc.getMa());
@@ -34,7 +34,7 @@ public class NhaCungCapRepo {
 
     public void update(NhaCungCap ncc, String id) {
         try {
-            Connection conn = DBContext3.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql = "UPDATE NhaCungCap SET " + "Ma=?,Ten=? WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ncc.getMa());
@@ -49,7 +49,7 @@ public class NhaCungCapRepo {
 
     public void delete(String id) {
         try {
-            Connection conn = DBContext3.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql = "DELETE FROM NhaCungCap WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
@@ -63,7 +63,7 @@ public class NhaCungCapRepo {
     public ArrayList<NhaCungCapVM> getAll(){
         ArrayList<NhaCungCapVM> listNCC=new ArrayList<>();
         try {
-            Connection conn=DBContext3.getConnection();
+            Connection conn=DBContext11.getConnection();
             String sql="SELECT * FROM NhaCungCap";
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.execute();

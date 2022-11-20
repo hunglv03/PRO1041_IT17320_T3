@@ -5,7 +5,7 @@
 package Services;
 
 import java.util.List;
-import src.ViewModel.ChatLieuViewModel;
+import ViewModels.ChatLieuViewModel;
 
 /**
  *

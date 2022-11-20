@@ -3,7 +3,7 @@ package Reponsitories;
 
 import DomainModel.SanPham;
 import Util.DBContext1;
-import Util.DBContext2;
+
 import ViewModels.SanPhamViewmodel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class SanPhamRepo {
      public void insert(SanPham sp) {
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext1.getConnection();
             String sql = "INSERT INTO SanPham" + "(Ma,Ten)" + "VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sp.getMa());
@@ -37,7 +37,7 @@ public class SanPhamRepo {
 
     public void update(SanPham sp, String id) {
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext1.getConnection();
             String sql = "UPDATE SanPham SET " + "Ma=?,Ten=? WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sp.getMa());

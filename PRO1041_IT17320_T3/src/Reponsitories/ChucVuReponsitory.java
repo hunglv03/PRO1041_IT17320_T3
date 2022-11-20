@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import Util.DBContext2;
+import Util.DBContext11;
 import ViewModels.ChucVuViewModel;
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
 public class ChucVuReponsitory {
     public boolean add(ChucVu c) throws Exception{
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql="INSERT INTO ChucVu"+"(Ma,Ten)"+"VALUES(?,?)";
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.setString(1, c.getMa());
@@ -38,7 +38,7 @@ public class ChucVuReponsitory {
     
     public boolean update(ChucVu c) throws Exception {
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql = "UPDATE ChucVu SET " + "Ma = ? ,Ten = ? WHERE ID = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, c.getMa());
@@ -55,7 +55,7 @@ public class ChucVuReponsitory {
 
     public boolean delete(ChucVu cv) throws Exception {
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql = "DELETE FROM CHUCVU WHERE ID = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, cv.getId());
@@ -72,7 +72,7 @@ public class ChucVuReponsitory {
     public List<ChucVuViewModel> GetAll() throws Exception{
         List<ChucVuViewModel> listCV = new ArrayList<>();
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             String sql = "SELECT * FROM ChucVu";
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.execute();

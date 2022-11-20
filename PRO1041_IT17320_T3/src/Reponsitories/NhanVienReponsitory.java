@@ -7,7 +7,6 @@ package Reponsitories;
 
 import DomainModel.NhanVien;
 import Util.DBContext11;
-import Util.DBContext2;
 import ViewModels.NhanVienViewModel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class NhanVienReponsitory {
     
     public boolean Add(NhanVien nv){
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             PreparedStatement ps = conn.prepareStatement("INSERT INTO NHANVIEN (MA, TEN, EMAIL, NGAYSINH, GIOITINH, SDT, DIACHI, TRANGTHAI) VALUES(?,?,?,?,?,?,?,?)");
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getTen());
@@ -44,7 +43,7 @@ public class NhanVienReponsitory {
     
     public boolean Update(NhanVien nv){
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             PreparedStatement ps = conn.prepareStatement("UPDATE NHANVIEN SET MA = ?, TEN = ?, EMAIL = ?, NGAYSINH = ?, GIOITINH = ?, SDT = ?, DIACHI = ?, TRANGTHAI = ? WHERE ID = ?");
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getTen());
@@ -66,7 +65,7 @@ public class NhanVienReponsitory {
     
     public boolean Delete(NhanVien nv){
         try {
-            Connection conn = DBContext2.getConnection();
+            Connection conn = DBContext11.getConnection();
             PreparedStatement ps = conn.prepareStatement("DELETE FROM NHANVIEN WHERE ID = ?");        
             ps.setString(1, nv.getId());
             ps.execute();

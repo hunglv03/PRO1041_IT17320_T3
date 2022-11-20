@@ -16,8 +16,8 @@ import java.util.logging.Logger;
  * @author Phong
  */
 public class DBContext11 {
-    private static final String USERNAME = "hunglvph25428";
-    private static final String PASSWORD = "123456";
+    private static final String USERNAME = "sa";
+    private static final String PASSWORD = "0123456789";
     private static final String SERVER = "localhost";
     private static final String PORT = "1433";
     private static final String DATABASE_NAME = "DBDUAN1_NHOM3";
