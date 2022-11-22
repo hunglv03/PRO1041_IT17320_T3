@@ -4,8 +4,8 @@
  */
 package Services;
 
-import java.util.List;
 import ViewModels.ChatLieuViewModel;
+import java.util.List;
 
 /**
  *
