@@ -49,6 +49,12 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     public List<CTSanPhamViewModel> GetAll() {
         return repoCTSP.GetAll();
     }
+    public static void main(String[] args) {
+        CTSanPhamServiceImpl ctsp = new CTSanPhamServiceImpl();
+        ctsp.GetAll().forEach(x->{
+            System.out.println(x);
+        });
+    }
 }
 
 

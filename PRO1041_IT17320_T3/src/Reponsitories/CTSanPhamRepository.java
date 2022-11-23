@@ -101,10 +101,10 @@ public class CTSanPhamRepository {
         }
     }
 
-//    public static void main(String[] args) {
-//        CTSanPhamRepository ctsp = new CTSanPhamRepository();
-//        for (var x : ctsp.GetAll()) {
-//            System.out.println(x.toString());
-//        }
-//    }
+    public static void main(String[] args) {
+        CTSanPhamRepository ctsp = new CTSanPhamRepository();
+        for (CTSanPhamViewModel x : ctsp.GetAll()) {
+            System.out.println(x.toString());
+        }
+    }
 }

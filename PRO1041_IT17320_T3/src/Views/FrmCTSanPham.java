@@ -37,21 +37,25 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private NhaCungCapService _ServiceNcc;
     private SizeService _ServiceSize;
     private SanPhamService _ServiceSanPham;
-    private CTSanPhamService _Service;
+
+    private CTSanPhamService _ServiceCTSP;
+    //
     private DefaultTableModel _DefaultTableModel;
-    private String _IdWhenClick;
+    //
     private DefaultComboBoxModel _dcbmMauSac;
     private DefaultComboBoxModel _dcbmChatLieu;
     private DefaultComboBoxModel _dcbmSanPham;
     private DefaultComboBoxModel _dcbmNcc;
     private DefaultComboBoxModel _dcbmSize;
 
+    private String _IdWhenClick;
+
     /**
      * Creates new form FrmCTSanPham
      */
     public FrmCTSanPham() {
         initComponents();
-        _Service = new CTSanPhamServiceImpl();
+        _ServiceCTSP = new CTSanPhamServiceImpl();
         _ServiceChatLieu = new ChatLieuServiceImpl();
         _ServiceMauSac = new MauSacServiceImpl();
         _ServiceNcc = new NhaCungCapServiceimpl();
@@ -63,13 +67,19 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
         _dcbmSize = (DefaultComboBoxModel) cboidsize.getModel();
         _dcbmSanPham = (DefaultComboBoxModel) cboidsp.getModel();
-
+        //getIdByCBO();
         LoadTable();
         setCBO();
     }
 
     private CTSanPhamViewModel GetDataFromGui() {
-        return new CTSanPhamViewModel(null, _IdWhenClick, _IdWhenClick, _IdWhenClick, _IdWhenClick, _IdWhenClick, tarmota.getText(), txtsoluong.getText(), txtgiaban.getText());
+        String idSanPham = _ServiceSanPham.getAll().get(cboidsp.getSelectedIndex()).getId().toString();
+        String idMauSac = _ServiceMauSac.getAll().get(cboidmausac.getSelectedIndex()).getId().toString();
+        String idSize = _ServiceSize.getListSize().get(cboidsize.getSelectedIndex()).getId().toString();
+        String idNcc = _ServiceNcc.getAll().get(cboidncc.getSelectedIndex()).getId().toString();
+        String idChatLieu = _ServiceChatLieu.GetAll().get(cboidchatlieu.getSelectedIndex()).getId().toString();
+
+        return new CTSanPhamViewModel(null, idSanPham, idSize, idMauSac, idNcc, idChatLieu, tarmota.getText(), txtsoluong.getText(), txtgiaban.getText());
     }
 
     public void setCBO() {
@@ -104,20 +114,60 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
 
-        for (CTSanPhamViewModel x : _Service.GetAll()) {
+        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
             _DefaultTableModel.addRow(new Object[]{
                 stt++,
-                x.getId(),
                 x.getIdSp(),
                 x.getIdSize(),
                 x.getIdMauSac(),
                 x.getIdNhaCungCap(),
                 x.getIdChatLieu(),
-                x.getMoTa(),
                 x.getSoLuongTon(),
                 x.getGiaBan()
             });
         }
+    }
+
+    private String getIdByCBO() {
+//        int index = cboidchatlieu.getSelectedIndex();
+//        _IdWhenClick = _ServiceChatLieu.GetAll().get(index).getId();
+
+        //Chất liệu
+        if (cboidchatlieu.getSelectedIndex() == -1) {
+            return null;
+        } else {
+            int index = cboidchatlieu.getSelectedIndex();
+            _IdWhenClick = _ServiceChatLieu.GetAll().get(index).getId();
+        }
+        //Màu sắc
+        if (cboidmausac.getSelectedIndex() == -1) {
+            return null;
+        } else {
+            int index = cboidmausac.getSelectedIndex();
+            _IdWhenClick = _ServiceMauSac.getAll().get(index).getId();
+        }
+        //Nhà cung cấp
+        if (cboidncc.getSelectedIndex() == -1) {
+            return null;
+        } else {
+            int index = cboidncc.getSelectedIndex();
+            _IdWhenClick = _ServiceNcc.getAll().get(index).getId();
+        }
+        //Size
+        if (cboidsize.getSelectedIndex() == -1) {
+            return null;
+        } else {
+            int index = cboidsize.getSelectedIndex();
+            _IdWhenClick = _ServiceSize.getListSize().get(index).getId();
+        }
+        //Sản phẩm
+        if (cboidsp.getSelectedIndex() == -1) {
+            return null;
+        } else {
+            int index = cboidsp.getSelectedIndex();
+            _IdWhenClick = _ServiceSanPham.getAll().get(index).getId();
+        }
+        return _IdWhenClick;
     }
 
     /**
@@ -216,6 +266,11 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         txttimkiem.setText("Tìm kiếm....");
 
         btnthem.setText("Thêm");
+        btnthem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnthemActionPerformed(evt);
+            }
+        });
 
         btnsua.setText("Sửa");
 
@@ -352,6 +407,14 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private void cboidmausacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboidmausacActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboidmausacActionPerformed
+
+    private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
+        // TODO add your handling code here:
+        //System.out.println(GetDataFromGui());
+        CTSanPhamViewModel ctsp = GetDataFromGui();
+        _ServiceCTSP.them(ctsp);
+        LoadTable();
+    }//GEN-LAST:event_btnthemActionPerformed
 
     /**
      * @param args the command line arguments
