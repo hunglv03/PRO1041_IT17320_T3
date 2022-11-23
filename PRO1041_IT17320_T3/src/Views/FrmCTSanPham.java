@@ -176,7 +176,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
 
         jLabel2.setText("ID:");
 
-        jLabel3.setText("SP:");
+        jLabel3.setText("TênSP:");
 
         jLabel4.setText("Size:");
 
