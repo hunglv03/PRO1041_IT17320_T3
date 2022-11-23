@@ -15,11 +15,7 @@ import java.util.ArrayList;
  */
 public interface ACCOUNTService {
 
-    ArrayList<ACCOUNTVM> getListACC();
 
-    void insert(ACCOUNT a);
-
-    void update(ACCOUNT a, String id);
-
-    void delete(String id);
+    
+    ACCOUNT login(String userName, String pass);
 }
