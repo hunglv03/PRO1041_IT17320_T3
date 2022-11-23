@@ -34,7 +34,7 @@ public class NhaCungCapForm extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (NhaCungCapVM m : this.nccService.getAll()) {
             Object[] rowData = {
-                m.getId(), m.getMa(), m.getTen()
+                m.getId(), m.getMaNCC(), m.getTenNCC()
             };
             dtm.addRow(rowData);
         }

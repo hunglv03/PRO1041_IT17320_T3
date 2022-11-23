@@ -15,15 +15,13 @@ public class NhaCungCapVM {
     private String maNCC;
     private String tenNCC;
 
-
-
     public NhaCungCapVM() {
     }
 
-    public NhaCungCapVM(String id, String ma, String ten) {
+    public NhaCungCapVM(String id, String maNCC, String tenNCC) {
         this.id = id;
-        this.maNCC = ma;
-        this.tenNCC = ten;
+        this.maNCC = maNCC;
+        this.tenNCC = tenNCC;
     }
 
     public String getId() {
@@ -34,25 +32,25 @@ public class NhaCungCapVM {
         this.id = id;
     }
 
-    public String getMa() {
+    public String getMaNCC() {
         return maNCC;
     }
 
-    public void setMa(String ma) {
-        this.maNCC = ma;
+    public void setMaNCC(String maNCC) {
+        this.maNCC = maNCC;
     }
 
-    public String getTen() {
+    public String getTenNCC() {
         return tenNCC;
     }
 
-    public void setTen(String ten) {
-        this.tenNCC = ten;
+    public void setTenNCC(String tenNCC) {
+        this.tenNCC = tenNCC;
     }
 
     @Override
     public String toString() {
-        return "NhaCungCapVM{" + "id=" + id + ", ma=" + maNCC + ", ten=" + tenNCC + '}';
+        return "NhaCungCapVM{" + "id=" + id + ", maNCC=" + maNCC + ", tenNCC=" + tenNCC + '}';
     }
 
 }
