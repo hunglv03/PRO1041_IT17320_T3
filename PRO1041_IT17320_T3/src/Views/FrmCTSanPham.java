@@ -4,6 +4,7 @@
  */
 package Views;
 
+import DomainModel.CTSanPham;
 import DomainModel.ChatLieu;
 import Services.CTSanPhamService;
 import Services.ChatLieuService;
@@ -24,6 +25,7 @@ import ViewModels.NhaCungCapVM;
 import ViewModels.SanPhamViewmodel;
 import ViewModels.SizeVM;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,13 +33,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Lvh9x
  */
 public class FrmCTSanPham extends javax.swing.JFrame {
-
+    
     private ChatLieuService _ServiceChatLieu;
     private MauSacService _ServiceMauSac;
     private NhaCungCapService _ServiceNcc;
     private SizeService _ServiceSize;
     private SanPhamService _ServiceSanPham;
-
+    
     private CTSanPhamService _ServiceCTSP;
     //
     private DefaultTableModel _DefaultTableModel;
@@ -47,7 +49,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private DefaultComboBoxModel _dcbmSanPham;
     private DefaultComboBoxModel _dcbmNcc;
     private DefaultComboBoxModel _dcbmSize;
-
+    
     private String _IdWhenClick;
 
     /**
@@ -61,7 +63,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         _ServiceNcc = new NhaCungCapServiceimpl();
         _ServiceSize = new SizeServiceImpl();
         _ServiceSanPham = new SanPhamServiceImpl();
-
+        
         _dcbmChatLieu = (DefaultComboBoxModel) cboidchatlieu.getModel();
         _dcbmMauSac = (DefaultComboBoxModel) cboidmausac.getModel();
         _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
@@ -71,49 +73,49 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         LoadTable();
         setCBO();
     }
-
+    
     private CTSanPhamViewModel GetDataFromGui() {
         String idSanPham = _ServiceSanPham.getAll().get(cboidsp.getSelectedIndex()).getId().toString();
         String idMauSac = _ServiceMauSac.getAll().get(cboidmausac.getSelectedIndex()).getId().toString();
         String idSize = _ServiceSize.getListSize().get(cboidsize.getSelectedIndex()).getId().toString();
         String idNcc = _ServiceNcc.getAll().get(cboidncc.getSelectedIndex()).getId().toString();
         String idChatLieu = _ServiceChatLieu.GetAll().get(cboidchatlieu.getSelectedIndex()).getId().toString();
-
-        return new CTSanPhamViewModel(null, idSanPham, idSize, idMauSac, idNcc, idChatLieu, tarmota.getText(), Double.parseDouble(txtsoluong.getText()),Double.parseDouble(txtgiaban.getText()),Double.parseDouble(txtgianhap.getText()));
+        
+        return new CTSanPhamViewModel(null, idSanPham, idSize, idMauSac, idNcc, idChatLieu, tarmota.getText(), Double.parseDouble(txtsoluong.getText()), Double.parseDouble(txtgiaban.getText()), Double.parseDouble(txtgianhap.getText()));
     }
-
+    
     public void setCBO() {
         _dcbmChatLieu.removeAllElements();
         for (ChatLieuViewModel x : _ServiceChatLieu.GetAll()) {
             _dcbmChatLieu.addElement(x.getTen());
         }
-
+        
         _dcbmMauSac.removeAllElements();
         for (MauSacViewModel x : _ServiceMauSac.getAll()) {
             _dcbmMauSac.addElement(x.getTen());
         }
-
+        
         _dcbmNcc.removeAllElements();
         for (NhaCungCapVM x : _ServiceNcc.getAll()) {
             _dcbmNcc.addElement(x.getTen());
         }
-
+        
         _dcbmSize.removeAllElements();
         for (SizeVM x : _ServiceSize.getListSize()) {
             _dcbmSize.addElement(x.getTen());
         }
-
+        
         _dcbmSanPham.removeAllElements();
         for (SanPhamViewmodel x : _ServiceSanPham.getAll()) {
             _dcbmSanPham.addElement(x.getTen());
         }
     }
-
+    
     public void LoadTable() {
         _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
-
+        
         for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
             _DefaultTableModel.addRow(new Object[]{
                 stt++,
@@ -128,7 +130,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
             });
         }
     }
-
+    
     private String getIdByCBO() {
 //        int index = cboidchatlieu.getSelectedIndex();
 //        _IdWhenClick = _ServiceChatLieu.GetAll().get(index).getId();
@@ -288,6 +290,11 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         });
 
         btnxoa.setText("Xóa");
+        btnxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnxoaActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Gía Nhập:");
 
@@ -442,6 +449,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
         // TODO add your handling code here:
         CTSanPhamViewModel ctsp = GetDataFromGui();
+        ctsp.setId(_IdWhenClick);
         _ServiceCTSP.sua(ctsp);
         LoadTable();
     }//GEN-LAST:event_btnsuaActionPerformed
@@ -449,15 +457,25 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private void tblctsanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblctsanphamMouseClicked
         // TODO add your handling code here:
         int index = tblctsanpham.getSelectedRow();
-        _IdWhenClick = (String) tblctsanpham.getModel().getValueAt(index, 0);
-
-        String soLuong = (String) tblctsanpham.getValueAt(index, 6);
-        String giaBan = (String) tblctsanpham.getValueAt(index, 7);
+        _IdWhenClick = _ServiceCTSP.GetAll().get(index).getId();
         
+        String soLuong = tblctsanpham.getValueAt(index, 6).toString();
+        String giaNhap = tblctsanpham.getValueAt(index, 7).toString();
+        String giaBan = tblctsanpham.getValueAt(index, 8).toString();
         
         txtsoluong.setText(soLuong);
+        txtgianhap.setText(giaNhap);
         txtgiaban.setText(giaBan);
     }//GEN-LAST:event_tblctsanphamMouseClicked
+
+    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
+        // TODO add your handling code here:
+        CTSanPhamViewModel temp = new CTSanPhamViewModel();
+        temp.setId(_IdWhenClick);
+        JOptionPane.showMessageDialog(this, _ServiceCTSP.xoa(temp));
+        LoadTable();
+        _IdWhenClick = "";
+    }//GEN-LAST:event_btnxoaActionPerformed
 
     /**
      * @param args the command line arguments

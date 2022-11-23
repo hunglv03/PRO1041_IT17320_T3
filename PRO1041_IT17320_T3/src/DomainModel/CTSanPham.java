@@ -12,7 +12,7 @@ public class CTSanPham {
 
     private String id;
     private String idSp;
-    private String idSize;
+    private String idSize; // cái này k đẻ string mà để object. sau đó truyền object vào nó sẽ tìm tostring mà totring nó hiển thì Tên
     private String idMauSac;
     private String idNhaCungCap;
     private String idChatLieu;

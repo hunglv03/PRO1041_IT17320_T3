@@ -22,7 +22,7 @@ public class CTSanPhamRepository {
 
     final String INSERT_SQL = "INSERT INTO CHITIETSP(IdSP,IdSize,IdMauSac,IdNhaCungCap,IdChatLieu,MoTa,SoLuongTon,GiaBan,GiaNhap) VALUES(?,?,?,?,?,?,?,?,?)";
     final String UPDATE_SQL = "UPDATE CHITIETSP SET IdSP = ?, IdSize = ?, IdMauSac = ?, IdNhaCungCap = ?, IdChatLieu = ? WHERE ID = ?";
-    final String DELETE_SQL = "DELETE FROM CHITIETSP WHERE ID = ?";
+    final String DELETE_SQL = "DELETE FROM CHITIETSP WHERE ID = ?";// câu này nó cần mỗi cái id để xóa 
 
     public CTSanPhamRepository() {
     }
@@ -66,7 +66,7 @@ public class CTSanPhamRepository {
     }
 
     //
-    public boolean Update(CTSanPhamViewModel obj) {
+    public boolean Update(CTSanPhamViewModel obj) { //để là model
         try ( Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);
@@ -89,7 +89,7 @@ public class CTSanPhamRepository {
         }
     }
 
-    public boolean Delete(CTSanPhamViewModel obj) {
+    public boolean Delete(CTSanPhamViewModel obj) { //xóa theo id hoặc mã cho dễ . mà cái này cuxgn k care lắm
         try ( Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             PreparedStatement stmt = conn.prepareStatement(DELETE_SQL);
