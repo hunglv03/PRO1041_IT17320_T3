@@ -3,6 +3,7 @@ package Services.impl;
 
 import DomainModel.SanPham;
 import Reponsitories.SanPhamRepo;
+import Services.SanPhamService;
 import ViewModels.SanPhamViewmodel;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author ACER NQC 112021
  */
-public class SanPhamServiceImpl {
+public class SanPhamServiceImpl implements SanPhamService{
      private SanPhamRepo mRepo;
     public SanPhamServiceImpl(){
         this.mRepo=new SanPhamRepo();

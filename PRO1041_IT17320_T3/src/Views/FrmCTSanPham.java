@@ -36,7 +36,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private MauSacService _ServiceMauSac;
     private NhaCungCapService _ServiceNcc;
 //    private SizeService _ServiceSize;
-//    private SanPhamService _ServiceSanPham;
+    private SanPhamService _ServiceSanPham;
     private CTSanPhamService _Service;
     private DefaultTableModel _DefaultTableModel;
     private String _IdWhenClick;
@@ -56,13 +56,13 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         _ServiceMauSac = new MauSacServiceImpl();
         _ServiceNcc = new NhaCungCapServiceimpl();
 //        _ServiceSize = new SizeServiceImpl();
-//        _ServiceSanPham = (SanPhamService) new SanPhamServiceImpl();
+        _ServiceSanPham = new SanPhamServiceImpl();
 
         _dcbmChatLieu = (DefaultComboBoxModel) cboidchatlieu.getModel();
         _dcbmMauSac = (DefaultComboBoxModel) cboidmausac.getModel();
         _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
 //        _dcbmSize = (DefaultComboBoxModel) cboidsize.getModel();
-//        _dcbmSanPham = (DefaultComboBoxModel) cboidsp.getModel();
+        _dcbmSanPham = (DefaultComboBoxModel) cboidsp.getModel();
 
         LoadTable();
         setCBO();
@@ -93,10 +93,10 @@ public class FrmCTSanPham extends javax.swing.JFrame {
 //            _dcbmSize.addElement(x.getTen());
 //        }
 
-//        _dcbmSanPham.removeAllElements();
-//        for (SanPhamViewmodel x : _ServiceSanPham.getAll()) {
-//            _dcbmSanPham.addElement(x.getTen());
-//        }
+        _dcbmSanPham.removeAllElements();
+        for (SanPhamViewmodel x : _ServiceSanPham.getAll()) {
+            _dcbmSanPham.addElement(x.getTen());
+        }
     }
 
     public void LoadTable() {
