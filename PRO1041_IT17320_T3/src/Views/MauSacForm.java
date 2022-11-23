@@ -82,9 +82,9 @@ public class MauSacForm extends javax.swing.JFrame {
 
         jLabel2.setText("ID");
 
-        jLabel3.setText("Mã");
+        jLabel3.setText("MãMS");
 
-        jLabel4.setText("Tên");
+        jLabel4.setText("TênMS");
 
         lblID.setText("-");
 
@@ -114,7 +114,7 @@ public class MauSacForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Mã", "Tên"
+                "ID", "MãMS", "TênMS"
             }
         ));
         tbMauSac.addMouseListener(new java.awt.event.MouseAdapter() {

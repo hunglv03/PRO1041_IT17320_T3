@@ -73,9 +73,9 @@ public class FrmChatLieu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("CHẤT LIỆU");
 
-        jLabel2.setText("Mã:");
+        jLabel2.setText("MãCL:");
 
-        jLabel3.setText("Tên:");
+        jLabel3.setText("TênCL:");
 
         btnthem.setText("Thêm");
         btnthem.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +106,7 @@ public class FrmChatLieu extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Id", "Mã", "Tên", "Trạng thái"
+                "Id", "MãCL", "TênCL", "Trạng thái"
             }
         ));
         tblchatlieu.addMouseListener(new java.awt.event.MouseAdapter() {

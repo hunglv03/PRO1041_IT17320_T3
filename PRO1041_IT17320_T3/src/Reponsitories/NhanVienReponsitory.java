@@ -23,7 +23,7 @@ public class NhanVienReponsitory {
     public boolean Add(NhanVien nv){
         try {
             Connection conn = DBContext11.getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO NHANVIEN (MA, TEN, EMAIL, NGAYSINH, GIOITINH, SDT, DIACHI, TRANGTHAI) VALUES(?,?,?,?,?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO NHANVIEN (MANV, TENNV, EMAIL, NGAYSINH, GIOITINH, SDT, DIACHI, TRANGTHAI) VALUES(?,?,?,?,?,?,?,?)");
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getTen());
             ps.setString(3, nv.getEmail());
@@ -44,7 +44,7 @@ public class NhanVienReponsitory {
     public boolean Update(NhanVien nv){
         try {
             Connection conn = DBContext11.getConnection();
-            PreparedStatement ps = conn.prepareStatement("UPDATE NHANVIEN SET MA = ?, TEN = ?, EMAIL = ?, NGAYSINH = ?, GIOITINH = ?, SDT = ?, DIACHI = ?, TRANGTHAI = ? WHERE ID = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE NHANVIEN SET MANV = ?, TENNV = ?, EMAIL = ?, NGAYSINH = ?, GIOITINH = ?, SDT = ?, DIACHI = ?, TRANGTHAI = ? WHERE ID = ?");
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getTen());
             ps.setString(3, nv.getEmail());

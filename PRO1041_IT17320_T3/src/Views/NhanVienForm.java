@@ -151,7 +151,7 @@ public class NhanVienForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "IDCV", "Mã", "Tên", "Email", "Ngày Sinh", "Giới Tính", "Địa Chỉ", "SDT", "Trạng Thái"
+                "ID", "IDCV", "MãNV", "TênNV", "Email", "Ngày Sinh", "Giới Tính", "Địa Chỉ", "SDT", "Trạng Thái"
             }
         ));
         tbNV.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,11 +165,11 @@ public class NhanVienForm extends javax.swing.JFrame {
 
         jLabel9.setText("SDT");
 
-        jLabel3.setText("Mã");
+        jLabel3.setText("MãNV");
 
         jLabel10.setText("Trạng Thái");
 
-        jLabel4.setText("Tên");
+        jLabel4.setText("TênNV");
 
         jLabel11.setText("Email");
 

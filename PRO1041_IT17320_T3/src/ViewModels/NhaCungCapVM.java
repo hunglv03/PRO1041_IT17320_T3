@@ -12,8 +12,8 @@ package ViewModels;
 public class NhaCungCapVM {
 
     private String id;
-    private String ma;
-    private String ten;
+    private String maNCC;
+    private String tenNCC;
 
 
 
@@ -22,8 +22,8 @@ public class NhaCungCapVM {
 
     public NhaCungCapVM(String id, String ma, String ten) {
         this.id = id;
-        this.ma = ma;
-        this.ten = ten;
+        this.maNCC = ma;
+        this.tenNCC = ten;
     }
 
     public String getId() {
@@ -35,24 +35,24 @@ public class NhaCungCapVM {
     }
 
     public String getMa() {
-        return ma;
+        return maNCC;
     }
 
     public void setMa(String ma) {
-        this.ma = ma;
+        this.maNCC = ma;
     }
 
     public String getTen() {
-        return ten;
+        return tenNCC;
     }
 
     public void setTen(String ten) {
-        this.ten = ten;
+        this.tenNCC = ten;
     }
 
     @Override
     public String toString() {
-        return "NhaCungCapVM{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+        return "NhaCungCapVM{" + "id=" + id + ", ma=" + maNCC + ", ten=" + tenNCC + '}';
     }
 
 }

@@ -12,16 +12,16 @@ package ViewModels;
  */
 public class SanPhamViewmodel {
      private String id;
-    private String ma;
-    private String ten;
+    private String maSP;
+    private String tenSP;
 
     public SanPhamViewmodel() {
     }
 
     public SanPhamViewmodel(String id, String ma, String ten) {
         this.id = id;
-        this.ma = ma;
-        this.ten = ten;
+        this.maSP = ma;
+        this.tenSP = ten;
     }
 
     public String getId() {
@@ -33,19 +33,19 @@ public class SanPhamViewmodel {
     }
 
     public String getMa() {
-        return ma;
+        return maSP;
     }
 
     public void setMa(String ma) {
-        this.ma = ma;
+        this.maSP = ma;
     }
 
     public String getTen() {
-        return ten;
+        return tenSP;
     }
 
     public void setTen(String ten) {
-        this.ten = ten;
+        this.tenSP = ten;
     }
     
 }

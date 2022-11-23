@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class ChatLieuRepository {
 
-    final String INSERT = "INSERT INTO CHATLIEU(Ma,Ten) VALUES(?,?)";
-    final String UPDATE = "UPDATE CHATLIEU SET Ma = ?, Ten = ? WHERE Id = ?";
+    final String INSERT = "INSERT INTO CHATLIEU(MaCL,TenCL) VALUES(?,?)";
+    final String UPDATE = "UPDATE CHATLIEU SET MaCL = ?, TenCL = ? WHERE Id = ?";
     final String DELETE = "DELETE FROM CHATLIEU WHERE Id = ?";
 
     public ChatLieuRepository() {

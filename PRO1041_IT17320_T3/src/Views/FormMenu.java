@@ -8,9 +8,11 @@ package Views;
 import DomainModel.NhanVien;
 import Services.impl.MauSacServiceImpl;
 import Services.impl.NhanVienServiceImpl;
+import Services.impl.QLSPServiceImpl;
 import Services.impl.SanPhamServiceImpl;
 import ViewModels.MauSacViewModel;
 import ViewModels.NhanVienViewModel;
+import ViewModels.QLSPVM;
 import ViewModels.SanPhamViewmodel;
 import java.awt.FlowLayout;
 import java.awt.PopupMenu;
@@ -32,6 +34,7 @@ public class FormMenu extends javax.swing.JFrame {
      */
     private SanPhamServiceImpl spService = new SanPhamServiceImpl();
     private MauSacServiceImpl msService = new MauSacServiceImpl();
+    private QLSPServiceImpl qlspService = new QLSPServiceImpl();
 
     public FormMenu() {
         initComponents();
@@ -42,13 +45,14 @@ public class FormMenu extends javax.swing.JFrame {
     public void getTable() {
         DefaultTableModel dtm = (DefaultTableModel) this.tbSP.getModel();
         dtm.setRowCount(0);
-        for (SanPhamViewmodel s : this.spService.getAll()) {
+        for (QLSPVM qlsp : this.qlspService.getALL()) {
             Object[] rowData = {
-                 s.getMa(), s.getTen(),s.getTen()
+                 qlsp.getMaSP(),qlsp.getTenSP(),qlsp.getDonGia(),qlsp.getSoLuong(),qlsp.getMauSac(),qlsp.getChatlieu(),qlsp.getKichThuoc()
             };
             dtm.addRow(rowData);
         }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +75,7 @@ public class FormMenu extends javax.swing.JFrame {
         btnhd = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
-        HD = new javax.swing.JTabbedPane();
+        NV = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,7 +105,6 @@ public class FormMenu extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -109,7 +112,6 @@ public class FormMenu extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
-        cbloaiSP = new javax.swing.JComboBox<>();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -134,6 +136,8 @@ public class FormMenu extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
 
         jMenu1.setText("jMenu1");
 
@@ -220,8 +224,8 @@ public class FormMenu extends javax.swing.JFrame {
                 .addContainerGap(220, Short.MAX_VALUE))
         );
 
-        HD.setBackground(new java.awt.Color(153, 51, 255));
-        HD.setForeground(new java.awt.Color(255, 0, 51));
+        NV.setBackground(new java.awt.Color(153, 51, 255));
+        NV.setForeground(new java.awt.Color(255, 0, 51));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Giỏ hàng"));
 
@@ -419,15 +423,13 @@ public class FormMenu extends javax.swing.JFrame {
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
-        HD.addTab("HĐ", jPanel1);
+        NV.addTab("HĐ", jPanel1);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quản Lý Sản Phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel2.setText("Mã Sản Phẩm");
 
         jLabel3.setText("Tên Sản Phẩm");
-
-        jLabel4.setText("Loại Sản Phẩm");
 
         jLabel5.setText("Đơn Gía");
 
@@ -438,8 +440,6 @@ public class FormMenu extends javax.swing.JFrame {
         jLabel8.setText("Chất Liệu");
 
         jLabel9.setText("Kích Thước");
-
-        cbloaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Áo", "Quần", "Hoddie" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -454,7 +454,7 @@ public class FormMenu extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(18, 18, 18))
@@ -462,22 +462,23 @@ public class FormMenu extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addGap(14, 14, 14)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5)
-                    .addComponent(cbloaiSP, 0, 151, Short.MAX_VALUE)
-                    .addComponent(txtTen)
-                    .addComponent(txtMa))
-                .addGap(285, 285, 285)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel6)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTen, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                            .addComponent(txtMa))
+                        .addGap(285, 285, 285)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel6))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -505,17 +506,20 @@ public class FormMenu extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(cbloaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
@@ -524,13 +528,13 @@ public class FormMenu extends javax.swing.JFrame {
 
         tbSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Sản Phẩm ", "Tên Sản Phẩm", "Loại Sản Phẩm", "Đơn Gía", "Số Lượng", "Màu Sắc", "Chất Liệu", "Kích Thước"
+                "Mã Sản Phẩm ", "Tên Sản Phẩm", "Đơn Gía", "Số Lượng", "Màu Sắc", "Chất Liệu", "Kích Thước"
             }
         ));
         tbSP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -716,7 +720,33 @@ public class FormMenu extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        HD.addTab("SP", jPanel2);
+        NV.addTab("SP", jPanel2);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1110, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 711, Short.MAX_VALUE)
+        );
+
+        NV.addTab("NV", jPanel13);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1110, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 711, Short.MAX_VALUE)
+        );
+
+        NV.addTab("KH", jPanel14);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -724,18 +754,17 @@ public class FormMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(HD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(HD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                    .addComponent(NV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         pack();
@@ -743,12 +772,13 @@ public class FormMenu extends javax.swing.JFrame {
 
     private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
         // TODO add your handling code here:
-        HD.setSelectedIndex(2);
+        NV.setSelectedIndex(0);
 
     }//GEN-LAST:event_btnhdActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
         // TODO add your handling code here:
+        NV.setSelectedIndex(3);
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -758,13 +788,13 @@ public class FormMenu extends javax.swing.JFrame {
 
     private void btnnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnvActionPerformed
         // TODO add your handling code here:
-        HD.setSelectedIndex(0);
+        NV.setSelectedIndex(2);
 
     }//GEN-LAST:event_btnnvActionPerformed
 
     private void btnspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnspActionPerformed
         // TODO add your handling code here:
-        HD.setSelectedIndex(1);
+        NV.setSelectedIndex(1);
 
     }//GEN-LAST:event_btnspActionPerformed
 
@@ -816,13 +846,12 @@ public class FormMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane HD;
+    private javax.swing.JTabbedPane NV;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnhd;
     private javax.swing.JButton btnnv;
     private javax.swing.JButton btnsp;
-    private javax.swing.JComboBox<String> cbloaiSP;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -846,7 +875,6 @@ public class FormMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -860,6 +888,8 @@ public class FormMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
