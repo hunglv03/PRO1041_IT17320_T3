@@ -9,6 +9,7 @@ package ViewModels;
  * @author Lvh9x
  */
 public class CTSanPhamViewModel {
+
     private String id;
     private String idSp;
     private String idSize;
@@ -16,13 +17,14 @@ public class CTSanPhamViewModel {
     private String idNhaCungCap;
     private String idChatLieu;
     private String moTa;
-    private String soLuongTon;
-    private String giaBan;
+    private double soLuongTon;//đây sửa nữa này
+    private double giaBan;
+    private double giaNhap;
 
     public CTSanPhamViewModel() {
     }
 
-    public CTSanPhamViewModel(String id, String idSp, String idSize, String idMauSac, String idNhaCungCap, String idChatLieu, String moTa, String soLuongTon, String giaBan) {
+    public CTSanPhamViewModel(String id, String idSp, String idSize, String idMauSac, String idNhaCungCap, String idChatLieu, String moTa, double soLuongTon, double giaBan, double giaNhap) {
         this.id = id;
         this.idSp = idSp;
         this.idSize = idSize;
@@ -32,6 +34,7 @@ public class CTSanPhamViewModel {
         this.moTa = moTa;
         this.soLuongTon = soLuongTon;
         this.giaBan = giaBan;
+        this.giaNhap = giaNhap;
     }
 
     public String getId() {
@@ -90,28 +93,35 @@ public class CTSanPhamViewModel {
         this.moTa = moTa;
     }
 
-    public String getSoLuongTon() {
+    public double getSoLuongTon() {
         return soLuongTon;
     }
 
-    public void setSoLuongTon(String soLuongTon) {
+    public void setSoLuongTon(double soLuongTon) {
         this.soLuongTon = soLuongTon;
     }
 
-    public String getGiaBan() {
+    public double getGiaBan() {
         return giaBan;
     }
 
-    public void setGiaBan(String giaBan) {
+    public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
+    }
+
+    public double getGiaNhap() {
+        return giaNhap;
+    }
+
+    public void setGiaNhap(double giaNhap) {
+        this.giaNhap = giaNhap;
     }
 
     @Override
     public String toString() {
-        return "CTSanPhamViewModel{" + "id=" + id + ", idSp=" + idSp + ", idSize=" + idSize + ", idMauSac=" + idMauSac + ", idNhaCungCap=" + idNhaCungCap + ", idChatLieu=" + idChatLieu + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaBan=" + giaBan + '}';
+        return "CTSanPhamViewModel{" + "id=" + id + ", idSp=" + idSp + ", idSize=" + idSize + ", idMauSac=" + idMauSac + ", idNhaCungCap=" + idNhaCungCap + ", idChatLieu=" + idChatLieu + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaBan=" + giaBan + ", giaNhap=" + giaNhap + '}';
     }
 
     
-    
-    
+
 }

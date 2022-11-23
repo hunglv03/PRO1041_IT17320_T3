@@ -20,7 +20,7 @@ import java.sql.*;
  */
 public class CTSanPhamRepository {
 
-    final String INSERT_SQL = "INSERT INTO CHITIETSP(IdSP,IdSize,IdMauSac,IdNhaCungCap,IdChatLieu,MoTa,SoLuongTon,GiaBan) VALUES(?,?,?,?,?,?,?,?)";
+    final String INSERT_SQL = "INSERT INTO CHITIETSP(IdSP,IdSize,IdMauSac,IdNhaCungCap,IdChatLieu,MoTa,SoLuongTon,GiaBan,GiaNhap) VALUES(?,?,?,?,?,?,?,?,?)";
     final String UPDATE_SQL = "UPDATE CHITIETSP SET IdSP = ?, IdSize = ?, IdMauSac = ?, IdNhaCungCap = ?, IdChatLieu = ? WHERE ID = ?";
     final String DELETE_SQL = "DELETE FROM CHITIETSP WHERE ID = ?";
 
@@ -34,7 +34,7 @@ public class CTSanPhamRepository {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(SELECT_CHITIETSP);
             while (rs.next()) {
-                _lstCTSanPham.add(new CTSanPhamViewModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+                _lstCTSanPham.add(new CTSanPhamViewModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10)));
             }
         } catch (Exception e) {
             System.out.println("Loi khong the ket noi vao CSDL tai GetAll");
@@ -53,8 +53,9 @@ public class CTSanPhamRepository {
             stmt.setString(4, obj.getIdNhaCungCap());
             stmt.setString(5, obj.getIdChatLieu());
             stmt.setString(6, obj.getMoTa());
-            stmt.setString(7, obj.getSoLuongTon());
-            stmt.setString(8, obj.getGiaBan());
+            stmt.setDouble(7, obj.getSoLuongTon());
+            stmt.setDouble(8, obj.getGiaBan());
+            stmt.setDouble(9, obj.getGiaNhap());
             stmt.execute();
             conn.close();
             return true;
@@ -75,9 +76,10 @@ public class CTSanPhamRepository {
             stmt.setString(4, obj.getIdNhaCungCap());
             stmt.setString(5, obj.getIdChatLieu());
             stmt.setString(6, obj.getMoTa());
-            stmt.setString(7, obj.getSoLuongTon());
-            stmt.setString(8, obj.getGiaBan());
-            stmt.setString(9, obj.getId());
+            stmt.setDouble(7, obj.getSoLuongTon());
+            stmt.setDouble(8, obj.getGiaBan());
+            stmt.setDouble(9, obj.getGiaNhap());
+            stmt.setString(10, obj.getId());
             stmt.execute();
             conn.close();
             return true;

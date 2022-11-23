@@ -17,14 +17,15 @@ public class CTSanPham {
     private String idNhaCungCap;
     private String idChatLieu;
     private String moTa;
-    private String soLuongTon;
-    private String giaNhap;
-    private String giaBan;
+    private double soLuongTon;
+    private double giaNhap;
+    private double giaBan; // thấy sai chua
+    
 
     public CTSanPham() {
     }
 
-    public CTSanPham(String id, String idSp, String idSize, String idMauSac, String idNhaCungCap, String idChatLieu, String moTa, String soLuongTon, String giaNhap, String giaBan) {
+    public CTSanPham(String id, String idSp, String idSize, String idMauSac, String idNhaCungCap, String idChatLieu, String moTa, double soLuongTon, double giaNhap, double giaBan) {
         this.id = id;
         this.idSp = idSp;
         this.idSize = idSize;
@@ -93,27 +94,27 @@ public class CTSanPham {
         this.moTa = moTa;
     }
 
-    public String getSoLuongTon() {
+    public double getSoLuongTon() {
         return soLuongTon;
     }
 
-    public void setSoLuongTon(String soLuongTon) {
+    public void setSoLuongTon(double soLuongTon) {
         this.soLuongTon = soLuongTon;
     }
 
-    public String getGiaNhap() {
+    public double getGiaNhap() {
         return giaNhap;
     }
 
-    public void setGiaNhap(String giaNhap) {
+    public void setGiaNhap(double giaNhap) {
         this.giaNhap = giaNhap;
     }
 
-    public String getGiaBan() {
+    public double getGiaBan() {
         return giaBan;
     }
 
-    public void setGiaBan(String giaBan) {
+    public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
 
@@ -121,6 +122,10 @@ public class CTSanPham {
     public String toString() {
         return "CTSanPham{" + "id=" + id + ", idSp=" + idSp + ", idSize=" + idSize + ", idMauSac=" + idMauSac + ", idNhaCungCap=" + idNhaCungCap + ", idChatLieu=" + idChatLieu + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + '}';
     }
+
+    
+
+   
     
     
 }
