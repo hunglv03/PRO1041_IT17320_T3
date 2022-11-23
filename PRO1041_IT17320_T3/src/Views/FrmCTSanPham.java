@@ -34,7 +34,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
 
     private ChatLieuService _ServiceChatLieu;
     private MauSacService _ServiceMauSac;
-//    private NhaCungCapService _ServiceNcc;
+    private NhaCungCapService _ServiceNcc;
 //    private SizeService _ServiceSize;
 //    private SanPhamService _ServiceSanPham;
     private CTSanPhamService _Service;
@@ -54,13 +54,13 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         _Service = new CTSanPhamServiceImpl();
         _ServiceChatLieu = new ChatLieuServiceImpl();
         _ServiceMauSac = new MauSacServiceImpl();
-//        _ServiceNcc = new NhaCungCapServiceimpl();
+        _ServiceNcc = new NhaCungCapServiceimpl();
 //        _ServiceSize = new SizeServiceImpl();
 //        _ServiceSanPham = (SanPhamService) new SanPhamServiceImpl();
 
         _dcbmChatLieu = (DefaultComboBoxModel) cboidchatlieu.getModel();
         _dcbmMauSac = (DefaultComboBoxModel) cboidmausac.getModel();
-//        _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
+        _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
 //        _dcbmSize = (DefaultComboBoxModel) cboidsize.getModel();
 //        _dcbmSanPham = (DefaultComboBoxModel) cboidsp.getModel();
 
@@ -83,10 +83,10 @@ public class FrmCTSanPham extends javax.swing.JFrame {
             _dcbmMauSac.addElement(x.getTen());
         }
 
-//        _dcbmNcc.removeAllElements();
-//        for (NhaCungCapVM x : _ServiceNcc.getAll()) {
-//            _dcbmNcc.addElement(x.getTen());
-//        }
+        _dcbmNcc.removeAllElements();
+        for (NhaCungCapVM x : _ServiceNcc.getAll()) {
+            _dcbmNcc.addElement(x.getTen());
+        }
 //
 //        _dcbmSize.removeAllElements();
 //        for (SizeVM x : _ServiceSize.getListSize()) {
