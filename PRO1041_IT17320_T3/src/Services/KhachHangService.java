@@ -5,15 +5,21 @@
  */
 package Services;
 
-import ViewModels.QLSPVM;
+import DomainModel.KhachHang;
+import ViewModels.KhachHangVM;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface QLSPService {
+public interface KhachHangService {
 
-    ArrayList<QLSPVM> getALL();
-    void insert(QLSPVM qlsp);
+    ArrayList<KhachHangVM> getall();
+
+    void insert(KhachHang kh);
+
+    void update(KhachHang kh, String id);
+
+    void delete(String id);
 }

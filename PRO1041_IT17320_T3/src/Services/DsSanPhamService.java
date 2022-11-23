@@ -5,15 +5,15 @@
  */
 package Services;
 
-import ViewModels.QLSPVM;
+import ViewModels.DsSanPhamViewModel;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface QLSPService {
-
-    ArrayList<QLSPVM> getALL();
-    void insert(QLSPVM qlsp);
+public interface DsSanPhamService {
+    ArrayList<DsSanPhamViewModel> getAll();
+    
+    ArrayList<DsSanPhamViewModel> findSanPham(String sanPham);
 }

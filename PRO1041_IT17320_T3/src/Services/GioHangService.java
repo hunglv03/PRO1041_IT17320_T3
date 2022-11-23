@@ -5,15 +5,13 @@
  */
 package Services;
 
-import ViewModels.QLSPVM;
+import ViewModels.GioHangViewModel;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface QLSPService {
-
-    ArrayList<QLSPVM> getALL();
-    void insert(QLSPVM qlsp);
+public interface GioHangService {
+    ArrayList<GioHangViewModel> getAll();
 }

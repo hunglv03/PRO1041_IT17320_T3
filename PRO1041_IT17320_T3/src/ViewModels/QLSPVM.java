@@ -10,33 +10,28 @@ package ViewModels;
  * @author Admin
  */
 public class QLSPVM {
-    private String maSP;
+    
     private String tenSP;
-    private int donGia;
-    private double soLuong;
     private String mauSac;
     private String chatlieu;
-    private String kichThuoc;
+    private String size;
+    private String ncc;
+    private int soLuong;
+    private double giaNhap;
+    private double giaBan;
 
     public QLSPVM() {
     }
 
-    public QLSPVM(String maSP, String tenSP, int donGia, double soLuong, String mauSac, String chatlieu, String kichThuoc) {
-        this.maSP = maSP;
+    public QLSPVM(String tenSP, String mauSac, String chatlieu, String size, String ncc, int soLuong, double giaNhap, double giaBan) {
         this.tenSP = tenSP;
-        this.donGia = donGia;
-        this.soLuong = soLuong;
         this.mauSac = mauSac;
         this.chatlieu = chatlieu;
-        this.kichThuoc = kichThuoc;
-    }
-
-    public String getMaSP() {
-        return maSP;
-    }
-
-    public void setMaSP(String maSP) {
-        this.maSP = maSP;
+        this.size = size;
+        this.ncc = ncc;
+        this.soLuong = soLuong;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
     }
 
     public String getTenSP() {
@@ -45,22 +40,6 @@ public class QLSPVM {
 
     public void setTenSP(String tenSP) {
         this.tenSP = tenSP;
-    }
-
-    public int getDonGia() {
-        return donGia;
-    }
-
-    public void setDonGia(int donGia) {
-        this.donGia = donGia;
-    }
-
-    public double getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(double soLuong) {
-        this.soLuong = soLuong;
     }
 
     public String getMauSac() {
@@ -79,18 +58,47 @@ public class QLSPVM {
         this.chatlieu = chatlieu;
     }
 
-    public String getKichThuoc() {
-        return kichThuoc;
+    public String getSize() {
+        return size;
     }
 
-    public void setKichThuoc(String kichThuoc) {
-        this.kichThuoc = kichThuoc;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    @Override
-    public String toString() {
-        return "QLSPVM{" + "maSP=" + maSP + ", tenSP=" + tenSP + ", donGia=" + donGia + ", soLuong=" + soLuong + ", mauSac=" + mauSac + ", chatlieu=" + chatlieu + ", kichThuoc=" + kichThuoc + '}';
+    public String getNcc() {
+        return ncc;
     }
 
+    public void setNcc(String ncc) {
+        this.ncc = ncc;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public double getGiaNhap() {
+        return giaNhap;
+    }
+
+    public void setGiaNhap(double giaNhap) {
+        this.giaNhap = giaNhap;
+    }
+
+    public double getGiaBan() {
+        return giaBan;
+    }
+
+    public void setGiaBan(double giaBan) {
+        this.giaBan = giaBan;
+    }
+    
+
+    
 
 }

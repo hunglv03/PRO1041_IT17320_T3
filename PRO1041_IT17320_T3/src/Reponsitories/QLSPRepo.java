@@ -22,16 +22,18 @@ public class QLSPRepo {
         ArrayList<QLSPVM> listALL = new ArrayList<>();
         try {
             Connection conn = DBContext1.getConnection();
-            String sql = "SELECT SanPham.MaSP,SanPham.TenSP,ChiTietSP.GiaBan,ChiTietSP.SoLuongTon,ChatLieu.TenCL,Size.TenSIZE,MauSac.TenMS FROM ChiTietSP  \n"
-                    + "                     inner join SanPham ON ChiTietSP.IdSP=SanPham.Id\n"
-                    + "                     inner join MauSac ON ChiTietSP.IdMauSac=MauSac.Id\n"
-                    + "                    inner join ChatLieu ON ChiTietSP.IdChatLieu=ChatLieu.Id\n"
-                    + "                     inner join Size ON ChiTietSP.IdSize=Size.Id";
+            String sql = "SELECT SanPham.TenSP,MauSac.TenMS,ChatLieu.TenCL,Size.TenSIZE,NhaCungCap.TenNCC,ChiTietSP.SoLuongTon,ChiTietSP.GiaNhap,ChiTietSP.GiaBan FROM ChiTietSP  \n"
+                    + "inner join SanPham ON ChiTietSP.IdSP=SanPham.Id\n"
+                    + "inner join MauSac ON ChiTietSP.IdMauSac=MauSac.Id\n"
+                    + "inner join ChatLieu ON ChiTietSP.IdChatLieu=ChatLieu.Id\n"
+                    + "inner join Size ON ChiTietSP.IdSize=Size.Id\n"
+                    + "inner join NhaCungCap ON ChiTietSP.IDNhaCungCap=NhaCungCap.Id\n";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
-                listALL.add(new QLSPVM(rs.getString("MaSP"), rs.getString("TenSP"), rs.getInt("GiaBan"), rs.getDouble("SoLuongTon"), rs.getString("TenCL"), rs.getString("TenSIZE"), rs.getString("TenMS")));
+                listALL.add(new QLSPVM(rs.getString("TenSP"), rs.getString("TenMS"), rs.getString("TenCL"),
+                        rs.getString("TenSIZE"), rs.getString("TenNCC"), rs.getInt("SoLuongTon"), rs.getDouble("GiaNhap"), rs.getDouble("GiaBan")));
             }
             System.out.println("Truy vấn thành công");
         } catch (Exception e) {
@@ -40,6 +42,31 @@ public class QLSPRepo {
         return listALL;
 
     }
-    
 
+    public void insert(QLSPVM qlsp) {
+        try {
+            Connection conn = DBContext1.getConnection();
+            String sql = "INSERT INTO ChiTietSP " + "inner join SanPham ON ChiTietSP.IdSP=SanPham.Id\n"
+                    + "inner join MauSac ON ChiTietSP.IdMauSac=MauSac.Id\n"
+                    + "inner join ChatLieu ON ChiTietSP.IdChatLieu=ChatLieu.Id\n"
+                    + "inner join Size ON ChiTietSP.IdSize=Size.Id\n"
+                    + "inner join NhaCungCap ON ChiTietSP.IDNhaCungCap=NhaCungCap.Id\n" +"(SanPham.TenSP,MauSac.TenMS,ChatLieu.TenCL,Size.TenSIZE,NhaCungCap.TenNCC,ChiTietSP.SoLuongTon,ChiTietSP.GiaNhap,ChiTietSP.GiaBan)" +"VALUES(?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, qlsp.getTenSP());
+            
+            
+            ps.setString(2, qlsp.getMauSac());
+            ps.setString(3, qlsp.getChatlieu());
+            ps.setString(4, qlsp.getSize());
+            ps.setString(5, qlsp.getNcc());
+            ps.setInt(6, qlsp.getSoLuong());
+            ps.setDouble(7, qlsp.getGiaNhap());
+            ps.setDouble(7, qlsp.getGiaBan());
+            ps.execute();
+            System.out.println("Thêm thành công");
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
 }

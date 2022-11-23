@@ -22,6 +22,9 @@ public class QLSPServiceImpl implements QLSPService {
         this.qlspRepo = new QLSPRepo();
     }
 
+    public void insert(QLSPVM qlsp){
+        this.qlspRepo.insert(qlsp);
+    }
     public ArrayList<QLSPVM> getALL() {
         return this.qlspRepo.getAll();
     }
