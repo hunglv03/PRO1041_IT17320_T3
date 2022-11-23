@@ -7,13 +7,24 @@ package Views;
 import DomainModel.ChatLieu;
 import Services.CTSanPhamService;
 import Services.ChatLieuService;
+import Services.MauSacService;
+import Services.NhaCungCapService;
+import Services.SanPhamService;
+import Services.SizeService;
 import Services.impl.CTSanPhamServiceImpl;
 import Services.impl.ChatLieuServiceImpl;
+import Services.impl.MauSacServiceImpl;
+import Services.impl.NhaCungCapServiceimpl;
+import Services.impl.SanPhamServiceImpl;
+import Services.impl.SizeServiceImpl;
 import ViewModels.CTSanPhamViewModel;
 import ViewModels.ChatLieuViewModel;
+import ViewModels.MauSacViewModel;
+import ViewModels.NhaCungCapVM;
+import ViewModels.SanPhamViewmodel;
+import ViewModels.SizeVM;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -22,6 +33,10 @@ import javax.swing.table.DefaultTableModel;
 public class FrmCTSanPham extends javax.swing.JFrame {
 
     private ChatLieuService _ServiceChatLieu;
+    private MauSacService _ServiceMauSac;
+//    private NhaCungCapService _ServiceNcc;
+//    private SizeService _ServiceSize;
+//    private SanPhamService _ServiceSanPham;
     private CTSanPhamService _Service;
     private DefaultTableModel _DefaultTableModel;
     private String _IdWhenClick;
@@ -29,6 +44,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private DefaultComboBoxModel _dcbmChatLieu;
     private DefaultComboBoxModel _dcbmSanPham;
     private DefaultComboBoxModel _dcbmNcc;
+    private DefaultComboBoxModel _dcbmSize;
 
     /**
      * Creates new form FrmCTSanPham
@@ -37,7 +53,17 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         initComponents();
         _Service = new CTSanPhamServiceImpl();
         _ServiceChatLieu = new ChatLieuServiceImpl();
+        _ServiceMauSac = new MauSacServiceImpl();
+//        _ServiceNcc = new NhaCungCapServiceimpl();
+//        _ServiceSize = new SizeServiceImpl();
+//        _ServiceSanPham = (SanPhamService) new SanPhamServiceImpl();
+
         _dcbmChatLieu = (DefaultComboBoxModel) cboidchatlieu.getModel();
+        _dcbmMauSac = (DefaultComboBoxModel) cboidmausac.getModel();
+//        _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
+//        _dcbmSize = (DefaultComboBoxModel) cboidsize.getModel();
+//        _dcbmSanPham = (DefaultComboBoxModel) cboidsp.getModel();
+
         LoadTable();
         setCBO();
     }
@@ -51,6 +77,26 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         for (ChatLieuViewModel x : _ServiceChatLieu.GetAll()) {
             _dcbmChatLieu.addElement(x.getTen());
         }
+
+        _dcbmMauSac.removeAllElements();
+        for (MauSacViewModel x : _ServiceMauSac.getAll()) {
+            _dcbmMauSac.addElement(x.getTen());
+        }
+
+//        _dcbmNcc.removeAllElements();
+//        for (NhaCungCapVM x : _ServiceNcc.getAll()) {
+//            _dcbmNcc.addElement(x.getTen());
+//        }
+//
+//        _dcbmSize.removeAllElements();
+//        for (SizeVM x : _ServiceSize.getListSize()) {
+//            _dcbmSize.addElement(x.getTen());
+//        }
+
+//        _dcbmSanPham.removeAllElements();
+//        for (SanPhamViewmodel x : _ServiceSanPham.getAll()) {
+//            _dcbmSanPham.addElement(x.getTen());
+//        }
     }
 
     public void LoadTable() {
