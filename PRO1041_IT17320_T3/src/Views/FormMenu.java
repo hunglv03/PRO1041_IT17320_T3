@@ -7,25 +7,36 @@ package Views;
 
 import DomainModel.NhanVien;
 import Reponsitories.GioHangReponsitory;
+import Services.ChatLieuService;
 import Services.DsSanPhamService;
+import Services.MauSacService;
+import Services.NhaCungCapService;
 import Services.QLSPService;
+import Services.SizeService;
+import Services.impl.ChatLieuServiceImpl;
 import Services.impl.DsSanPhamServiceImpl;
 import Services.impl.GioHangServiceImpl;
 import Services.impl.MauSacServiceImpl;
+import Services.impl.NhaCungCapServiceimpl;
 import Services.impl.NhanVienServiceImpl;
 import Services.impl.QLSPServiceImpl;
 import Services.impl.SanPhamServiceImpl;
+import Services.impl.SizeServiceImpl;
+import ViewModels.ChatLieuViewModel;
 import ViewModels.DsSanPhamViewModel;
 import ViewModels.GioHangViewModel;
 import ViewModels.MauSacViewModel;
+import ViewModels.NhaCungCapVM;
 import ViewModels.NhanVienViewModel;
 import ViewModels.QLSPVM;
 import ViewModels.SanPhamViewmodel;
+import ViewModels.SizeVM;
 import java.awt.FlowLayout;
 import java.awt.PopupMenu;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -39,6 +50,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormMenu extends javax.swing.JFrame {
 
+    private DefaultComboBoxModel _dcbMauSac;
+    private DefaultComboBoxModel _dcbChatLieu;
+    private DefaultComboBoxModel _dcbNcc;
+    private DefaultComboBoxModel _dcbSize;
+    
+    //
+    private MauSacService _ServiceMauSac;
+    private ChatLieuService _ServiceChatLieu;
+    private NhaCungCapService _ServiceNcc;
+    private SizeService _ServiceSize;
+    
     /**
      * Creates new form FormMENUChính
      */
@@ -51,7 +73,7 @@ public class FormMenu extends javax.swing.JFrame {
     private ArrayList<GioHangViewModel> list = new ArrayList<>();
     String find = " ";
     GioHangReponsitory gioHangReponsitory = new GioHangReponsitory();
-   
+
     public FormMenu() {
         initComponents();
         this.getTable();
@@ -63,9 +85,46 @@ public class FormMenu extends javax.swing.JFrame {
         Date date = new Date();// Return thời gian hiện tại với định dạng rất khó coi
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Định dạng lại date                                                                                           
         txtngaytao.setText(sdf.format(date));
+        
+        //
+        _ServiceChatLieu = new ChatLieuServiceImpl();
+        _ServiceMauSac = new MauSacServiceImpl();
+        _ServiceNcc = new NhaCungCapServiceimpl();
+        _ServiceSize = new SizeServiceImpl();
+        
+        _dcbChatLieu = (DefaultComboBoxModel) cbChatLieu.getModel();
+        _dcbMauSac = (DefaultComboBoxModel) cbMauSac.getModel();
+        _dcbNcc = (DefaultComboBoxModel) cbNCC.getModel();
+        _dcbSize = (DefaultComboBoxModel) cbSize.getModel();
+        
+        setCBO();
+    }
+    
+    //
+    public void setCBO() {
+        _dcbChatLieu.removeAllElements();
+        for (ChatLieuViewModel x : _ServiceChatLieu.GetAll()) {
+            _dcbChatLieu.addElement(x.getTen());
+        }
+        
+        _dcbMauSac.removeAllElements();
+        for (MauSacViewModel x : _ServiceMauSac.getAll()) {
+            _dcbMauSac.addElement(x.getTen());
+        }
+        
+        _dcbNcc.removeAllElements();
+        for (NhaCungCapVM x : _ServiceNcc.getAll()) {
+            _dcbNcc.addElement(x.getTenNCC());
+        }
+        
+        _dcbSize.removeAllElements();
+        for (SizeVM x : _ServiceSize.getListSize()) {
+            _dcbSize.addElement(x.getTen());
+        }
     }
 
     public void findSanPham() {
+        
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
         int masp = 1;
@@ -96,7 +155,7 @@ public class FormMenu extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (QLSPVM qlsp : this.qlspService.getALL()) {
             Object[] rowData = {
-               qlsp.getTenSP(), qlsp.getMauSac(), qlsp.getChatlieu(), qlsp.getSize(),qlsp.getNcc(), qlsp.getSoLuong(),qlsp.getGiaNhap(),qlsp.getGiaBan()
+                qlsp.getTenSP(), qlsp.getMauSac(), qlsp.getChatlieu(), qlsp.getSize(), qlsp.getNcc(), qlsp.getSoLuong(), qlsp.getGiaNhap(), qlsp.getGiaBan()
             };
             dtm.addRow(rowData);
         }
@@ -900,6 +959,9 @@ public class FormMenu extends javax.swing.JFrame {
 
         txtMa.setText(tbQuanLySanPham.getValueAt(row, 0).toString());
         txtTenSP.setText(tbQuanLySanPham.getValueAt(row, 1).toString());
+        txtGiaBan.setText(tbQuanLySanPham.getValueAt(row, 7).toString());
+        txtGiaNhap.setText(tbQuanLySanPham.getValueAt(row, 6).toString());
+        txtSoLuong.setText(tbQuanLySanPham.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tbQuanLySanPhamMouseClicked
 
     private void txtFindCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFindCaretUpdate
@@ -928,11 +990,11 @@ public class FormMenu extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-        QLSPVM qlsp=this.getLoadData();
-        if(qlsp==null){
+        QLSPVM qlsp = this.getLoadData();
+        if (qlsp == null) {
             return;
         }
-        
+
         this.qlspService.insert(qlsp);
         getTable();
         JOptionPane.showMessageDialog(this, "Thêm Thành Công");
@@ -947,13 +1009,13 @@ public class FormMenu extends javax.swing.JFrame {
         String sl = txtSoLuong.getText().trim();
 
         String gn = txtGiaNhap.getText().trim();
-        String gb=txtGiaBan.getText().trim();
-        
-        int soLuong=Integer.parseInt(sl);
-        double giaNhap=Double.parseDouble(gn);
-        double giaBan=Double.parseDouble(gb);
-        
-        QLSPVM qlsp=new QLSPVM(sp, ms, cl, s, ncc, soLuong, giaNhap, giaBan);
+        String gb = txtGiaBan.getText().trim();
+
+        int soLuong = Integer.parseInt(sl);
+        double giaNhap = Double.parseDouble(gn);
+        double giaBan = Double.parseDouble(gb);
+
+        QLSPVM qlsp = new QLSPVM(sp, ms, cl, s, ncc, soLuong, giaNhap, giaBan);
         return qlsp;
     }
 
