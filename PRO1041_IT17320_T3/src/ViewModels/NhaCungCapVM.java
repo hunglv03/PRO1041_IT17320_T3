@@ -52,7 +52,7 @@ public class NhaCungCapVM {
 
     @Override
     public String toString() {
-        return "NhaCungCapVM{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+        return ten;
     }
 
 }

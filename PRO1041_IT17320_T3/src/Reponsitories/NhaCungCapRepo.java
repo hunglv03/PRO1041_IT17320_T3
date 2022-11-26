@@ -21,7 +21,7 @@ public class NhaCungCapRepo {
         public void insert(NhaCungCap ncc) {
         try {
             Connection conn = DBContext11.getConnection();
-            String sql = "INSERT INTO NhaCungCap" + "(Ma,Ten)" + "VALUES(?,?)";
+            String sql = "INSERT INTO NhaCungCap" + "(MaNCC,TenNCC)" + "VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ncc.getMa());
             ps.setString(2, ncc.getTen());
@@ -35,7 +35,7 @@ public class NhaCungCapRepo {
     public void update(NhaCungCap ncc, String id) {
         try {
             Connection conn = DBContext11.getConnection();
-            String sql = "UPDATE NhaCungCap SET " + "Ma=?,Ten=? WHERE Id=?";
+            String sql = "UPDATE NhaCungCap SET " + "MaNCC=?,TenNCC=? WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ncc.getMa());
             ps.setString(2, ncc.getTen());
@@ -69,7 +69,7 @@ public class NhaCungCapRepo {
             ps.execute();
             ResultSet rs=ps.getResultSet();
             while (rs.next()) {                
-                listNCC.add(new NhaCungCapVM(rs.getString("Id"),rs.getString("Ma"),rs.getString("Ten")));
+                listNCC.add(new NhaCungCapVM(rs.getString("Id"),rs.getString("MaNCC"),rs.getString("TenNCC")));
             }
             System.out.println("Truy vấn thành công");
         } catch (Exception e) {
@@ -77,5 +77,11 @@ public class NhaCungCapRepo {
         }
         return listNCC;
         
+    }
+    public static void main(String[] args) {
+        NhaCungCapRepo ctsp = new NhaCungCapRepo();
+        for (NhaCungCapVM x : ctsp.getAll()) {
+            System.out.println(x.toString());
+        }
     }
 }

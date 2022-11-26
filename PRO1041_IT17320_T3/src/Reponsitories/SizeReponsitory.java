@@ -22,7 +22,7 @@ public class SizeReponsitory {
     public void insert(Size s) {
         try {
             Connection conn = Util.DBContext.getConnection();
-            String sql = "INSERT INTO Size" + "(Ma,Ten)" + "VALUES(?,?)";
+            String sql = "INSERT INTO Size" + "(MaSIZE,TenSIZE)" + "VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s.getMa());
             ps.setString(2, s.getTen());
@@ -36,7 +36,7 @@ public class SizeReponsitory {
     public void update(Size s, String id) {
         try {
             Connection conn = Util.DBContext.getConnection();
-            String sql = "UPDATE Size SET " + "Ma=?,Ten=? WHERE Id=?";
+            String sql = "UPDATE Size SET " + "MaSIZE=?,TenSIZE=? WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s.getMa());
             ps.setString(2, s.getTen());
@@ -71,8 +71,8 @@ public class SizeReponsitory {
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
                 String id = rs.getString("Id");
-                String ma = rs.getString("Ma");
-                String ten = rs.getString("Ten");
+                String ma = rs.getString("MaSIZE");
+                String ten = rs.getString("TenSIZE");
 
                 SizeVM s = new SizeVM(id, ma, ten);
                 listSize.add(s);
@@ -82,5 +82,11 @@ public class SizeReponsitory {
             e.getMessage();
         }
         return listSize;
+    }
+    public static void main(String[] args) {
+        SizeReponsitory sz = new SizeReponsitory();
+        for (SizeVM x : sz.all()) {
+            System.out.println(x.toString());
+        }
     }
 }

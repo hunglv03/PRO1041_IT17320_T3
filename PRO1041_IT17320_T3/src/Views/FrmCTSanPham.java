@@ -24,6 +24,7 @@ import ViewModels.MauSacViewModel;
 import ViewModels.NhaCungCapVM;
 import ViewModels.SanPhamViewmodel;
 import ViewModels.SizeVM;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,13 +34,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Lvh9x
  */
 public class FrmCTSanPham extends javax.swing.JFrame {
-    
+
     private ChatLieuService _ServiceChatLieu;
     private MauSacService _ServiceMauSac;
     private NhaCungCapService _ServiceNcc;
     private SizeService _ServiceSize;
     private SanPhamService _ServiceSanPham;
-    
+
     private CTSanPhamService _ServiceCTSP;
     //
     private DefaultTableModel _DefaultTableModel;
@@ -49,7 +50,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private DefaultComboBoxModel _dcbmSanPham;
     private DefaultComboBoxModel _dcbmNcc;
     private DefaultComboBoxModel _dcbmSize;
-    
+
     private String _IdWhenClick;
 
     /**
@@ -63,62 +64,89 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         _ServiceNcc = new NhaCungCapServiceimpl();
         _ServiceSize = new SizeServiceImpl();
         _ServiceSanPham = new SanPhamServiceImpl();
-        
+
         _dcbmChatLieu = (DefaultComboBoxModel) cboidchatlieu.getModel();
         _dcbmMauSac = (DefaultComboBoxModel) cboidmausac.getModel();
         _dcbmNcc = (DefaultComboBoxModel) cboidncc.getModel();
         _dcbmSize = (DefaultComboBoxModel) cboidsize.getModel();
         _dcbmSanPham = (DefaultComboBoxModel) cboidsp.getModel();
-        //getIdByCBO();
         LoadTable();
-        setCBO();
+        LoadCbo();
     }
-    
+
     private CTSanPhamViewModel GetDataFromGui() {
-        String idSanPham = _ServiceSanPham.getAll().get(cboidsp.getSelectedIndex()).getId().toString();
-        String idMauSac = _ServiceMauSac.getAll().get(cboidmausac.getSelectedIndex()).getId().toString();
-        String idSize = _ServiceSize.getListSize().get(cboidsize.getSelectedIndex()).getId().toString();
-        String idNcc = _ServiceNcc.getAll().get(cboidncc.getSelectedIndex()).getId().toString();
-        String idChatLieu = _ServiceChatLieu.GetAll().get(cboidchatlieu.getSelectedIndex()).getId().toString();
-        
-        return new CTSanPhamViewModel(null, idSanPham, idSize, idMauSac, idNcc, idChatLieu, tarmota.getText(), Double.parseDouble(txtsoluong.getText()), Double.parseDouble(txtgiaban.getText()), Double.parseDouble(txtgianhap.getText()));
-    }
-    
-    public void setCBO() {
-        _dcbmChatLieu.removeAllElements();
-        for (ChatLieuViewModel x : _ServiceChatLieu.GetAll()) {
-            _dcbmChatLieu.addElement(x.getTen());
-        }
-        
-        _dcbmMauSac.removeAllElements();
-        for (MauSacViewModel x : _ServiceMauSac.getAll()) {
-            _dcbmMauSac.addElement(x.getTen());
-        }
-        
-        _dcbmNcc.removeAllElements();
-        for (NhaCungCapVM x : _ServiceNcc.getAll()) {
-            _dcbmNcc.addElement(x.getTen());
-        }
-        
-        _dcbmSize.removeAllElements();
-        for (SizeVM x : _ServiceSize.getListSize()) {
-            _dcbmSize.addElement(x.getTen());
-        }
-        
-        _dcbmSanPham.removeAllElements();
-        for (SanPhamViewmodel x : _ServiceSanPham.getAll()) {
-            _dcbmSanPham.addElement(x.getTen());
+        try {
+            SanPhamViewmodel idSanPham = (SanPhamViewmodel) cboidsp.getSelectedItem();
+            MauSacViewModel idMauSac = (MauSacViewModel) cboidmausac.getSelectedItem();
+            SizeVM idSize = (SizeVM) cboidsize.getSelectedItem();
+            NhaCungCapVM idNcc = (NhaCungCapVM) cboidncc.getSelectedItem();
+            ChatLieuViewModel idChatLieu = (ChatLieuViewModel) cboidchatlieu.getSelectedItem();
+            String mota = tarmota.getText();
+            Double soLuong = Double.parseDouble(txtsoluong.getText());
+            Double giaBan = Double.parseDouble(txtgiaban.getText());
+            Double giaNhap = Double.parseDouble(txtgianhap.getText());
+
+            CTSanPhamViewModel ctspv = new CTSanPhamViewModel();
+            ctspv.setIdSp(idSanPham);
+            ctspv.setIdMauSac(idMauSac);
+            ctspv.setIdSize(idSize);
+            ctspv.setIdNhaCungCap(idNcc);
+            ctspv.setIdChatLieu(idChatLieu);
+            ctspv.setMoTa(mota);
+            ctspv.setSoLuongTon(soLuong);
+            ctspv.setGiaBan(giaBan);
+            ctspv.setGiaNhap(giaNhap);
+
+            return ctspv;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
-    
+
+    public void LoadCbo() {
+
+        cboidchatlieu.removeAllItems();
+        List<ChatLieuViewModel> dsChatLieu = _ServiceChatLieu.GetAll();
+        for (ChatLieuViewModel chatLieuViewModel : dsChatLieu) {
+            cboidchatlieu.addItem(chatLieuViewModel);
+        }
+
+        //
+        cboidmausac.removeAllItems();
+        List<MauSacViewModel> dsMauSac = _ServiceMauSac.getAll();
+        for (MauSacViewModel mauSac : dsMauSac) {
+            cboidmausac.addItem(mauSac);
+        }
+        //
+        cboidncc.removeAllItems();
+        List<NhaCungCapVM> dsNcc = _ServiceNcc.getAll();
+        for (NhaCungCapVM ncc : dsNcc) {
+            cboidncc.addItem(ncc);
+        }
+        //
+        cboidsize.removeAllItems();
+        List<SizeVM> dsSize = _ServiceSize.getListSize();
+        for (SizeVM size : dsSize) {
+            cboidsize.addItem(size);
+        }
+        //
+        cboidsp.removeAllItems();
+        List<SanPhamViewmodel> dsSp = _ServiceSanPham.getAll();
+        for (SanPhamViewmodel sanPhamViewmodel : dsSp) {
+            cboidsp.addItem(sanPhamViewmodel);
+        }
+    }
+
     public void LoadTable() {
         _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
-        
+
         for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
             _DefaultTableModel.addRow(new Object[]{
-                stt++,
+                x.getId(),
                 x.getIdSp(),
                 x.getIdSize(),
                 x.getIdMauSac(),
@@ -129,48 +157,6 @@ public class FrmCTSanPham extends javax.swing.JFrame {
                 x.getGiaNhap()
             });
         }
-    }
-    
-    private String getIdByCBO() {
-//        int index = cboidchatlieu.getSelectedIndex();
-//        _IdWhenClick = _ServiceChatLieu.GetAll().get(index).getId();
-
-        //Chất liệu
-        if (cboidchatlieu.getSelectedIndex() == -1) {
-            return null;
-        } else {
-            int index = cboidchatlieu.getSelectedIndex();
-            _IdWhenClick = _ServiceChatLieu.GetAll().get(index).getId();
-        }
-        //Màu sắc
-        if (cboidmausac.getSelectedIndex() == -1) {
-            return null;
-        } else {
-            int index = cboidmausac.getSelectedIndex();
-            _IdWhenClick = _ServiceMauSac.getAll().get(index).getId();
-        }
-        //Nhà cung cấp
-        if (cboidncc.getSelectedIndex() == -1) {
-            return null;
-        } else {
-            int index = cboidncc.getSelectedIndex();
-            _IdWhenClick = _ServiceNcc.getAll().get(index).getId();
-        }
-        //Size
-        if (cboidsize.getSelectedIndex() == -1) {
-            return null;
-        } else {
-            int index = cboidsize.getSelectedIndex();
-            _IdWhenClick = _ServiceSize.getListSize().get(index).getId();
-        }
-        //Sản phẩm
-        if (cboidsp.getSelectedIndex() == -1) {
-            return null;
-        } else {
-            int index = cboidsp.getSelectedIndex();
-            _IdWhenClick = _ServiceSanPham.getAll().get(index).getId();
-        }
-        return _IdWhenClick;
     }
 
     /**
@@ -198,11 +184,11 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         tarmota = new javax.swing.JTextArea();
         txtsoluong = new javax.swing.JTextField();
         txtgiaban = new javax.swing.JTextField();
-        cboidsp = new javax.swing.JComboBox<>();
-        cboidsize = new javax.swing.JComboBox<>();
-        cboidmausac = new javax.swing.JComboBox<>();
-        cboidncc = new javax.swing.JComboBox<>();
-        cboidchatlieu = new javax.swing.JComboBox<>();
+        cboidsp = new javax.swing.JComboBox<SanPhamViewmodel>();
+        cboidsize = new javax.swing.JComboBox<SizeVM>();
+        cboidmausac = new javax.swing.JComboBox<MauSacViewModel>();
+        cboidncc = new javax.swing.JComboBox<NhaCungCapVM>();
+        cboidchatlieu = new javax.swing.JComboBox<ChatLieuViewModel>();
         lblid = new javax.swing.JLabel();
         txttimkiem = new javax.swing.JTextField();
         btnthem = new javax.swing.JButton();
@@ -224,7 +210,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "TênSP", "Size", "Màu Sắc", "NCC", "Chất Liệu", "Số Lượng", "Gía Nhập", "Gía Bán"
+                "Id", "TênSP", "Size", "Màu Sắc", "NCC", "Chất Liệu", "Số Lượng", "Gía Nhập", "Gía Bán"
             }
         ));
         tblctsanpham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -256,20 +242,20 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         tarmota.setRows(5);
         jScrollPane2.setViewportView(tarmota);
 
-        cboidsp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboidsp.setModel(new javax.swing.DefaultComboBoxModel<SanPhamViewmodel>());
 
-        cboidsize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboidsize.setModel(new javax.swing.DefaultComboBoxModel<SizeVM>());
 
-        cboidmausac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboidmausac.setModel(new javax.swing.DefaultComboBoxModel<MauSacViewModel>());
         cboidmausac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboidmausacActionPerformed(evt);
             }
         });
 
-        cboidncc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboidncc.setModel(new javax.swing.DefaultComboBoxModel<NhaCungCapVM>());
 
-        cboidchatlieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboidchatlieu.setModel(new javax.swing.DefaultComboBoxModel<ChatLieuViewModel>());
 
         lblid.setText("-");
 
@@ -440,7 +426,6 @@ public class FrmCTSanPham extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-        //System.out.println(GetDataFromGui());
         CTSanPhamViewModel ctsp = GetDataFromGui();
         _ServiceCTSP.them(ctsp);
         LoadTable();
@@ -458,14 +443,60 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = tblctsanpham.getSelectedRow();
         _IdWhenClick = _ServiceCTSP.GetAll().get(index).getId();
-        
-        String soLuong = tblctsanpham.getValueAt(index, 6).toString();
-        String giaNhap = tblctsanpham.getValueAt(index, 7).toString();
-        String giaBan = tblctsanpham.getValueAt(index, 8).toString();
-        
-        txtsoluong.setText(soLuong);
-        txtgianhap.setText(giaNhap);
-        txtgiaban.setText(giaBan);
+
+        Double soLuong = (Double) tblctsanpham.getValueAt(index, 6);
+        Double giaNhap = (Double) tblctsanpham.getValueAt(index, 7);
+        Double giaBan = (Double) tblctsanpham.getValueAt(index, 8);
+
+        SanPhamViewmodel spv = (SanPhamViewmodel) tblctsanpham.getValueAt(index, 1);
+        SizeVM svm = (SizeVM) tblctsanpham.getValueAt(index, 2);
+        MauSacViewModel msv = (MauSacViewModel) tblctsanpham.getValueAt(index, 3);
+        NhaCungCapVM nccv = (NhaCungCapVM) tblctsanpham.getValueAt(index, 4);
+        ChatLieuViewModel clv = (ChatLieuViewModel) tblctsanpham.getValueAt(index, 5);
+
+        txtsoluong.setText(soLuong.toString());
+        txtgianhap.setText(giaNhap.toString());
+        txtgiaban.setText(giaBan.toString());
+
+        int soLuongSp = cboidsp.getItemCount();
+        for (int i = 0; i < soLuongSp; i++) {
+            SanPhamViewmodel spv1 = cboidsp.getItemAt(i);
+            if (spv1.getId().equals(spv.getId())) {
+                cboidsp.setSelectedIndex(i);
+            }
+        }
+        //
+        int soLuongSize = cboidsize.getItemCount();
+        for (int i = 0; i < soLuongSize; i++) {
+            SizeVM svm1 = cboidsize.getItemAt(i);
+            if (svm1.getId().equals(svm.getId())) {
+                cboidsize.setSelectedIndex(i);
+            }
+        }
+        //
+        int soLuongMs = cboidmausac.getItemCount();
+        for (int i = 0; i < soLuongMs; i++) {
+            MauSacViewModel msv1 = cboidmausac.getItemAt(i);
+            if (msv1.getId().equals(msv.getId())) {
+                cboidmausac.setSelectedIndex(i);
+            }
+        }
+        //
+        int soLuongNcc = cboidncc.getItemCount();
+        for (int i = 0; i < soLuongNcc; i++) {
+            NhaCungCapVM ncc1 = cboidncc.getItemAt(i);
+            if (ncc1.getId().equals(nccv.getId())) {
+                cboidncc.setSelectedIndex(i);
+            }
+        }
+        //
+        int soLuongChatLieu = cboidchatlieu.getItemCount();
+        for (int i = 0; i < soLuongChatLieu; i++) {
+            ChatLieuViewModel cl1 = cboidchatlieu.getItemAt(i);
+            if (cl1.getId().equals(clv.getId())) {
+                cboidchatlieu.setSelectedIndex(i);
+            }
+        }
     }//GEN-LAST:event_tblctsanphamMouseClicked
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
@@ -474,7 +505,6 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         temp.setId(_IdWhenClick);
         JOptionPane.showMessageDialog(this, _ServiceCTSP.xoa(temp));
         LoadTable();
-        _IdWhenClick = "";
     }//GEN-LAST:event_btnxoaActionPerformed
 
     /**
@@ -517,11 +547,11 @@ public class FrmCTSanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btnthem;
     private javax.swing.JButton btnxoa;
-    private javax.swing.JComboBox<String> cboidchatlieu;
-    private javax.swing.JComboBox<String> cboidmausac;
-    private javax.swing.JComboBox<String> cboidncc;
-    private javax.swing.JComboBox<String> cboidsize;
-    private javax.swing.JComboBox<String> cboidsp;
+    private javax.swing.JComboBox<ChatLieuViewModel> cboidchatlieu;
+    private javax.swing.JComboBox<MauSacViewModel> cboidmausac;
+    private javax.swing.JComboBox<NhaCungCapVM> cboidncc;
+    private javax.swing.JComboBox<SizeVM> cboidsize;
+    private javax.swing.JComboBox<SanPhamViewmodel> cboidsp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

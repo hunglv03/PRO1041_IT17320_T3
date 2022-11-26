@@ -21,7 +21,7 @@ public class MauSacReponsitory {
     public void insert(MauSac m) {
         try {
             Connection conn = DBContext1.getConnection();
-            String sql = "INSERT INTO MauSac" + "(Ma,Ten)" + "VALUES(?,?)";
+            String sql = "INSERT INTO MauSac" + "(MaMS,TenMS)" + "VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, m.getMa());
             ps.setString(2, m.getTen());
@@ -35,7 +35,7 @@ public class MauSacReponsitory {
     public void update(MauSac m, String id) {
         try {
             Connection conn = DBContext1.getConnection();
-            String sql = "UPDATE MauSac SET " + "Ma=?,Ten=? WHERE Id=?";
+            String sql = "UPDATE MauSac SET " + "MaMS=?,TenMS=? WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, m.getMa());
             ps.setString(2, m.getTen());
@@ -69,12 +69,19 @@ public class MauSacReponsitory {
             ps.execute();
             ResultSet rs=ps.getResultSet();
             while (rs.next()) {                
-                listMS.add(new MauSacViewModel(rs.getString("Id"),rs.getString("Ma"),rs.getString("Ten")));
+                listMS.add(new MauSacViewModel(rs.getString("Id"),rs.getString("MaMS"),rs.getString("TenMS")));
             }
             System.out.println("Truy vấn thành công");
         } catch (Exception e) {
         }
         return listMS;
         
+    }
+    
+    public static void main(String[] args) {
+        MauSacReponsitory ctsp = new MauSacReponsitory();
+        for (MauSacViewModel x : ctsp.getAll()) {
+            System.out.println(x.toString());
+        }
     }
 }

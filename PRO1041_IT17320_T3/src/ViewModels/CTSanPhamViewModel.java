@@ -11,11 +11,11 @@ package ViewModels;
 public class CTSanPhamViewModel {
 
     private String id;
-    private String idSp;
-    private String idSize;
-    private String idMauSac;
-    private String idNhaCungCap;
-    private String idChatLieu;
+    private SanPhamViewmodel idSp;
+    private SizeVM idSize;
+    private MauSacViewModel idMauSac;
+    private NhaCungCapVM idNhaCungCap;
+    private ChatLieuViewModel idChatLieu;
     private String moTa;
     private double soLuongTon;//đây sửa nữa này
     private double giaBan;
@@ -24,7 +24,7 @@ public class CTSanPhamViewModel {
     public CTSanPhamViewModel() {
     }
 
-    public CTSanPhamViewModel(String id, String idSp, String idSize, String idMauSac, String idNhaCungCap, String idChatLieu, String moTa, double soLuongTon, double giaBan, double giaNhap) {
+    public CTSanPhamViewModel(String id, SanPhamViewmodel idSp, SizeVM idSize, MauSacViewModel idMauSac, NhaCungCapVM idNhaCungCap, ChatLieuViewModel idChatLieu, String moTa, double soLuongTon, double giaBan, double giaNhap) {
         this.id = id;
         this.idSp = idSp;
         this.idSize = idSize;
@@ -45,43 +45,43 @@ public class CTSanPhamViewModel {
         this.id = id;
     }
 
-    public String getIdSp() {
+    public SanPhamViewmodel getIdSp() {
         return idSp;
     }
 
-    public void setIdSp(String idSp) {
+    public void setIdSp(SanPhamViewmodel idSp) {
         this.idSp = idSp;
     }
 
-    public String getIdSize() {
+    public SizeVM getIdSize() {
         return idSize;
     }
 
-    public void setIdSize(String idSize) {
+    public void setIdSize(SizeVM idSize) {
         this.idSize = idSize;
     }
 
-    public String getIdMauSac() {
+    public MauSacViewModel getIdMauSac() {
         return idMauSac;
     }
 
-    public void setIdMauSac(String idMauSac) {
+    public void setIdMauSac(MauSacViewModel idMauSac) {
         this.idMauSac = idMauSac;
     }
 
-    public String getIdNhaCungCap() {
+    public NhaCungCapVM getIdNhaCungCap() {
         return idNhaCungCap;
     }
 
-    public void setIdNhaCungCap(String idNhaCungCap) {
+    public void setIdNhaCungCap(NhaCungCapVM idNhaCungCap) {
         this.idNhaCungCap = idNhaCungCap;
     }
 
-    public String getIdChatLieu() {
+    public ChatLieuViewModel getIdChatLieu() {
         return idChatLieu;
     }
 
-    public void setIdChatLieu(String idChatLieu) {
+    public void setIdChatLieu(ChatLieuViewModel idChatLieu) {
         this.idChatLieu = idChatLieu;
     }
 
@@ -121,6 +121,8 @@ public class CTSanPhamViewModel {
     public String toString() {
         return "CTSanPhamViewModel{" + "id=" + id + ", idSp=" + idSp + ", idSize=" + idSize + ", idMauSac=" + idMauSac + ", idNhaCungCap=" + idNhaCungCap + ", idChatLieu=" + idChatLieu + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaBan=" + giaBan + ", giaNhap=" + giaNhap + '}';
     }
+
+    
 
     
 

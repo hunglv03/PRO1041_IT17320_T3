@@ -48,10 +48,7 @@ public class ChatLieuViewModel {
 
     @Override
     public String toString() {
-        return "ChatLieuViewModel{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+        return ten;
     }
-
-    
-    
     
 }

@@ -24,7 +24,7 @@ public class SanPhamRepo {
      public void insert(SanPham sp) {
         try {
             Connection conn = DBContext1.getConnection();
-            String sql = "INSERT INTO SanPham" + "(Ma,Ten)" + "VALUES(?,?)";
+            String sql = "INSERT INTO SanPham" + "(MaSP,TenSP)" + "VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sp.getMa());
             ps.setString(2, sp.getTen());
@@ -38,7 +38,7 @@ public class SanPhamRepo {
     public void update(SanPham sp, String id) {
         try {
             Connection conn = DBContext1.getConnection();
-            String sql = "UPDATE SanPham SET " + "Ma=?,Ten=? WHERE Id=?";
+            String sql = "UPDATE SanPham SET " + "MaSP=?,TenSP=? WHERE Id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sp.getMa());
             ps.setString(2, sp.getTen());
@@ -72,12 +72,19 @@ public class SanPhamRepo {
             ps.execute();
             ResultSet rs=ps.getResultSet();
             while (rs.next()) {                
-                listMS.add(new SanPhamViewmodel(rs.getString("Id"),rs.getString("Ma"),rs.getString("Ten")));
+                listMS.add(new SanPhamViewmodel(rs.getString("Id"),rs.getString("MaSP"),rs.getString("TenSP")));
             }
             System.out.println("Truy vấn thành công");
         } catch (Exception e) {
         }
         return listMS;
         
+    }
+    
+    public static void main(String[] args) {
+        SanPhamRepo ctsp = new SanPhamRepo();
+        for (SanPhamViewmodel x : ctsp.getAll()) {
+            System.out.println(x.toString());
+        }
     }
 }

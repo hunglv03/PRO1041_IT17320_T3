@@ -50,7 +50,7 @@ public class SizeVM {
 
     @Override
     public String toString() {
-        return "SizeVM{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + '}';
+        return ten;
     }
     
 }

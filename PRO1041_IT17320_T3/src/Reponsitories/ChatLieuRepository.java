@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class ChatLieuRepository {
 
-    final String INSERT = "INSERT INTO CHATLIEU(Ma,Ten) VALUES(?,?)";
-    final String UPDATE = "UPDATE CHATLIEU SET Ma = ?, Ten = ? WHERE Id = ?";
+    final String INSERT = "INSERT INTO CHATLIEU(MaCL,TenCL) VALUES(?,?)";
+    final String UPDATE = "UPDATE CHATLIEU SET MaCL = ?, TenCL = ? WHERE Id = ?";
     final String DELETE = "DELETE FROM CHATLIEU WHERE Id = ?";
 
     public ChatLieuRepository() {
@@ -80,6 +80,13 @@ public class ChatLieuRepository {
             e.printStackTrace();
             System.out.println("Lỗi tại DeleteRepo");
             return false;
+        }
+    }
+    
+    public static void main(String[] args) {
+        ChatLieuRepository cl = new ChatLieuRepository();
+        for (ChatLieuViewModel x : cl.GetAll()) {
+            System.out.println(x.toString());
         }
     }
 }
