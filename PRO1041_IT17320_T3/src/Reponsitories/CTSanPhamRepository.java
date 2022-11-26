@@ -4,6 +4,7 @@
  */
 package Reponsitories;
 
+import DomainModel.CTSanPham;
 import Util.DBContex2;
 import ViewModels.CTSanPhamViewModel;
 import ViewModels.ChatLieuViewModel;
@@ -25,8 +26,8 @@ import java.sql.*;
  */
 public class CTSanPhamRepository {
 
-    final String INSERT_SQL = "INSERT INTO CHITIETSP(IdSP,IdSize,IdMauSac,IdNhaCungCap,IdChatLieu,MoTa,SoLuongTon,GiaBan,GiaNhap) VALUES(?,?,?,?,?,?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE CHITIETSP SET IdSP = ?, IdSize = ?, IdMauSac = ?, IdNhaCungCap = ?, IdChatLieu = ? WHERE ID = ?";
+    final String INSERT_SQL = "INSERT INTO CHITIETSP(IdSP,IdSize,IdMauSac,IDNhaCungCap,IdChatLieu,MoTa,SoLuongTon,GiaBan,GiaNhap) VALUES(?,?,?,?,?,?,?,?,?)";
+
     final String DELETE_SQL = "DELETE FROM CHITIETSP WHERE ID = ?";// câu này nó cần mỗi cái id để xóa 
 
     public CTSanPhamRepository() {
@@ -111,29 +112,29 @@ public class CTSanPhamRepository {
     }
 
     //add
-    public boolean Add(CTSanPhamViewModel obj) {
+    public boolean Add(CTSanPham obj) {
         try ( Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             PreparedStatement stmt = conn.prepareStatement(INSERT_SQL);
             String idSP = null;
             if (obj.getIdSp() != null) {
-                idSP = obj.getIdSp().getId();
+                idSP = obj.getIdSp();
             }
             String idSize = null;
             if (obj.getIdSize() != null) {
-                idSP = obj.getIdSize().getId();
+                idSize = obj.getIdSize();
             }
             String idMauSac = null;
             if (obj.getIdMauSac() != null) {
-                idSP = obj.getIdMauSac().getId();
+                idMauSac = obj.getIdMauSac();
             }
             String idNcc = null;
             if (obj.getIdNhaCungCap() != null) {
-                idSP = obj.getIdNhaCungCap().getId();
+                idNcc = obj.getIdNhaCungCap();
             }
             String idCL = null;
             if (obj.getIdChatLieu() != null) {
-                idSP = obj.getIdChatLieu().getId();
+                idCL = obj.getIdChatLieu();
             }
             stmt.setString(1, idSP);
             stmt.setString(2, idSize);
@@ -144,7 +145,7 @@ public class CTSanPhamRepository {
             stmt.setDouble(7, obj.getSoLuongTon());
             stmt.setDouble(8, obj.getGiaBan());
             stmt.setDouble(9, obj.getGiaNhap());
-            stmt.execute();
+            stmt.executeUpdate();
             conn.close();
             return true;
         } catch (Exception e) {
@@ -154,47 +155,27 @@ public class CTSanPhamRepository {
         }
     }
 
-    //
-    public boolean Update(CTSanPhamViewModel obj) { //để là model
-        try ( Connection conn = DBContex2.getConnection()) {
-            Statement st = conn.createStatement();
-            PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);
-            String idSP = null;
-            if (obj.getIdSp() != null) {
-                idSP = obj.getIdSp().getId();
-            }
-            String idSize = null;
-            if (obj.getIdSize() != null) {
-                idSP = obj.getIdSize().getId();
-            }
-            String idMauSac = null;
-            if (obj.getIdMauSac() != null) {
-                idSP = obj.getIdMauSac().getId();
-            }
-            String idCL = null;
-            if (obj.getIdChatLieu() != null) {
-                idSP = obj.getIdChatLieu().getId();
-            }
-            String idNcc = null;
-            if (obj.getIdNhaCungCap() != null) {
-                idSP = obj.getIdNhaCungCap().getId();
-            }
-            stmt.setString(1, idSP);
-            stmt.setString(2, idSize);
-            stmt.setString(3, idMauSac);
-            stmt.setString(4, idCL);
-            stmt.setString(5, idNcc);
+    final String UPDATE_SQL = "UPDATE CHITIETSP SET IdSP = ?, IdSize = ?, IdMauSac = ?, IDNhaCungCap = ?, IdChatLieu = ?, MoTa = ?, SoLuongTon = ?, GiaBan = ?, GiaNhap = ? WHERE ID = ?";
 
+    public boolean Update(CTSanPham obj) { //để là model
+        try ( Connection conn = DBContex2.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);
+            stmt.setString(1, obj.getIdSp());
+            stmt.setString(2, obj.getIdSize());
+            stmt.setString(3, obj.getIdMauSac());
+            stmt.setString(4, obj.getIdNhaCungCap());
+            stmt.setString(5, obj.getIdChatLieu());
             stmt.setString(6, obj.getMoTa());
             stmt.setDouble(7, obj.getSoLuongTon());
             stmt.setDouble(8, obj.getGiaBan());
             stmt.setDouble(9, obj.getGiaNhap());
             stmt.setString(10, obj.getId());
-            stmt.execute();
+            stmt.executeUpdate();
             conn.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Loi khong the ket noi vao CSDL tai Update");
+            e.printStackTrace();
+            System.out.println("Lỗi không thể kết nối tại Update");
             return false;
         }
     }
@@ -204,11 +185,11 @@ public class CTSanPhamRepository {
             Statement st = conn.createStatement();
             PreparedStatement stmt = conn.prepareStatement(DELETE_SQL);
             stmt.setString(1, obj.getId());
-            stmt.execute();
+            stmt.executeUpdate();
             conn.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Loi khong the ket noi vao CSDL tai Add");
+            System.out.println("Loi khong the ket noi vao CSDL tai Delete");
             return false;
         }
     }

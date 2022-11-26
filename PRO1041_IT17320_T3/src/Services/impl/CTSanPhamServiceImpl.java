@@ -4,6 +4,7 @@
  */
 package Services.impl;
 
+import DomainModel.CTSanPham;
 import Reponsitories.CTSanPhamRepository;
 import Reponsitories.ChatLieuRepository;
 import Services.CTSanPhamService;
@@ -22,7 +23,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     private ChatLieuRepository repoCL = new ChatLieuRepository();
 
     @Override
-    public String them(CTSanPhamViewModel ct) {
+    public String them(CTSanPham ct) {// đổi tất cả thêm sang kiểu ctsp
         if (repoCTSP.Add(ct)) {
             return "Thêm thành công ";
         }
@@ -30,7 +31,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     }
 
     @Override
-    public String sua(CTSanPhamViewModel ct) {
+    public String sua(CTSanPham ct) {
         if (repoCTSP.Update(ct)) {
             return "Sửa thành công ";
         }

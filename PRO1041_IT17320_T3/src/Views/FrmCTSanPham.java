@@ -74,24 +74,25 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         LoadCbo();
     }
 
-    private CTSanPhamViewModel GetDataFromGui() {
+    private CTSanPham GetDataFromGui() {
         try {
             SanPhamViewmodel idSanPham = (SanPhamViewmodel) cboidsp.getSelectedItem();
             MauSacViewModel idMauSac = (MauSacViewModel) cboidmausac.getSelectedItem();
             SizeVM idSize = (SizeVM) cboidsize.getSelectedItem();
             NhaCungCapVM idNcc = (NhaCungCapVM) cboidncc.getSelectedItem();
             ChatLieuViewModel idChatLieu = (ChatLieuViewModel) cboidchatlieu.getSelectedItem();
+
             String mota = tarmota.getText();
             Double soLuong = Double.parseDouble(txtsoluong.getText());
             Double giaBan = Double.parseDouble(txtgiaban.getText());
             Double giaNhap = Double.parseDouble(txtgianhap.getText());
 
-            CTSanPhamViewModel ctspv = new CTSanPhamViewModel();
-            ctspv.setIdSp(idSanPham);
-            ctspv.setIdMauSac(idMauSac);
-            ctspv.setIdSize(idSize);
-            ctspv.setIdNhaCungCap(idNcc);
-            ctspv.setIdChatLieu(idChatLieu);
+            CTSanPham ctspv = new CTSanPham();
+            ctspv.setIdSp(idSanPham.getId());
+            ctspv.setIdMauSac(idMauSac.getId());
+            ctspv.setIdSize(idSize.getId());
+            ctspv.setIdNhaCungCap(idNcc.getId());
+            ctspv.setIdChatLieu(idChatLieu.getId());
             ctspv.setMoTa(mota);
             ctspv.setSoLuongTon(soLuong);
             ctspv.setGiaBan(giaBan);
@@ -426,17 +427,19 @@ public class FrmCTSanPham extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-        CTSanPhamViewModel ctsp = GetDataFromGui();
+        CTSanPham ctsp = GetDataFromGui();
         _ServiceCTSP.them(ctsp);
         LoadTable();
+        System.out.println(ctsp);
     }//GEN-LAST:event_btnthemActionPerformed
 
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
         // TODO add your handling code here:
-        CTSanPhamViewModel ctsp = GetDataFromGui();
+        CTSanPham ctsp = GetDataFromGui();
         ctsp.setId(_IdWhenClick);
-        _ServiceCTSP.sua(ctsp);
+        JOptionPane.showMessageDialog(this, _ServiceCTSP.sua(ctsp));
         LoadTable();
+
     }//GEN-LAST:event_btnsuaActionPerformed
 
     private void tblctsanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblctsanphamMouseClicked
@@ -453,7 +456,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
         MauSacViewModel msv = (MauSacViewModel) tblctsanpham.getValueAt(index, 3);
         NhaCungCapVM nccv = (NhaCungCapVM) tblctsanpham.getValueAt(index, 4);
         ChatLieuViewModel clv = (ChatLieuViewModel) tblctsanpham.getValueAt(index, 5);
-
+        tarmota.setText(_ServiceCTSP.GetAll().get(index).getMoTa());
         txtsoluong.setText(soLuong.toString());
         txtgianhap.setText(giaNhap.toString());
         txtgiaban.setText(giaBan.toString());
@@ -497,6 +500,7 @@ public class FrmCTSanPham extends javax.swing.JFrame {
                 cboidchatlieu.setSelectedIndex(i);
             }
         }
+        System.out.println(_IdWhenClick);
     }//GEN-LAST:event_tblctsanphamMouseClicked
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed

@@ -4,6 +4,7 @@
  */
 package Services;
 
+import DomainModel.CTSanPham;
 import ViewModels.CTSanPhamViewModel;
 import java.util.List;
 
@@ -13,9 +14,9 @@ import java.util.List;
  */
 public interface CTSanPhamService {
 
-    public String them(CTSanPhamViewModel ct);
+    public String them(CTSanPham ct);
 
-    public String sua(CTSanPhamViewModel ct);
+    public String sua(CTSanPham ct);
 
     public String xoa(CTSanPhamViewModel ct);
 
