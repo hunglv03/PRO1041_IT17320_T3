@@ -154,8 +154,8 @@ public class FrmCTSanPham extends javax.swing.JFrame {
                 x.getIdNhaCungCap(),
                 x.getIdChatLieu(),
                 x.getSoLuongTon(),
-                x.getGiaBan(),
-                x.getGiaNhap()
+                x.getGiaNhap(),
+                x.getGiaBan()
             });
         }
     }
