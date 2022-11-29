@@ -87,7 +87,7 @@ public class CTSanPhamRepository {
 
                 NhaCungCapVM nccv = new NhaCungCapVM();
                 nccv.setId(idNcc);
-                nccv.setTen(tenNcc);
+                nccv.setTenNCC(tenNcc);
 
                 ///
                 CTSanPhamViewModel ctspv = new CTSanPhamViewModel();

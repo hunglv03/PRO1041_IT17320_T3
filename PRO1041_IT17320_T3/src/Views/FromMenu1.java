@@ -221,10 +221,11 @@ public class FromMenu1 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnnv = new javax.swing.JButton();
         btnsp = new javax.swing.JButton();
-        btnhd = new javax.swing.JButton();
+        btnbanhang = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         btnexit = new javax.swing.JButton();
+        btnhd = new javax.swing.JButton();
         NV = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -297,6 +298,15 @@ public class FromMenu1 extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbhdc = new javax.swing.JTable();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbhd = new javax.swing.JTable();
+        txttimkiem = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        txttimkiem1 = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tbhdct = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -318,11 +328,11 @@ public class FromMenu1 extends javax.swing.JFrame {
             }
         });
 
-        btnhd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnhd.setText("Hóa Đơn");
-        btnhd.addActionListener(new java.awt.event.ActionListener() {
+        btnbanhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnbanhang.setText("Bán Hàng");
+        btnbanhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnhdActionPerformed(evt);
+                btnbanhangActionPerformed(evt);
             }
         });
 
@@ -350,6 +360,14 @@ public class FromMenu1 extends javax.swing.JFrame {
             }
         });
 
+        btnhd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnhd.setText("Hóa Đơn");
+        btnhd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -357,12 +375,13 @@ public class FromMenu1 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnhd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addComponent(btnnv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnhd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnbanhang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         jPanel3Layout.setVerticalGroup(
@@ -373,14 +392,16 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(btnsp, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(btnhd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnbanhang, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btnhd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(35, 35, 35)
                 .addComponent(btnexit, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         NV.setBackground(new java.awt.Color(153, 51, 255));
@@ -532,7 +553,7 @@ public class FromMenu1 extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -991,7 +1012,102 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        NV.addTab("HĐ", jPanel1);
+        NV.addTab("Bán Hàng", jPanel1);
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơn"));
+
+        tbhd.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "MaHD", "NgayThanhToan", "TrangThai", "SDT", "TenNV", "TenKH"
+            }
+        ));
+        jScrollPane6.setViewportView(tbhd);
+
+        txttimkiem.setText("Tìm kiếm ...");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txttimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(txttimkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơn Chi Tiết"));
+
+        txttimkiem1.setText("Tìm kiếm ...");
+
+        tbhdct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "Mã SP", "Tên SP", "Số lượng ", "Đơn giá", "Thành tiền"
+            }
+        ));
+        jScrollPane8.setViewportView(tbhdct);
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(txttimkiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txttimkiem1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(385, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(278, Short.MAX_VALUE))
+        );
+
+        NV.addTab("HĐ", jPanel16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1029,11 +1145,11 @@ public class FromMenu1 extends javax.swing.JFrame {
         NV.setSelectedIndex(0);
     }//GEN-LAST:event_btnspActionPerformed
 
-    private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
+    private void btnbanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbanhangActionPerformed
         // TODO add your handling code here:
         NV.setSelectedIndex(3);
 
-    }//GEN-LAST:event_btnhdActionPerformed
+    }//GEN-LAST:event_btnbanhangActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
         // TODO add your handling code here:
@@ -1116,6 +1232,11 @@ public class FromMenu1 extends javax.swing.JFrame {
         txtNgaytao.setText(tbhdc.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tbhdcMouseClicked
 
+    private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
+        // TODO add your handling code here:
+        NV.setSelectedIndex(4);
+    }//GEN-LAST:event_btnhdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1183,6 +1304,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThemhd;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnbanhang;
     private javax.swing.JButton btnexit;
     private javax.swing.JButton btnhd;
     private javax.swing.JButton btnnv;
@@ -1219,6 +1341,9 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1235,13 +1360,17 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tbQuanLySanPham;
     private javax.swing.JTable tbSanPham;
     private javax.swing.JTable tbgiohang;
+    private javax.swing.JTable tbhd;
     private javax.swing.JTable tbhdc;
+    private javax.swing.JTable tbhdct;
     private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtGiaBan;
     private javax.swing.JTextField txtGiaNhap;
@@ -1254,5 +1383,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtTennv;
     private javax.swing.JTextField txtTienthua;
     private javax.swing.JTextField txtTongtien;
+    private javax.swing.JTextField txttimkiem;
+    private javax.swing.JTextField txttimkiem1;
     // End of variables declaration//GEN-END:variables
 }
