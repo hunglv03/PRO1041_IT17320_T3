@@ -54,8 +54,6 @@ public class FormMenu extends javax.swing.JFrame {
     private DefaultComboBoxModel _dcbChatLieu;
     private DefaultComboBoxModel _dcbNcc;
     private DefaultComboBoxModel _dcbSize;
-    
-    //
     private MauSacService _ServiceMauSac;
     private ChatLieuService _ServiceChatLieu;
     private NhaCungCapService _ServiceNcc;
@@ -943,6 +941,7 @@ public class FormMenu extends javax.swing.JFrame {
     private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
         // TODO add your handling code here:
         NV.setSelectedIndex(0);
+
 
     }//GEN-LAST:event_btnhdActionPerformed
 

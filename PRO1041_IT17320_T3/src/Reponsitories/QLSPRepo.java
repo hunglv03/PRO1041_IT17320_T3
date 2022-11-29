@@ -22,7 +22,7 @@ public class QLSPRepo {
         ArrayList<QLSPVM> listALL = new ArrayList<>();
         try {
             Connection conn = DBContext1.getConnection();
-            String sql = "SELECT SanPham.TenSP,MauSac.TenMS,ChatLieu.TenCL,Size.TenSIZE,NhaCungCap.TenNCC,ChiTietSP.SoLuongTon,ChiTietSP.GiaNhap,ChiTietSP.GiaBan FROM ChiTietSP  \n"
+            String sql = "SELECT SanPham.MaSP,SanPham.TenSP,MauSac.TenMS,ChatLieu.TenCL,Size.TenSIZE,NhaCungCap.TenNCC,ChiTietSP.SoLuongTon,ChiTietSP.GiaNhap,ChiTietSP.GiaBan FROM ChiTietSP  \n"
                     + "inner join SanPham ON ChiTietSP.IdSP=SanPham.Id\n"
                     + "inner join MauSac ON ChiTietSP.IdMauSac=MauSac.Id\n"
                     + "inner join ChatLieu ON ChiTietSP.IdChatLieu=ChatLieu.Id\n"
@@ -32,7 +32,7 @@ public class QLSPRepo {
             ps.execute();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
-                listALL.add(new QLSPVM(rs.getString("TenSP"), rs.getString("TenMS"), rs.getString("TenCL"),
+                listALL.add(new QLSPVM(rs.getString("MaSP"),rs.getString("TenSP"), rs.getString("TenMS"), rs.getString("TenCL"),
                         rs.getString("TenSIZE"), rs.getString("TenNCC"), rs.getInt("SoLuongTon"), rs.getDouble("GiaNhap"), rs.getDouble("GiaBan")));
             }
             System.out.println("Truy vấn thành công");

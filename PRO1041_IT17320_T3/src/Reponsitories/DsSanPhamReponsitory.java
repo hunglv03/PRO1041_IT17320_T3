@@ -22,26 +22,27 @@ public class DsSanPhamReponsitory {
         ArrayList<DsSanPhamViewModel> listS = new ArrayList<>();
         try {
             Connection conn = DBContext.getConnection();
-            String sql = "SELECT SanPham.TenSP,Size.TenSIZE,MauSac.TenMS,NhaCungCap.TenNCC,ChatLieu.TenCL,ChiTietSP.SoLuongTon,ChiTietSP.GiaBan FROM ChiTietSP  \n"
-                    + "inner join SanPham ON ChiTietSP.IdSP=SanPham.Id\n"
-                    + "inner join Size ON ChiTietSP.IdSize=Size.Id\n"
-                    + "inner join MauSac ON ChiTietSP.IdMauSac=MauSac.Id\n"
-                    + "inner join NhaCungCap ON ChiTietSP.IDNhaCungCap=NhaCungCap.Id\n"
-                    + "inner join ChatLieu ON ChiTietSP.IdChatLieu=ChatLieu.Id";
+            String sql = "SELECT SanPham.TenSP,Size.TenSIZE,MauSac.TenMS,NhaCungCap.TenNCC,ChatLieu.TenCL,ChiTietSP.SoLuongTon,ChiTietSP.GiaBan FROM ChiTietSP\n"
+                    + "                     inner join SanPham ON ChiTietSP.IdSP=SanPham.Id\n"
+                    + "                     inner join Size ON ChiTietSP.IdSize=Size.Id\n"
+                    + "                     inner join MauSac ON ChiTietSP.IdMauSac=MauSac.Id\n"
+                    + "                     inner join NhaCungCap ON ChiTietSP.IDNhaCungCap=NhaCungCap.Id\n"
+                    + "                     inner join ChatLieu ON ChiTietSP.IdChatLieu=ChatLieu.Id";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
-                listS.add(new DsSanPhamViewModel(rs.getString("TenSP"), rs.getString("TenSIZE"), rs.getString("TenMS"),rs.getString("TenNCC"),rs.getString("TenCL"),
-                rs.getInt("SoLuongTon"),rs.getDouble("GiaBan")));
+                listS.add(new DsSanPhamViewModel(rs.getString("TenSP"), rs.getString("TenSIZE"), rs.getString("TenMS"), rs.getString("TenNCC"), rs.getString("TenCL"),
+                        rs.getInt("SoLuongTon"), rs.getDouble("GiaBan")));
             }
-            System.out.println("Truy vấn thành công");
+            System.out.println("Thêm thành công");
         } catch (Exception e) {
+            e.getMessage();
         }
         return listS;
 
     }
-    
+
     public ArrayList<DsSanPhamViewModel> findSanPham(String sanPham) {
         ArrayList<DsSanPhamViewModel> listFind = new ArrayList<>();
         try {
@@ -51,11 +52,12 @@ public class DsSanPhamReponsitory {
             ps.execute();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
-                listFind.add(new DsSanPhamViewModel(rs.getString("TenSP"), rs.getString("TenSIZE"), rs.getString("TenMS"),rs.getString("TenNCC"),rs.getString("TenCL"),
-                rs.getInt("SoLuongTon"),rs.getDouble("GiaBan")));
+                listFind.add(new DsSanPhamViewModel(rs.getString("TenSP"), rs.getString("TenSIZE"), rs.getString("TenMS"), rs.getString("TenNCC"), rs.getString("TenCL"),
+                        rs.getInt("SoLuongTon"), rs.getDouble("GiaBan")));
             }
-            System.out.println("Truy vấn thành công");
+            System.out.println("Thêm thành công");
         } catch (Exception e) {
+            e.getMessage();
         }
         return listFind;
 

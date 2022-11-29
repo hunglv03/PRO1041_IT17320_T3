@@ -10,7 +10,7 @@ package ViewModels;
  * @author Admin
  */
 public class QLSPVM {
-    
+    private String maSP;
     private String tenSP;
     private String mauSac;
     private String chatlieu;
@@ -23,7 +23,8 @@ public class QLSPVM {
     public QLSPVM() {
     }
 
-    public QLSPVM(String tenSP, String mauSac, String chatlieu, String size, String ncc, int soLuong, double giaNhap, double giaBan) {
+    public QLSPVM(String maSP, String tenSP, String mauSac, String chatlieu, String size, String ncc, int soLuong, double giaNhap, double giaBan) {
+        this.maSP = maSP;
         this.tenSP = tenSP;
         this.mauSac = mauSac;
         this.chatlieu = chatlieu;
@@ -32,6 +33,14 @@ public class QLSPVM {
         this.soLuong = soLuong;
         this.giaNhap = giaNhap;
         this.giaBan = giaBan;
+    }
+
+    public String getMaSP() {
+        return maSP;
+    }
+
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
     }
 
     public String getTenSP() {
@@ -97,8 +106,10 @@ public class QLSPVM {
     public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
-    
 
-    
+    @Override
+    public String toString() {
+        return "QLSPVM{" + "maSP=" + maSP + ", tenSP=" + tenSP + ", mauSac=" + mauSac + ", chatlieu=" + chatlieu + ", size=" + size + ", ncc=" + ncc + ", soLuong=" + soLuong + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + '}';
+    }
 
 }

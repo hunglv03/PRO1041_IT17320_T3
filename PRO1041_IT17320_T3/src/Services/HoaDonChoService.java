@@ -5,16 +5,13 @@
  */
 package Services;
 
-import ViewModels.DsSanPhamViewModel;
+import ViewModels.HoaDonChoViewModel;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface DsSanPhamService {
-    ArrayList<DsSanPhamViewModel> getAll();
-    
-    ArrayList<DsSanPhamViewModel> findSanPham(String sanPham);
-    
+public interface HoaDonChoService {
+    ArrayList<HoaDonChoViewModel> getall();
 }
