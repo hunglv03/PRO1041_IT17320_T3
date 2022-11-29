@@ -50,7 +50,7 @@ public class SanPhamViewmodel {
 
     @Override
     public String toString() {
-        return ten;
+        return tenSP;
     }
     
 }

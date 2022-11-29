@@ -50,7 +50,7 @@ public class NhaCungCapVM {
 
     @Override
     public String toString() {
-        return ten;
+        return tenNCC;
     }
 
 }

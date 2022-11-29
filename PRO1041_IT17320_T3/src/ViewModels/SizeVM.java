@@ -50,7 +50,9 @@ public class SizeVM {
 
     @Override
     public String toString() {
-        return ten;
+        return tenSIZE;
     }
+
+    
     
 }

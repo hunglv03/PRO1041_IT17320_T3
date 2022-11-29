@@ -49,7 +49,7 @@ public class MauSacViewModel {
 
     @Override
     public String toString() {
-        return ten;
+        return tenMS;
     }
     
     

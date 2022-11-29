@@ -286,7 +286,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtMahd = new javax.swing.JTextField();
         txtTenkh = new javax.swing.JTextField();
-        txtSdt = new javax.swing.JTextField();
+        txtTennv = new javax.swing.JTextField();
         txtTongtien = new javax.swing.JTextField();
         btnThemhd = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -825,7 +825,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jLabel14.setText("Tổng tiền");
 
-        jLabel15.setText("SĐT");
+        jLabel15.setText("Ten NV:");
 
         btnThemhd.setText("Thêm");
         btnThemhd.addActionListener(new java.awt.event.ActionListener() {
@@ -864,7 +864,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTennv, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -905,7 +905,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTennv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1110,6 +1110,10 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void tbhdcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbhdcMouseClicked
         // TODO add your handling code here:
+        int row=tbhdc.getSelectedRow();
+        txtMahd.setText(tbhdc.getValueAt(row, 1).toString());
+        txtTenkh.setText(tbhdc.getValueAt(row, 3).toString());
+        txtNgaytao.setText(tbhdc.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tbhdcMouseClicked
 
     /**
@@ -1244,10 +1248,10 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtMahd;
     private javax.swing.JTextField txtNgaytao;
-    private javax.swing.JTextField txtSdt;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenSP;
     private javax.swing.JTextField txtTenkh;
+    private javax.swing.JTextField txtTennv;
     private javax.swing.JTextField txtTienthua;
     private javax.swing.JTextField txtTongtien;
     // End of variables declaration//GEN-END:variables
