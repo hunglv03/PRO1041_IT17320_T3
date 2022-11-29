@@ -142,7 +142,7 @@ public class NhanVienForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 204, 51));
-        jLabel1.setText("Quản Lý");
+        jLabel1.setText("Nhân Viên");
 
         jLabel8.setText("Địa Chỉ");
 
@@ -151,7 +151,7 @@ public class NhanVienForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "IDCV", "Mã", "Tên", "Email", "Ngày Sinh", "Giới Tính", "Địa Chỉ", "SDT", "Trạng Thái"
+                "ID", "IDCV", "MãNV", "TênNV", "Email", "Ngày Sinh", "Giới Tính", "Địa Chỉ", "SDT", "Trạng Thái"
             }
         ));
         tbNV.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,11 +165,11 @@ public class NhanVienForm extends javax.swing.JFrame {
 
         jLabel9.setText("SDT");
 
-        jLabel3.setText("Mã");
+        jLabel3.setText("MãNV");
 
         jLabel10.setText("Trạng Thái");
 
-        jLabel4.setText("Tên");
+        jLabel4.setText("TênNV");
 
         jLabel11.setText("Email");
 
@@ -188,7 +188,7 @@ public class NhanVienForm extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
                                 .addComponent(btnThem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                                 .addComponent(btnSua))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(65, 65, 65)

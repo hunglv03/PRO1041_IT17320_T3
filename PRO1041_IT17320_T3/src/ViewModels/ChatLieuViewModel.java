@@ -10,16 +10,16 @@ package ViewModels;
  */
 public class ChatLieuViewModel {
     String id;
-    String ma;
-    String ten;
+    String maCL;
+    String tenCL;
 
     public ChatLieuViewModel() {
     }
 
     public ChatLieuViewModel(String id, String ma, String ten) {
         this.id = id;
-        this.ma = ma;
-        this.ten = ten;
+        this.maCL = ma;
+        this.tenCL = ten;
     }
 
     public String getId() {
@@ -31,19 +31,19 @@ public class ChatLieuViewModel {
     }
 
     public String getMa() {
-        return ma;
+        return maCL;
     }
 
     public void setMa(String ma) {
-        this.ma = ma;
+        this.maCL = ma;
     }
 
     public String getTen() {
-        return ten;
+        return tenCL;
     }
 
     public void setTen(String ten) {
-        this.ten = ten;
+        this.tenCL = ten;
     }
 
     @Override

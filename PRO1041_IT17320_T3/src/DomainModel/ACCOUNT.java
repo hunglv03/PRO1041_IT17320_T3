@@ -11,41 +11,45 @@ package DomainModel;
  */
 public class ACCOUNT {
 
-    private String id;
-    private String tenCV;
-    private String mk;
+    
+    private String userName;
+    private String pass;
+    private String vaiTro;
 
     public ACCOUNT() {
     }
 
-    public ACCOUNT(String id, String tenCV, String mk) {
-        this.id = id;
-        this.tenCV = tenCV;
-        this.mk = mk;
+    public ACCOUNT(String userName, String pass, String vaiTro) {
+        this.userName = userName;
+        this.pass = pass;
+        this.vaiTro = vaiTro;
     }
 
-    public String getId() {
-        return id;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getTenCV() {
-        return tenCV;
+    public String getPass() {
+        return pass;
     }
 
-    public void setTenCV(String tenCV) {
-        this.tenCV = tenCV;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
-    public String getMk() {
-        return mk;
+    public String getVaiTro() {
+        return vaiTro;
     }
 
-    public void setMk(String mk) {
-        this.mk = mk;
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
     }
+
+    
+    
 
 }

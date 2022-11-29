@@ -5,17 +5,21 @@
  */
 package Services;
 
-import DomainModel.ACCOUNT;
-import ViewModels.ACCOUNTVM;
+import DomainModel.KhachHang;
+import ViewModels.KhachHangVM;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface ACCOUNTService {
+public interface KhachHangService {
 
+    ArrayList<KhachHangVM> getall();
 
-    
-    ACCOUNT login(String userName, String pass);
+    void insert(KhachHang kh);
+
+    void update(KhachHang kh, String id);
+
+    void delete(String id);
 }

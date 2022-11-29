@@ -12,16 +12,16 @@ package ViewModels;
 public class SizeVM {
             
     private String id;
-    private String ma;
-    private String ten;
+    private String maSIZE;
+    private String tenSIZE;
 
     public SizeVM() {
     }
 
     public SizeVM(String id, String ma, String ten) {
         this.id = id;
-        this.ma = ma;
-        this.ten = ten;
+        this.maSIZE = ma;
+        this.tenSIZE = ten;
     }
 
     public String getId() {
@@ -33,19 +33,19 @@ public class SizeVM {
     }
 
     public String getMa() {
-        return ma;
+        return maSIZE;
     }
 
     public void setMa(String ma) {
-        this.ma = ma;
+        this.maSIZE = ma;
     }
 
     public String getTen() {
-        return ten;
+        return tenSIZE;
     }
 
     public void setTen(String ten) {
-        this.ten = ten;
+        this.tenSIZE = ten;
     }
 
     @Override

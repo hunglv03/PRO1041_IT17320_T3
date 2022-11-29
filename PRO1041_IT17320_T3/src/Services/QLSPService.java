@@ -5,17 +5,15 @@
  */
 package Services;
 
-import DomainModel.ACCOUNT;
-import ViewModels.ACCOUNTVM;
+import ViewModels.QLSPVM;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface ACCOUNTService {
+public interface QLSPService {
 
-
-    
-    ACCOUNT login(String userName, String pass);
+    ArrayList<QLSPVM> getALL();
+    void insert(QLSPVM qlsp);
 }

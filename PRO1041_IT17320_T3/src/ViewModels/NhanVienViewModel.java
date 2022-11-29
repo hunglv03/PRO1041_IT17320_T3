@@ -12,8 +12,8 @@ package ViewModels;
 public class NhanVienViewModel {
     private String id;
     private String idCV;
-    private String ma;
-    private String ten;
+    private String manv;
+    private String tennv;
     private String email;
     private String ngaySinh;
     private int gioiTinh;
@@ -27,8 +27,8 @@ public class NhanVienViewModel {
     public NhanVienViewModel(String id, String idCV, String ma, String ten, String email, String ngaySinh, int gioiTinh, String sdt, String diaChi, int trangThai) {
         this.id = id;
         this.idCV = idCV;
-        this.ma = ma;
-        this.ten = ten;
+        this.manv = ma;
+        this.tennv = ten;
         this.email = email;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
@@ -54,19 +54,19 @@ public class NhanVienViewModel {
     }
 
     public String getMa() {
-        return ma;
+        return manv;
     }
 
     public void setMa(String ma) {
-        this.ma = ma;
+        this.manv = ma;
     }
 
     public String getTen() {
-        return ten;
+        return tennv;
     }
 
     public void setTen(String ten) {
-        this.ten = ten;
+        this.tennv = ten;
     }
 
     public String getEmail() {
@@ -120,7 +120,7 @@ public class NhanVienViewModel {
     
     @Override
     public String toString() {
-        return "NhanVienViewModel{" + "id=" + id + ", idCV=" + idCV + ", ma=" + ma + ", ten=" + ten + ", email=" + email + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", trangThai=" + trangThai + '}';
+        return "NhanVienViewModel{" + "id=" + id + ", idCV=" + idCV + ", ma=" + manv + ", ten=" + tennv + ", email=" + email + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", trangThai=" + trangThai + '}';
     }
     
 }

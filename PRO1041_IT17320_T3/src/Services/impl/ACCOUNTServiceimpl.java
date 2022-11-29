@@ -23,23 +23,11 @@ public class ACCOUNTServiceimpl implements ACCOUNTService {
         this.aRepo = new ACCOUNTRepo();
     }
 
-    public void insert(ACCOUNT a) {
-        this.aRepo.insert(a);
+
+
+    public ACCOUNT login(String userName, String pass){
+        return this.aRepo.login(userName, pass);
     }
-
-    public void update(ACCOUNT a, String id) {
-        this.aRepo.update(a, id);
-    }
-
-    public void delete(String id) {
-        this.aRepo.delete(id);
-    }
-
-    public ArrayList<ACCOUNTVM> getListACC() {
-        return this.aRepo.all();
-    }
-
-
 
 
 }

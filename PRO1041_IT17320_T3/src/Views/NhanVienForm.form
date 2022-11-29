@@ -249,7 +249,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="cc" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd;"/>
+        <Property name="text" type="java.lang.String" value="Nh&#xe2;n Vi&#xea;n"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
@@ -270,8 +270,8 @@
               <Table columnCount="10" rowCount="0">
                 <Column editable="true" title="ID" type="java.lang.Object"/>
                 <Column editable="true" title="IDCV" type="java.lang.Object"/>
-                <Column editable="true" title="M&#xe3;" type="java.lang.Object"/>
-                <Column editable="true" title="T&#xea;n" type="java.lang.Object"/>
+                <Column editable="true" title="M&#xe3;NV" type="java.lang.Object"/>
+                <Column editable="true" title="T&#xea;nNV" type="java.lang.Object"/>
                 <Column editable="true" title="Email" type="java.lang.Object"/>
                 <Column editable="true" title="Ng&#xe0;y Sinh" type="java.lang.Object"/>
                 <Column editable="true" title="Gi&#x1edb;i T&#xed;nh" type="java.lang.Object"/>
@@ -356,7 +356,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe3;"/>
+        <Property name="text" type="java.lang.String" value="M&#xe3;NV"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -366,7 +366,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#xea;n"/>
+        <Property name="text" type="java.lang.String" value="T&#xea;nNV"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">

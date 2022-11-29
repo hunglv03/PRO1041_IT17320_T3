@@ -11,16 +11,16 @@ package ViewModels;
  */
 public class MauSacViewModel {
     private String id;
-    private String ma;
-    private String ten;
+    private String maMS;
+    private String tenMS;
 
     public MauSacViewModel() {
     }
 
     public MauSacViewModel(String id, String ma, String ten) {
         this.id = id;
-        this.ma = ma;
-        this.ten = ten;
+        this.maMS = ma;
+        this.tenMS = ten;
     }
 
     public String getId() {
@@ -32,19 +32,19 @@ public class MauSacViewModel {
     }
 
     public String getMa() {
-        return ma;
+        return maMS;
     }
 
     public void setMa(String ma) {
-        this.ma = ma;
+        this.maMS = ma;
     }
 
     public String getTen() {
-        return ten;
+        return tenMS;
     }
 
     public void setTen(String ten) {
-        this.ten = ten;
+        this.tenMS = ten;
     }
 
     @Override

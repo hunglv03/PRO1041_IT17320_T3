@@ -5,17 +5,13 @@
  */
 package Services;
 
-import DomainModel.ACCOUNT;
-import ViewModels.ACCOUNTVM;
+import ViewModels.GioHangViewModel;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface ACCOUNTService {
-
-
-    
-    ACCOUNT login(String userName, String pass);
+public interface GioHangService {
+    ArrayList<GioHangViewModel> getAll();
 }

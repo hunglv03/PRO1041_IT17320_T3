@@ -83,7 +83,7 @@ public class SanPhamForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Mã", "Tên"
+                "ID", "MãSP", "TênSP"
             }
         ));
         tbSP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,9 +99,9 @@ public class SanPhamForm extends javax.swing.JFrame {
 
         jLabel2.setText("ID");
 
-        jLabel3.setText("Mã");
+        jLabel3.setText("MãSP");
 
-        jLabel4.setText("Tên");
+        jLabel4.setText("TênSP");
 
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class SanPhamForm extends javax.swing.JFrame {
                                             .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                                         .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

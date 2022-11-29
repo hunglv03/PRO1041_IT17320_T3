@@ -5,17 +5,15 @@
  */
 package Services;
 
-import DomainModel.ACCOUNT;
-import ViewModels.ACCOUNTVM;
+import ViewModels.DsSanPhamViewModel;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public interface ACCOUNTService {
-
-
+public interface DsSanPhamService {
+    ArrayList<DsSanPhamViewModel> getAll();
     
-    ACCOUNT login(String userName, String pass);
+    ArrayList<DsSanPhamViewModel> findSanPham(String sanPham);
 }

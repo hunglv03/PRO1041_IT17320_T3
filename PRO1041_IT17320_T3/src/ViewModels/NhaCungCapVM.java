@@ -12,18 +12,16 @@ package ViewModels;
 public class NhaCungCapVM {
 
     private String id;
-    private String ma;
-    private String ten;
-
-
+    private String maNCC;
+    private String tenNCC;
 
     public NhaCungCapVM() {
     }
 
-    public NhaCungCapVM(String id, String ma, String ten) {
+    public NhaCungCapVM(String id, String maNCC, String tenNCC) {
         this.id = id;
-        this.ma = ma;
-        this.ten = ten;
+        this.maNCC = maNCC;
+        this.tenNCC = tenNCC;
     }
 
     public String getId() {
@@ -34,20 +32,20 @@ public class NhaCungCapVM {
         this.id = id;
     }
 
-    public String getMa() {
-        return ma;
+    public String getMaNCC() {
+        return maNCC;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setMaNCC(String maNCC) {
+        this.maNCC = maNCC;
     }
 
-    public String getTen() {
-        return ten;
+    public String getTenNCC() {
+        return tenNCC;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setTenNCC(String tenNCC) {
+        this.tenNCC = tenNCC;
     }
 
     @Override
