@@ -8,15 +8,14 @@ package Util;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Admin
+ * @author Phong
  */
-public class DBContext {
+public class DBContex2 {
     private static final String USERNAME = "hunglvph25428";
     private static final String PASSWORD = "123456";
     private static final String SERVER = "localhost";
@@ -25,7 +24,7 @@ public class DBContext {
     private static final boolean USING_SSL = true;
     
     private static String CONNECT_STRING;
-        
+    
     static {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -43,7 +42,7 @@ public class DBContext {
             CONNECT_STRING = connectStringBuilder.toString();
             System.out.println("Connect String có dạng: " + CONNECT_STRING);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBContext1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBContex2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -58,5 +57,4 @@ public class DBContext {
         System.out.println(dbmt.getDatabaseProductName());
         System.out.println(dbmt.getDatabaseProductVersion());
     }
-
 }

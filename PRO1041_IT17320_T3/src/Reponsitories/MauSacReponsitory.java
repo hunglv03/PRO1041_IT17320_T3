@@ -77,4 +77,11 @@ public class MauSacReponsitory {
         return listMS;
         
     }
+    
+    public static void main(String[] args) {
+        MauSacReponsitory ctsp = new MauSacReponsitory();
+        for (MauSacViewModel x : ctsp.getAll()) {
+            System.out.println(x.toString());
+        }
+    }
 }

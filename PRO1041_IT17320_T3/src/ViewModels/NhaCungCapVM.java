@@ -50,7 +50,7 @@ public class NhaCungCapVM {
 
     @Override
     public String toString() {
-        return "NhaCungCapVM{" + "id=" + id + ", maNCC=" + maNCC + ", tenNCC=" + tenNCC + '}';
+        return ten;
     }
 
 }

@@ -78,4 +78,10 @@ public class NhaCungCapRepo {
         return listNCC;
         
     }
+    public static void main(String[] args) {
+        NhaCungCapRepo ctsp = new NhaCungCapRepo();
+        for (NhaCungCapVM x : ctsp.getAll()) {
+            System.out.println(x.toString());
+        }
+    }
 }

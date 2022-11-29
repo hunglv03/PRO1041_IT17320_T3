@@ -4,20 +4,22 @@
  */
 package Services;
 
-import ViewModels.ChatLieuViewModel;
+import DomainModel.CTSanPham;
+import ViewModels.CTSanPhamViewModel;
 import java.util.List;
 
 /**
  *
  * @author Lvh9x
  */
-public interface ChatLieuService {
+public interface CTSanPhamService {
 
-    public String themChatLieu(ChatLieuViewModel cl);
+    public String them(CTSanPham ct);
 
-    public String suaChatLieu(ChatLieuViewModel cl);
+    public String sua(CTSanPham ct);
 
-    public String xoaChatLieu(ChatLieuViewModel cl);
+    public String xoa(CTSanPhamViewModel ct);
 
-    public List<ChatLieuViewModel> GetAll();
+    public List<CTSanPhamViewModel> GetAll();
+    
 }

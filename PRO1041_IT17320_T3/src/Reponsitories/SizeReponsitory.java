@@ -83,4 +83,10 @@ public class SizeReponsitory {
         }
         return listSize;
     }
+    public static void main(String[] args) {
+        SizeReponsitory sz = new SizeReponsitory();
+        for (SizeVM x : sz.all()) {
+            System.out.println(x.toString());
+        }
+    }
 }

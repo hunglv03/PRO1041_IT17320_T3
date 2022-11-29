@@ -46,6 +46,13 @@ public class MauSacViewModel {
     public void setTen(String ten) {
         this.tenMS = ten;
     }
+
+    @Override
+    public String toString() {
+        return ten;
+    }
+    
+    
     
     
 }

@@ -47,5 +47,10 @@ public class SanPhamViewmodel {
     public void setTen(String ten) {
         this.tenSP = ten;
     }
+
+    @Override
+    public String toString() {
+        return ten;
+    }
     
 }

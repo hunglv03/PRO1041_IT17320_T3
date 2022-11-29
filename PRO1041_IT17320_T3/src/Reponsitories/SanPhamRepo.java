@@ -80,4 +80,11 @@ public class SanPhamRepo {
         return listMS;
         
     }
+    
+    public static void main(String[] args) {
+        SanPhamRepo ctsp = new SanPhamRepo();
+        for (SanPhamViewmodel x : ctsp.getAll()) {
+            System.out.println(x.toString());
+        }
+    }
 }

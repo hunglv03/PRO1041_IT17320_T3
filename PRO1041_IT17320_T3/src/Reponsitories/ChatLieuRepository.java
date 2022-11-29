@@ -5,7 +5,7 @@
 package Reponsitories;
 
 
-import Util.DBContext11;
+import Util.DBContex2;
 import ViewModels.ChatLieuViewModel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class ChatLieuRepository {
     public List<ChatLieuViewModel> GetAll() {
         String SELECT_CHATLIEU = "SELECT * FROM CHATLIEU";
         List<ChatLieuViewModel> _lstChatLieu = new ArrayList<>();
-        try ( Connection conn = DBContext11.getConnection()) {
+        try ( Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(SELECT_CHATLIEU);
             while (rs.next()) {
@@ -42,7 +42,7 @@ public class ChatLieuRepository {
 
     //add
     public boolean Add(ChatLieuViewModel cl) {
-        try ( Connection conn = DBContext11.getConnection()) {
+        try ( Connection conn = DBContex2.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(INSERT);
             ps.setString(1, cl.getMa());
             ps.setString(2, cl.getTen());
@@ -56,7 +56,7 @@ public class ChatLieuRepository {
     }
 
     public boolean Update(ChatLieuViewModel cl) {
-        try ( Connection conn = DBContext11.getConnection()) {
+        try ( Connection conn = DBContex2.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(UPDATE);
             ps.setString(1, cl.getMa());
             ps.setString(2, cl.getTen());
@@ -71,7 +71,7 @@ public class ChatLieuRepository {
     }
 
     public boolean Delete(ChatLieuViewModel cl) {
-        try ( Connection conn = DBContext11.getConnection()) {
+        try ( Connection conn = DBContex2.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(DELETE);
             ps.setString(1, cl.getId());
             ps.execute();
@@ -80,6 +80,13 @@ public class ChatLieuRepository {
             e.printStackTrace();
             System.out.println("Lỗi tại DeleteRepo");
             return false;
+        }
+    }
+    
+    public static void main(String[] args) {
+        ChatLieuRepository cl = new ChatLieuRepository();
+        for (ChatLieuViewModel x : cl.GetAll()) {
+            System.out.println(x.toString());
         }
     }
 }
