@@ -48,7 +48,7 @@ public class ChatLieuViewModel {
 
     @Override
     public String toString() {
-        return ten;
+        return tenCL;
     }
     
 }
