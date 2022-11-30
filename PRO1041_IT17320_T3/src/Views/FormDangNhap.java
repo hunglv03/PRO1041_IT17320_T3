@@ -118,7 +118,7 @@ public class FormDangNhap extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
             //if(obj.getVaiTro().toLowerCase().equals("nhanvien")){
-                FormMenu mn=new FormMenu();
+                FromMenu1 mn=new FromMenu1();
                 mn.setVisible(true);
                 this.dispose();
             
