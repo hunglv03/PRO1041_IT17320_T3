@@ -83,7 +83,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private HoaDonChoService hdcService = new HoaDonChoServiceImpl();
     public FromMenu1() {
         initComponents();
-        this.getTable();
+//        this.getTable();
         findSanPham();
         tableDSSanPham();
         //LoadgioHang(gioHangReponsitory.GetAll());
@@ -104,7 +104,6 @@ public class FromMenu1 extends javax.swing.JFrame {
         _dcbMauSac = (DefaultComboBoxModel) cbMauSac.getModel();
         _dcbNcc = (DefaultComboBoxModel) cbNCC.getModel();
         _dcbSize = (DefaultComboBoxModel) cbSize.getModel();
-        
         setCBO();
         LoadHoaDonCho();
         
@@ -172,17 +171,17 @@ public class FromMenu1 extends javax.swing.JFrame {
         }
     }
     
-    public void getTable() {
-        DefaultTableModel dtm = (DefaultTableModel) this.tbQuanLySanPham.getModel();
-        dtm.setRowCount(0);
-        int maSP = 1;
-        for (QLSPVM qlsp : this.qlspService.getALL()) {
-            Object[] rowData = {
-                maSP++,qlsp.getTenSP(), qlsp.getMauSac(), qlsp.getChatlieu(), qlsp.getSize(), qlsp.getNcc(), qlsp.getSoLuong(), qlsp.getGiaNhap(), qlsp.getGiaBan()
-            };
-            dtm.addRow(rowData);
-        }
-    }
+//    public void getTable() {
+//        DefaultTableModel dtm = (DefaultTableModel) this.tbQuanLySanPham.getModel();
+//        dtm.setRowCount(0);
+//        int maSP = 1;
+//        for (QLSPVM qlsp : this.qlspService.getALL()) {
+//            Object[] rowData = {
+//                maSP++,qlsp.getTenSP(), qlsp.getMauSac(), qlsp.getChatlieu(), qlsp.getSize(), qlsp.getNcc(), qlsp.getSoLuong(), qlsp.getGiaNhap(), qlsp.getGiaBan()
+//            };
+//            dtm.addRow(rowData);
+//        }
+//    }
     
     public void LoadgioHang(ArrayList<GioHangViewModel> listGioHang) {
         defaultTableModelGioHang = (DefaultTableModel) tbgiohang.getModel();
@@ -195,9 +194,9 @@ public class FromMenu1 extends javax.swing.JFrame {
         }
     }
     
-    public QLSPVM GetdatafromGui() {
-        return new QLSPVM(txtMa.getText(),txtTenSP.getText(), cbMauSac.getSelectedItem().toString(), cbChatLieu.getSelectedItem().toString(), cbSize.getSelectedItem().toString(), cbNCC.getSelectedItem().toString(), Integer.parseInt(txtSoLuong.getText()), Double.parseDouble(txtGiaNhap.getText()), Double.parseDouble(txtGiaBan.getText()));
-    }
+//    public QLSPVM GetdatafromGui() {
+//        return new QLSPVM(txtMa.getText(),txtTenSP.getText(), cbMauSac.getSelectedItem().toString(), cbChatLieu.getSelectedItem().toString(), cbSize.getSelectedItem().toString(), cbNCC.getSelectedItem().toString(), Integer.parseInt(txtSoLuong.getText()), Double.parseDouble(txtGiaNhap.getText()), Double.parseDouble(txtGiaBan.getText()));
+//    }
 
     public void LoadHoaDonCho(){
         defaultTableModelHoaDonCho = (DefaultTableModel) tbhdc.getModel();
@@ -281,6 +280,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         tbSanPham = new javax.swing.JTable();
         txtFind = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
@@ -298,7 +298,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
         txtTienKhachTra = new javax.swing.JTextField();
         txtGiamGia = new javax.swing.JTextField();
         lblMaHD = new javax.swing.JLabel();
@@ -773,6 +773,11 @@ public class FromMenu1 extends javax.swing.JFrame {
                 "STT", "Mã SP", "Tên SP", "Số lượng ", "Đơn giá", "Thành tiền"
             }
         ));
+        tbgiohang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbgiohangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbgiohang);
 
         jButton5.setText("Xóa Sản Phẩm");
@@ -833,6 +838,8 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jButton3.setText("Tìm Kiếm");
 
+        jButton4.setText("Thêm Sản Phẩm");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -842,9 +849,12 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -852,10 +862,12 @@ public class FromMenu1 extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtFind)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -930,7 +942,19 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jButton2.setText("Hủy Hóa Đơn");
 
-        jButton4.setText("Thanh Toán");
+        btnThanhToan.setText("Thanh Toán");
+
+        txtTienKhachTra.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTienKhachTraCaretUpdate(evt);
+            }
+        });
+
+        txtGiamGia.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtGiamGiaCaretUpdate(evt);
+            }
+        });
 
         jLabel15.setText("Giảm Giá");
 
@@ -944,7 +968,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(107, 107, 107)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
@@ -1024,7 +1048,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
         );
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa Đơn Chờ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -1073,7 +1097,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                     .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1087,7 +1111,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         NV.addTab("Bán Hàng", jPanel1);
@@ -1266,16 +1290,16 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         // TODO add your handling code here:
-        QLSPVM qlsp = this.getLoadData();
-        if (qlsp == null) {
-            return;
-        }
-        
-        this.qlspService.insert(qlsp);
-        getTable();
-        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        //        JOptionPane.showMessageDialog(this, qlspService.insert(GetdatafromGui()));
-        //        getTable();
+//        QLSPVM qlsp = this.getLoadData();
+//        if (qlsp == null) {
+//            return;
+//        }
+//        
+//        this.qlspService.insert(qlsp);
+//        getTable();
+//        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+//        //        JOptionPane.showMessageDialog(this, qlspService.insert(GetdatafromGui()));
+//        //        getTable();
     }//GEN-LAST:event_btnthemActionPerformed
 
     private void tbQuanLySanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbQuanLySanPhamMouseClicked
@@ -1298,8 +1322,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void tbhdcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbhdcMouseClicked
         // TODO add your handling code here:
-        int row=tbhdc.getSelectedRow();
-        lblTongTien.setText(tbhdc.getValueAt(row, 5).toString());
+        
     }//GEN-LAST:event_tbhdcMouseClicked
 
     private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
@@ -1307,27 +1330,58 @@ public class FromMenu1 extends javax.swing.JFrame {
         NV.setSelectedIndex(4);
     }//GEN-LAST:event_btnhdActionPerformed
 
+    private void tbgiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbgiohangMouseClicked
+        // TODO add your handling code here:
+        int row=tbgiohang.getSelectedRow();
+        lblTongTien.setText(tbgiohang.getValueAt(row, 5).toString());
+    }//GEN-LAST:event_tbgiohangMouseClicked
+
+    private void txtTienKhachTraCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachTraCaretUpdate
+        // TODO add your handling code here:
+        if (txtTienKhachTra.getText().trim().length() == 0) {
+            lblTienThua.setText("0");
+        }
+        double tienDua = 0;
+        try {
+            tienDua = Double.parseDouble(txtTienKhachTra.getText());
+        } catch (Exception e) {
+        }
+        double tongTien = Double.parseDouble(lblTongTien.getText());
+        double tienThua = tienDua - tongTien;
+        
+        lblTienThua.setText(String.valueOf(tienThua));
+        if (tienThua < 0) {
+            btnThanhToan.setEnabled(false);
+        }else{
+            btnThanhToan.setEnabled(true);
+        }
+   
+
+    }//GEN-LAST:event_txtTienKhachTraCaretUpdate
+
+    private void txtGiamGiaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtGiamGiaCaretUpdate
+        // TODO add your handling code here:
+        if (txtGiamGia.getText().trim().length() == 0) {
+            lblTienThanhToan.setText("1");
+        }
+        
+        double giamGia = 1;
+        
+        try {
+            giamGia = Double.parseDouble(txtGiamGia.getText());
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        double tongTien = Double.parseDouble(lblTongTien.getText());
+        double tienThanhToan=tongTien*giamGia;
+        
+        lblTienThanhToan.setText(String.valueOf(giamGia));
+    }//GEN-LAST:event_txtGiamGiaCaretUpdate
+
     /**
      * @param args the command line arguments
      */
-    public QLSPVM getLoadData() {
-        String ma = txtMa.getText().trim();
-        String sp = txtTenSP.getText().trim();
-        String ms = cbMauSac.getSelectedItem().toString();
-        String cl = cbChatLieu.getSelectedItem().toString();
-        String s = cbSize.getSelectedItem().toString();
-        String ncc = cbNCC.getSelectedItem().toString();
-        String sl = txtSoLuong.getText().trim();
-        String gn = txtGiaNhap.getText().trim();
-        String gb = txtGiaBan.getText().trim();
-        
-        int soLuong = Integer.parseInt(sl);
-        double giaNhap = Double.parseDouble(gn);
-        double giaBan = Double.parseDouble(gb);
-        
-        QLSPVM qlsp = new QLSPVM(ma, sp, ms, cl, sl, ncc, soLuong, giaNhap, giaBan);
-        return qlsp;
-    }
+    
 
     /**
      *
@@ -1371,6 +1425,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnbanhang;
