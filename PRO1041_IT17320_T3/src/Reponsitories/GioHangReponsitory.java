@@ -7,6 +7,7 @@ package Reponsitories;
 
 import Util.DBContext1;
 import ViewModels.GioHangViewModel;
+import ViewModels.HoaDonViewModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,5 +45,46 @@ public class GioHangReponsitory {
         for (GioHangViewModel x : g.GetAll()) {
             System.out.println(x.toString());
         }
+    }
+    
+        public ArrayList<HoaDonViewModel> getListHoaDon() {
+        ArrayList<HoaDonViewModel> listHD = new ArrayList<>();
+        try {
+            Connection conn = DBContext1.getConnection();
+            String sql = "Select Id,Ma,NgayThanhToan,TinhTrang From HoaDon where TinhTrang = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "Chờ thanh toán");
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                
+                String id = rs.getString("Id");
+                String mahd = rs.getString("MaHD");
+                String ngaytao = rs.getString("NgayThanhToan");
+                String tt = rs.getString("TinhTrang");
+                HoaDonViewModel hd = new HoaDonViewModel(id, tt, ngaytao, 0);
+                listHD.add(hd);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+        }
+        return listHD;
+    }
+        
+        
+    public void insertHDR(HoaDonViewModel hd) {
+
+        try {
+            Connection conn = DBContext1.getConnection();
+            String sql = "Insert into HoaDon " + "(Ma,NgayThanhToan,TinhTrang)" + " Values(?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, hd.getMa());
+            ps.setString(2,  hd.getNgayThanhToan());
+            ps.setInt(3, hd.getTinhTrang());
+            ps.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+        }
+
     }
 }

@@ -22,4 +22,6 @@ public interface KhachHangService {
     void update(KhachHang kh, String id);
 
     void delete(String id);
+    
+    KhachHang getListSDT(String sdt);
 }

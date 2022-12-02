@@ -8,6 +8,7 @@ package Services.impl;
 import Reponsitories.GioHangReponsitory;
 import Services.GioHangService;
 import ViewModels.GioHangViewModel;
+import ViewModels.HoaDonViewModel;
 import java.util.ArrayList;
 
 /**
@@ -27,4 +28,11 @@ public class GioHangServiceImpl implements GioHangService{
         return gioHangReponsitory.GetAll();
     }
     
+    public ArrayList<HoaDonViewModel> getListHoaDon(){
+        return this.gioHangReponsitory.getListHoaDon();
+    }
+    
+    public void insertHDR(HoaDonViewModel hd){
+        this.gioHangReponsitory.insertHDR(hd);
+    }
 }

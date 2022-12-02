@@ -6,6 +6,7 @@
 package Services;
 
 import ViewModels.GioHangViewModel;
+import ViewModels.HoaDonViewModel;
 import java.util.ArrayList;
 
 /**
@@ -14,4 +15,7 @@ import java.util.ArrayList;
  */
 public interface GioHangService {
     ArrayList<GioHangViewModel> getAll();
+    
+    ArrayList<HoaDonViewModel> getListHoaDon();
+    void insertHDR(HoaDonViewModel hd);
 }
