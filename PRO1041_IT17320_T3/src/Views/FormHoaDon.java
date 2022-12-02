@@ -309,7 +309,7 @@ public class FormHoaDon extends javax.swing.JFrame {
         }else if (rdo_chuatt.isSelected()) {
             hd.setTinhTrang(2);
         }
-        this.service.insert(hd);
+        this.service.add(hd);
         this.getData();
         JOptionPane.showMessageDialog(this, "Thêm thành công");
     }//GEN-LAST:event_btn_themActionPerformed

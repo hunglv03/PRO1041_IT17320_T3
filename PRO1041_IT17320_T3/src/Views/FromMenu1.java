@@ -10,6 +10,7 @@ import DomainModel.HoaDon;
 import ViewModels.HoaDonViewModel;
 import DomainModel.NhanVien;
 import Reponsitories.GioHangReponsitory;
+import Reponsitories.HoaDonRepo;
 import Services.CTSanPhamService;
 import Services.ChatLieuService;
 import Services.DsSanPhamService;
@@ -93,7 +94,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     String find = " ";
     GioHangReponsitory gioHangReponsitory = new GioHangReponsitory();
     private HoaDonChoService hdcService = new HoaDonChoServiceImpl();
-
+    private HoaDonRepo hoaDonRepo = new HoaDonRepo();
     public FromMenu1() {
         initComponents();
 //        this.getTable();
@@ -121,7 +122,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         _dcbSp = (DefaultComboBoxModel) cboidsp.getModel();
 
         //setCBO();
-        LoadHoaDonCho();
+        LoadHoaDon();
         LoadTable();
         LoadCbo();
 
@@ -316,13 +317,13 @@ public class FromMenu1 extends javax.swing.JFrame {
 //    public QLSPVM GetdatafromGui() {
 //        return new QLSPVM(txtMa.getText(),txtTenSP.getText(), cbMauSac.getSelectedItem().toString(), cbChatLieu.getSelectedItem().toString(), cbSize.getSelectedItem().toString(), cbNCC.getSelectedItem().toString(), Integer.parseInt(txtSoLuong.getText()), Double.parseDouble(txtGiaNhap.getText()), Double.parseDouble(txtGiaBan.getText()));
 //    }
-    public void LoadHoaDonCho() {
+    public void LoadHoaDon() {
         defaultTableModelHoaDonCho = (DefaultTableModel) tbhdc.getModel();
         defaultTableModelHoaDonCho.setRowCount(0);
         int stt = 1;
-        for (HoaDonChoViewModel x : hdcService.getall()) {
+        for (HoaDonViewModel x : hdService.getAll()) {
             defaultTableModelHoaDonCho.addRow(new Object[]{
-                stt++, x.getMaHD(), x.getTenNV(), x.getTenKH(), getTrangThaiHDC(x.getTrangThai()), x.getNgayTao()
+                stt++, x.getMa(), x.getNgayThanhToan(), getTrangThaiHDC(x.getTinhTrang()), x.getTenNguoiNhan()
             });
         }
     }
@@ -408,7 +409,6 @@ public class FromMenu1 extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnThanhToan = new javax.swing.JButton();
@@ -420,6 +420,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         lblTienThua = new javax.swing.JLabel();
         lblNgayTao = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        btntaohd = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbhdc = new javax.swing.JTable();
@@ -774,7 +775,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                             .addComponent(btnsua)
                             .addComponent(btnxoa))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -788,7 +789,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 937, Short.MAX_VALUE)
+            .addGap(0, 954, Short.MAX_VALUE)
         );
 
         NV.addTab("NV", jPanel13);
@@ -801,7 +802,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 937, Short.MAX_VALUE)
+            .addGap(0, 954, Short.MAX_VALUE)
         );
 
         NV.addTab("KH", jPanel14);
@@ -979,8 +980,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jLabel21.setText("Tiền Khách Trả");
 
-        jCheckBox1.setText("Chờ Thanh Toán");
-
         jButton1.setText("Làm Mới");
 
         jButton2.setText("Hủy Hóa Đơn");
@@ -1001,6 +1000,13 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jLabel15.setText("Giảm Giá");
 
+        btntaohd.setText("Tạo Hóa Đơn");
+        btntaohd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntaohdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -1010,21 +1016,8 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jCheckBox1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(47, 47, 47))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
@@ -1045,7 +1038,19 @@ public class FromMenu1 extends javax.swing.JFrame {
                                 .addComponent(lblTienThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtTienKhachTra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btntaohd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)))
+                        .addGap(57, 57, 57))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1084,14 +1089,15 @@ public class FromMenu1 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel20))
                     .addComponent(lblNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btntaohd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa Đơn Chờ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -1101,7 +1107,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Mã HĐ", "Tên NV", "Tên KH", "Trạng Thái", "Ngày Tạo"
+                "STT", "Mã HĐ", "Ngày Tạo", "Trạng Thái", "Tên KH"
             }
         ));
         tbhdc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1249,7 +1255,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
 
         NV.addTab("HĐ", jPanel16);
@@ -1281,7 +1287,8 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void btnnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnvActionPerformed
         // TODO add your handling code here:
-        NV.setSelectedIndex(1);
+        NhanVienForm nv = new NhanVienForm();
+        nv.setVisible(true);
     }//GEN-LAST:event_btnnvActionPerformed
 
     private void btnspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnspActionPerformed
@@ -1297,7 +1304,8 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
         // TODO add your handling code here:
-        NV.setSelectedIndex(2);
+        KhachHangForm kh = new KhachHangForm();
+        kh.setVisible(true);
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -1482,6 +1490,21 @@ public class FromMenu1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbolocmausacActionPerformed
 
+    private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
+        // TODO add your handling code here:
+        HoaDon hoaDon = new HoaDon();
+        hoaDon.setNgayThanhToan("2022/12/2");
+        hoaDon.setTinhTrang(2);
+        hoaDon.setTenNguoiNhan("Thành");
+        for (int i = 3; i < hoaDonRepo.GetAll().size(); i++) {
+            hoaDon.setMa("HD" + i);
+        }
+        
+        hdService.add(hoaDon);
+        LoadHoaDon();
+        
+    }//GEN-LAST:event_btntaohdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1532,6 +1555,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnnv;
     private javax.swing.JButton btnsp;
     private javax.swing.JButton btnsua;
+    private javax.swing.JButton btntaohd;
     private javax.swing.JButton btnthem;
     private javax.swing.JButton btnxoa;
     private javax.swing.JComboBox<ChatLieuViewModel> cboidchatlieu;
@@ -1548,7 +1572,6 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

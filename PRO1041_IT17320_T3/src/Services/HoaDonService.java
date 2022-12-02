@@ -17,7 +17,7 @@ public interface HoaDonService {
 
     ArrayList<HoaDonViewModel> getAll();
 
-    void insert(HoaDon hd);
+    String add(HoaDon hd);
 
     void update(HoaDon hd, String id);
 

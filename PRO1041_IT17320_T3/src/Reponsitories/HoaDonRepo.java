@@ -19,14 +19,12 @@ public class HoaDonRepo {
     public boolean add(HoaDon hd) {
         try {
             Connection conn = DBContext.getConnection();
-            String sql = "INSERT INTO HOADON(MaHD,NgayThanhToan,TinhTrang,TenNguoiNhan,DiaChi,Sdt) VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO HOADON(MaHD,NgayThanhToan,TinhTrang,TenNguoiNhan) VALUES(?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, hd.getMa());
             ps.setString(2, hd.getNgayThanhToan());
             ps.setInt(3, hd.getTinhTrang());
-            ps.setString(4, hd.getTenNguoiNhan());
-            ps.setString(5, hd.getDiaChi());
-            ps.setString(6, hd.getSdt());
+            ps.setString(4, hd.getTenNguoiNhan());           
             ps.execute();
             System.out.println("Truy vấn thành công");
             return true;
