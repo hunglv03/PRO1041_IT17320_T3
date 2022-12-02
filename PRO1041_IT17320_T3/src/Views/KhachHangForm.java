@@ -45,9 +45,9 @@ public class KhachHangForm extends javax.swing.JFrame {
 
     public String getTrangThai(int trangThai) {
         if (trangThai == 1) {
-            return "Khách Hàng Mới";
+            return "Đi Làm";
         } else if (trangThai == 2) {
-            return "Khách Lâu Năm";
+            return "Nghỉ Làm";
         } else {
             return null;
         }
@@ -59,8 +59,8 @@ public class KhachHangForm extends javax.swing.JFrame {
     }
 
     public void rdTrangThai() {
-        buttonGroupt.add(rdKhachHangMoi);
-        buttonGroupt.add(rdKhachLauNam);
+        buttonGroupt.add(rdDathanhtoan);
+        buttonGroupt.add(rdChuathanhtoan);
     }
 
     public void getData() {
@@ -103,8 +103,8 @@ public class KhachHangForm extends javax.swing.JFrame {
         rdNu = new javax.swing.JRadioButton();
         txtSdt = new javax.swing.JTextField();
         txtdc = new javax.swing.JTextField();
-        rdKhachHangMoi = new javax.swing.JRadioButton();
-        rdKhachLauNam = new javax.swing.JRadioButton();
+        rdDathanhtoan = new javax.swing.JRadioButton();
+        rdChuathanhtoan = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,9 +171,9 @@ public class KhachHangForm extends javax.swing.JFrame {
 
         rdNu.setText("Nữ");
 
-        rdKhachHangMoi.setText("Khách Hàng Mới");
+        rdDathanhtoan.setText("Đã Thanh Toán");
 
-        rdKhachLauNam.setText("Khách Lâu Năm");
+        rdChuathanhtoan.setText("Chưa Thanh Toán");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,9 +200,9 @@ public class KhachHangForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(rdKhachHangMoi)
+                                .addComponent(rdDathanhtoan)
                                 .addGap(18, 18, 18)
-                                .addComponent(rdKhachLauNam))
+                                .addComponent(rdChuathanhtoan))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
@@ -248,10 +248,12 @@ public class KhachHangForm extends javax.swing.JFrame {
                                     .addComponent(txtMakh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7)
                                     .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(rdNam)
-                                .addComponent(jLabel6)
-                                .addComponent(rdNu)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdNam)
+                                    .addComponent(jLabel6)
+                                    .addComponent(rdNu))
+                                .addGap(29, 29, 29)))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -264,8 +266,8 @@ public class KhachHangForm extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(rdKhachHangMoi)
-                    .addComponent(rdKhachLauNam))
+                    .addComponent(rdDathanhtoan)
+                    .addComponent(rdChuathanhtoan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -286,9 +288,9 @@ public class KhachHangForm extends javax.swing.JFrame {
             kh.setGioiTinh(2);
         }
 
-        if (rdKhachHangMoi.isSelected()) {
+        if (rdDathanhtoan.isSelected()) {
             kh.setTrangThai(1);
-        } else if (rdKhachLauNam.isSelected()) {
+        } else if (rdChuathanhtoan.isSelected()) {
             kh.setTrangThai(2);
         }
         this.khService.insert(kh);
@@ -313,9 +315,9 @@ public class KhachHangForm extends javax.swing.JFrame {
             kh.setGioiTinh(2);
         }
 
-        if (rdKhachHangMoi.isSelected()) {
+        if (rdDathanhtoan.isSelected()) {
             kh.setTrangThai(1);
-        } else if (rdKhachLauNam.isSelected()) {
+        } else if (rdChuathanhtoan.isSelected()) {
             kh.setTrangThai(2);
         }
         this.khService.update(kh, kh.getId());
@@ -355,10 +357,10 @@ public class KhachHangForm extends javax.swing.JFrame {
         }
         txtdc.setText(tbKH.getValueAt(row, 5).toString());
         txtSdt.setText(tbKH.getValueAt(row, 4).toString());
-        if (tbKH.getValueAt(row, 6).equals("Khách Hàng Mới")) {
-            rdKhachHangMoi.setSelected(true);
+        if (tbKH.getValueAt(row, 6).equals("Đã Thanh Toán")) {
+            rdDathanhtoan.setSelected(true);
         } else {
-            rdKhachLauNam.setSelected(true);
+            rdChuathanhtoan.setSelected(true);
         }
     }//GEN-LAST:event_tbKHMouseClicked
 
@@ -435,8 +437,8 @@ public class KhachHangForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbId;
-    private javax.swing.JRadioButton rdKhachHangMoi;
-    private javax.swing.JRadioButton rdKhachLauNam;
+    private javax.swing.JRadioButton rdChuathanhtoan;
+    private javax.swing.JRadioButton rdDathanhtoan;
     private javax.swing.JRadioButton rdNam;
     private javax.swing.JRadioButton rdNu;
     private javax.swing.JTable tbKH;

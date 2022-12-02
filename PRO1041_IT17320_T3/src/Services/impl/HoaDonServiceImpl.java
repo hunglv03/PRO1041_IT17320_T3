@@ -8,7 +8,6 @@ package Services.impl;
 import DomainModel.HoaDon;
 import Reponsitories.HoaDonRepo;
 import Services.HoaDonService;
-import ViewModels.HoaDonMenuVM;
 import ViewModels.HoaDonViewModel;
 import java.util.ArrayList;
 
@@ -18,7 +17,6 @@ import java.util.ArrayList;
  */
 public class HoaDonServiceImpl implements HoaDonService {
 
-<<<<<<< Updated upstream
     private HoaDonRepo hdRepo;
     public HoaDonServiceImpl(){
         this.hdRepo=new HoaDonRepo();
@@ -34,30 +32,8 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
     public ArrayList<HoaDonViewModel> getAll(){
         return this.hdRepo.GetAll();
-=======
-    private HoaDonRepo nccRepo;
-
-    public HoaDonServiceImpl() {
-        this.nccRepo = new HoaDonRepo();
     }
-
-    public void insert(HoaDon hd) {
-        this.nccRepo.add(hd);
-    }
-
-    public void update(HoaDon hd, String id) {
-        this.nccRepo.update(hd, id);
-    }
-
-    public void delete(String id) {
-        this.nccRepo.delete(id);
-    }
-
-    public ArrayList<HoaDonViewModel> getAll() {
-        return this.nccRepo.GetAll();
->>>>>>> Stashed changes
-    }
-
+    
     public static void main(String[] args) {
         HoaDonServiceImpl hd = new HoaDonServiceImpl();
         for (HoaDonViewModel x : hd.getAll()) {
@@ -65,7 +41,6 @@ public class HoaDonServiceImpl implements HoaDonService {
         }
     }
 
-<<<<<<< Updated upstream
     @Override
     public String add(HoaDon hd) {
         if (hdRepo.add(hd)) {
@@ -86,6 +61,4 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 
     
-=======
->>>>>>> Stashed changes
 }

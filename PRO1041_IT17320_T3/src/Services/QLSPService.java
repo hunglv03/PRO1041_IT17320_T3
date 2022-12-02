@@ -7,18 +7,13 @@ package Services;
 
 import ViewModels.QLSPVM;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Admin
  */
 public interface QLSPService {
-    public String them(QLSPVM ql);
 
-    public String sua(QLSPVM ql);
-
-    public String xoa(QLSPVM ql);
-
-    public List<QLSPVM> GetAll();
+    ArrayList<QLSPVM> getALL();
+    void insert(QLSPVM qlsp);
 }

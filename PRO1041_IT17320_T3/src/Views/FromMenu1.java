@@ -9,7 +9,6 @@ import DomainModel.CTSanPham;
 import DomainModel.HoaDon;
 import ViewModels.HoaDonViewModel;
 import DomainModel.NhanVien;
-import Reponsitories.DsSanPhamReponsitory;
 import Reponsitories.GioHangReponsitory;
 import Reponsitories.HoaDonRepo;
 import Services.CTSanPhamService;
@@ -27,7 +26,6 @@ import Services.impl.ChatLieuServiceImpl;
 import Services.impl.DsSanPhamServiceImpl;
 import Services.impl.GioHangServiceImpl;
 import Services.impl.HoaDonChoServiceImpl;
-import Services.impl.HoaDonMenuImpl;
 import Services.impl.HoaDonServiceImpl;
 import Services.impl.MauSacServiceImpl;
 import Services.impl.NhaCungCapServiceimpl;
@@ -40,7 +38,6 @@ import ViewModels.ChatLieuViewModel;
 import ViewModels.DsSanPhamViewModel;
 import ViewModels.GioHangViewModel;
 import ViewModels.HoaDonChoViewModel;
-import ViewModels.HoaDonMenuVM;
 import ViewModels.HoaDonViewModel;
 import ViewModels.MauSacViewModel;
 import ViewModels.NhaCungCapVM;
@@ -86,7 +83,6 @@ public class FromMenu1 extends javax.swing.JFrame {
      * Creates new form FromMenu1
      */
     private SanPhamServiceImpl spService = new SanPhamServiceImpl();
-    private HoaDonMenuImpl hdmService = new HoaDonMenuImpl();
     private MauSacServiceImpl msService = new MauSacServiceImpl();
     private QLSPService qlspService = new QLSPServiceImpl();
     private HoaDonService hdService = new HoaDonServiceImpl();
@@ -95,22 +91,15 @@ public class FromMenu1 extends javax.swing.JFrame {
     private DefaultTableModel defaultTableModelHoaDonCho;
     private GioHangServiceImpl ghService = new GioHangServiceImpl();
     private ArrayList<GioHangViewModel> list = new ArrayList<>();
-    //private ArrayList<DsSanPhamViewModel> listDSSP = new ArrayList<>();
     String find = " ";
-    //DsSanPhamReponsitory dsSanPhamReponsitory = new DsSanPhamReponsitory();
+    GioHangReponsitory gioHangReponsitory = new GioHangReponsitory();
     private HoaDonChoService hdcService = new HoaDonChoServiceImpl();
     private HoaDonRepo hoaDonRepo = new HoaDonRepo();
     public FromMenu1() {
         initComponents();
 //        this.getTable();
-<<<<<<< Updated upstream
         //findSanPham();
         //tableDSSanPham();
-=======
-        findSanPham();
-        tableDSSanPham();
-        tablehdmenu();
->>>>>>> Stashed changes
         //LoadgioHang(gioHangReponsitory.GetAll());
 
         lblNgayTao.setEnabled(false);
@@ -233,7 +222,6 @@ public class FromMenu1 extends javax.swing.JFrame {
             cboidsp.addItem(sanPhamViewmodel);
         }
     }
-<<<<<<< Updated upstream
     //
     public void LoadTable() {
         _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
@@ -304,35 +292,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 //        }
 //    }
 
-=======
-    
-    private int sl;
-    public void tableDSSanPham() {
-        DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
-        dtm.setRowCount(0);
-        int masp = 1;
-        for (DsSanPhamViewModel ds : dsService.getAll()) {
-            Object[] rowData = {
-                masp++, ds.getSanPham(), ds.getSize(), ds.getMauSac(), ds.getNcc(), ds.getChatLieu(), ds.getSoLuong(), ds.getGiaBan()
-            
-            };
-            dtm.addRow(rowData);
-        }
-    }
-     public void tablehdmenu() {
-        DefaultTableModel dtm = (DefaultTableModel) this.tbhdmenu.getModel();
-        dtm.setRowCount(0);
-        int stt = 1;
-        for (HoaDonMenuVM hdm :hdmService.getAll()) {
-            Object[] rowData = {
-                stt++,hdm.getMaHd(),hdm.getNgayTT(),hdm.getTrangThai(),hdm.getSdt(),hdm.getTenNV(),hdm.getTenKH()
-            
-            };
-            dtm.addRow(rowData);
-        }
-    }
-    
->>>>>>> Stashed changes
 //    public void getTable() {
 //        DefaultTableModel dtm = (DefaultTableModel) this.tbQuanLySanPham.getModel();
 //        dtm.setRowCount(0);
@@ -402,7 +361,6 @@ public class FromMenu1 extends javax.swing.JFrame {
         txttimkiem2 = new javax.swing.JTextField();
         btnthem = new javax.swing.JButton();
         btnsua = new javax.swing.JButton();
-<<<<<<< Updated upstream
         btnxoa = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtgianhap = new javax.swing.JTextField();
@@ -425,9 +383,6 @@ public class FromMenu1 extends javax.swing.JFrame {
         cbolocchatlieu = new javax.swing.JComboBox<ChatLieuViewModel>();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
-=======
-        btmxoa = new javax.swing.JButton();
->>>>>>> Stashed changes
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -454,14 +409,8 @@ public class FromMenu1 extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-<<<<<<< Updated upstream
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-=======
-        jCheckBox1 = new javax.swing.JCheckBox();
-        btnLamMoi = new javax.swing.JButton();
-        btnHuyThanhToan = new javax.swing.JButton();
->>>>>>> Stashed changes
         btnThanhToan = new javax.swing.JButton();
         txtTienKhachTra = new javax.swing.JTextField();
         txtGiamGia = new javax.swing.JTextField();
@@ -478,7 +427,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tbhdmenu = new javax.swing.JTable();
+        tbhd = new javax.swing.JTable();
         txttimkiem = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
         txttimkiem1 = new javax.swing.JTextField();
@@ -832,7 +781,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         NV.addTab("SP", jPanel2);
 
-<<<<<<< Updated upstream
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -859,8 +807,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         NV.addTab("KH", jPanel14);
 
-=======
->>>>>>> Stashed changes
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Giỏ hàng"));
 
         tbgiohang.setModel(new javax.swing.table.DefaultTableModel(
@@ -1034,32 +980,11 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jLabel21.setText("Tiền Khách Trả");
 
-<<<<<<< Updated upstream
         jButton1.setText("Làm Mới");
-=======
-        jCheckBox1.setText("Chờ Thanh Toán");
 
-        btnLamMoi.setText("Làm Mới");
-        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLamMoiActionPerformed(evt);
-            }
-        });
->>>>>>> Stashed changes
-
-        btnHuyThanhToan.setText("Hủy Hóa Đơn");
-        btnHuyThanhToan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuyThanhToanActionPerformed(evt);
-            }
-        });
+        jButton2.setText("Hủy Hóa Đơn");
 
         btnThanhToan.setText("Thanh Toán");
-        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhToanActionPerformed(evt);
-            }
-        });
 
         txtTienKhachTra.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -1093,18 +1018,6 @@ public class FromMenu1 extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< Updated upstream
-=======
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jCheckBox1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHuyThanhToan)
-                        .addGap(47, 47, 47))
->>>>>>> Stashed changes
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
@@ -1178,7 +1091,6 @@ public class FromMenu1 extends javax.swing.JFrame {
                     .addComponent(lblNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-<<<<<<< Updated upstream
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -1186,12 +1098,6 @@ public class FromMenu1 extends javax.swing.JFrame {
                     .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btntaohd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-=======
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHuyThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
->>>>>>> Stashed changes
         );
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa Đơn Chờ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -1261,7 +1167,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơn"));
 
-        tbhdmenu.setModel(new javax.swing.table.DefaultTableModel(
+        tbhd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1269,7 +1175,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                 "STT", "MaHD", "NgayThanhToan", "TrangThai", "SDT", "TenNV", "TenKH"
             }
         ));
-        jScrollPane6.setViewportView(tbhdmenu);
+        jScrollPane6.setViewportView(tbhd);
 
         txttimkiem.setText("Tìm kiếm ...");
 
@@ -1278,23 +1184,20 @@ public class FromMenu1 extends javax.swing.JFrame {
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txttimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(txttimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(txttimkiem, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơn Chi Tiết"));
@@ -1395,7 +1298,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void btnbanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbanhangActionPerformed
         // TODO add your handling code here:
-        NV.setSelectedIndex(1);
+        NV.setSelectedIndex(3);
 
     }//GEN-LAST:event_btnbanhangActionPerformed
 
@@ -1417,67 +1320,8 @@ public class FromMenu1 extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnexitActionPerformed
 
-    private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
-        // TODO add your handling code here:
-        NV.setSelectedIndex(2);
-        
-    }//GEN-LAST:event_btnhdActionPerformed
-
-    private void tbhdcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbhdcMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_tbhdcMouseClicked
-
-    private void txtGiamGiaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtGiamGiaCaretUpdate
-        // TODO add your handling code here:
-        if (txtGiamGia.getText().trim().length() == 0) {
-            lblTienThanhToan.setText("1");
-        }
-
-        double giamGia = 1;
-
-        try {
-            giamGia = Double.parseDouble(txtGiamGia.getText());
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        double tongTien = Double.parseDouble(lblTongTien.getText());
-        double tienThanhToan = tongTien*giamGia;
-
-        lblTienThanhToan.setText(String.valueOf(giamGia));
-    }//GEN-LAST:event_txtGiamGiaCaretUpdate
-
-    private void txtTienKhachTraCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachTraCaretUpdate
-        // TODO add your handling code here:
-        if (txtTienKhachTra.getText().trim().length() == 0) {
-            lblTienThua.setText("0");
-        }
-        double tienDua = 0;
-        try {
-            tienDua = Double.parseDouble(txtTienKhachTra.getText());
-        } catch (Exception e) {
-        }
-        double tongTien = Double.parseDouble(lblTongTien.getText());
-        double tienThua = tienDua - tongTien;
-
-        lblTienThua.setText(String.valueOf(tienThua));
-        if (tienThua < 0) {
-            btnThanhToan.setEnabled(false);
-        }else{
-            btnThanhToan.setEnabled(true);
-        }
-
-    }//GEN-LAST:event_txtTienKhachTraCaretUpdate
-
-    private void txtFindCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFindCaretUpdate
-        // TODO add your handling code here:
-        find = txtFind.getText();
-        findSanPham();
-    }//GEN-LAST:event_txtFindCaretUpdate
-
     private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
         // TODO add your handling code here:
-<<<<<<< Updated upstream
 //        GioHangViewModel gioHangViewModel = new GioHangViewModel();
 //        int row = tbSanPham.getSelectedRow();
 //        gioHangViewModel.setMaSP((String) tbSanPham.getValueAt(row, 1));
@@ -1487,27 +1331,10 @@ public class FromMenu1 extends javax.swing.JFrame {
 //        gioHangViewModel.setDonGia((Double) tbSanPham.getValueAt(row, 7));
 //        list.add(gioHangViewModel);
 //        LoadgioHang(list);
-=======
-        
-                    
-        GioHangViewModel gioHangViewModel = new GioHangViewModel();
-        int row = tbSanPham.getSelectedRow();
-        gioHangViewModel.setMaSP((String) tbSanPham.getValueAt(row, 1));
-        gioHangViewModel.setTenSP((String) tbSanPham.getValueAt(row, 2));
-        sl = Integer.parseInt(JOptionPane.showInputDialog("Mời nhập số lượng: "));
-        gioHangViewModel.setSoLuong(sl);      
-        gioHangViewModel.setDonGia((Double) tbSanPham.getValueAt(row, 7));
-        list.add(gioHangViewModel);
-        LoadgioHang(list);
-        DsSanPhamViewModel ds = new DsSanPhamViewModel();
-        ds.setSoLuong(ds.getSoLuong() - sl);      
-        tableDSSanPham();
->>>>>>> Stashed changes
     }//GEN-LAST:event_tbSanPhamMouseClicked
 
-    private void tbgiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbgiohangMouseClicked
+    private void txtFindCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFindCaretUpdate
         // TODO add your handling code here:
-<<<<<<< Updated upstream
 //        find = txtFind.getText();
 //        findSanPham();
     }//GEN-LAST:event_txtFindCaretUpdate
@@ -1516,54 +1343,12 @@ public class FromMenu1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_tbhdcMouseClicked
-=======
-        int row=tbgiohang.getSelectedRow();
-        lblTongTien.setText(tbgiohang.getValueAt(row, 5).toString());
-    }//GEN-LAST:event_tbgiohangMouseClicked
 
-    private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
+    private void btnhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhdActionPerformed
         // TODO add your handling code here:
-        //        QLSPVM qlsp = this.getLoadData();
-        //        if (qlsp == null) {
-            //            return;
-            //        }
-        //
-        //        this.qlspService.insert(qlsp);
-        //        getTable();
-        //        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        //        //        JOptionPane.showMessageDialog(this, qlspService.insert(GetdatafromGui()));
-        //        //        getTable();
-    }//GEN-LAST:event_btnthemActionPerformed
+        NV.setSelectedIndex(4);
+    }//GEN-LAST:event_btnhdActionPerformed
 
-    private void tbQuanLySanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbQuanLySanPhamMouseClicked
-        // TODO add your handling code here:
-        int row = tbQuanLySanPham.getSelectedRow();
-        txtMa.setText(tbQuanLySanPham.getValueAt(row, 0).toString());
-        txtTenSP.setText(tbQuanLySanPham.getValueAt(row, 1).toString());
-        txtGiaBan.setText(tbQuanLySanPham.getValueAt(row, 8).toString());
-        txtGiaNhap.setText(tbQuanLySanPham.getValueAt(row, 7).toString());
-        txtSoLuong.setText(tbQuanLySanPham.getValueAt(row, 6).toString());
-        cbChatLieu.setSelectedItem(tbQuanLySanPham.getValueAt(row, 3));
-        cbMauSac.setSelectedItem(tbQuanLySanPham.getValueAt(row, 2));
-        cbNCC.setSelectedItem(tbQuanLySanPham.getValueAt(row, 5));
-        cbSize.setSelectedItem(tbQuanLySanPham.getValueAt(row, 4));
-    }//GEN-LAST:event_tbQuanLySanPhamMouseClicked
-
-    private void txtTenSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenSPActionPerformed
-
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnThanhToanActionPerformed
->>>>>>> Stashed changes
-
-    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLamMoiActionPerformed
-
-<<<<<<< Updated upstream
     private void tbgiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbgiohangMouseClicked
         // TODO add your handling code here:
         int row = tbgiohang.getSelectedRow();
@@ -1611,11 +1396,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         lblTienThanhToan.setText(String.valueOf(giamGia));
     }//GEN-LAST:event_txtGiamGiaCaretUpdate
-=======
-    private void btnHuyThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyThanhToanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHuyThanhToanActionPerformed
->>>>>>> Stashed changes
 
     private void tblctsanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblctsanphamMouseClicked
         // TODO add your handling code here:
@@ -1767,13 +1547,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane NV;
     private javax.swing.JButton btnDangXuat;
-    private javax.swing.JButton btnHuyThanhToan;
     private javax.swing.JButton btnKhachHang;
-<<<<<<< Updated upstream
-=======
-    private javax.swing.JButton btnLamMoi;
-    private javax.swing.JButton btnSua;
->>>>>>> Stashed changes
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnbanhang;
     private javax.swing.JButton btnexit;
@@ -1783,7 +1557,6 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btntaohd;
     private javax.swing.JButton btnthem;
-<<<<<<< Updated upstream
     private javax.swing.JButton btnxoa;
     private javax.swing.JComboBox<ChatLieuViewModel> cboidchatlieu;
     private javax.swing.JComboBox<MauSacViewModel> cboidmausac;
@@ -1795,12 +1568,6 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<SizeVM> cbolocsize;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-=======
-    private javax.swing.JComboBox<String> cbChatLieu;
-    private javax.swing.JComboBox<String> cbMauSac;
-    private javax.swing.JComboBox<String> cbNCC;
-    private javax.swing.JComboBox<String> cbSize;
->>>>>>> Stashed changes
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1831,14 +1598,8 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-<<<<<<< Updated upstream
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-=======
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
->>>>>>> Stashed changes
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -1867,13 +1628,10 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JTextArea tarmota;
     private javax.swing.JTable tbSanPham;
     private javax.swing.JTable tbgiohang;
+    private javax.swing.JTable tbhd;
     private javax.swing.JTable tbhdc;
     private javax.swing.JTable tbhdct;
-<<<<<<< Updated upstream
     private javax.swing.JTable tblctsanpham;
-=======
-    private javax.swing.JTable tbhdmenu;
->>>>>>> Stashed changes
     private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtGiamGia;
     private javax.swing.JTextField txtTienKhachTra;
