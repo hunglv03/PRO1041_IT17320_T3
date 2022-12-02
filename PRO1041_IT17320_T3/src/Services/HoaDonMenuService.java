@@ -5,20 +5,13 @@
  */
 package Services;
 
-import ViewModels.QLSPVM;
+import ViewModels.HoaDonMenuVM;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public interface QLSPService {
-    public String them(QLSPVM ql);
-
-    public String sua(QLSPVM ql);
-
-    public String xoa(QLSPVM ql);
-
-    public List<QLSPVM> GetAll();
+public interface HoaDonMenuService {
+       ArrayList<HoaDonMenuVM> getAll();
 }

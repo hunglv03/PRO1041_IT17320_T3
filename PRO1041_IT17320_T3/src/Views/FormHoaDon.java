@@ -28,10 +28,10 @@ public class FormHoaDon extends javax.swing.JFrame {
 
     public FormHoaDon() {
         initComponents();
-        rdTinhTrang();
+        rdTrangThai();
         getData();
         
-    }
+    }   
 
     public void getData() {
         DefaultTableModel dmt = (DefaultTableModel) tbl_hoaDon.getModel();
@@ -39,22 +39,22 @@ public class FormHoaDon extends javax.swing.JFrame {
         for (HoaDonViewModel x : service.getAll()) {
             dmt.addRow(new Object[]{
                 x.getId(), x.getMa(), 
-                x.getNgayThanhToan(), getTinhTrang(x.getTinhTrang()), x.getTenNguoiNhan(), x.getDiaChi(), x.getSdt()
+                x.getNgayThanhToan(), getTrangThai(x.getTrangThai()), x.getTenNguoiNhan(), x.getDiaChi(), x.getSdt()
             });
         }
     }
     
-    public String getTinhTrang(int tinhTrang){
-        if (tinhTrang == 1) {
+    public String getTrangThai(int TrangThai){
+        if (TrangThai == 1) {
             return "Đã thanh toán";
-        }else if (tinhTrang == 2) {
+        }else if (TrangThai == 2) {
             return "Chưa thanh toán";
         }else{
             return null;
         }
     }
     
-    public void rdTinhTrang(){
+    public void rdTrangThai(){
         bunttonGroup.add(rdo_datt);
         bunttonGroup.add(rdo_chuatt);
     }
@@ -107,7 +107,7 @@ public class FormHoaDon extends javax.swing.JFrame {
 
         jLabel4.setText("NGÀY THANH TOÁN");
 
-        jLabel5.setText("TÌNH TRẠNG");
+        jLabel5.setText("TRẠNG THÁI");
 
         jLabel6.setText("TÊN NGƯỜI NHẬN");
 
@@ -148,7 +148,7 @@ public class FormHoaDon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "MÃ", "NGÀY TT", "TÌNH TRẠNG", "TÊN NGƯỜI NHẬN", "ĐỊA CHỈ", "SĐT"
+                "ID", "MÃ", "NGÀY TT", "TRẠNG THÁI", "TÊN NGƯỜI NHẬN", "ĐỊA CHỈ", "SĐT"
             }
         ));
         jScrollPane1.setViewportView(tbl_hoaDon);

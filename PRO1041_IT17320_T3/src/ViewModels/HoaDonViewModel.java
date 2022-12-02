@@ -13,7 +13,7 @@ public class HoaDonViewModel {
     private String id;
     private String ma;
     private String ngayThanhToan;
-    private int tinhTrang;
+    private int trangThai;
     private String tenNguoiNhan;
     private String diaChi;
     private String sdt;
@@ -21,11 +21,11 @@ public class HoaDonViewModel {
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(String id, String ma, String ngayThanhToan, int tinhTrang, String tenNguoiNhan, String diaChi, String sdt) {
+    public HoaDonViewModel(String id, String ma, String ngayThanhToan, int trangThai, String tenNguoiNhan, String diaChi, String sdt) {
         this.id = id;
         this.ma = ma;
         this.ngayThanhToan = ngayThanhToan;
-        this.tinhTrang = tinhTrang;
+        this.trangThai = trangThai;
         this.tenNguoiNhan = tenNguoiNhan;
         this.diaChi = diaChi;
         this.sdt = sdt;
@@ -55,12 +55,12 @@ public class HoaDonViewModel {
         this.ngayThanhToan = ngayThanhToan;
     }
 
-    public int getTinhTrang() {
-        return tinhTrang;
+    public int getTrangThai() {
+        return trangThai;
     }
 
-    public void setTinhTrang(int tinhTrang) {
-        this.tinhTrang = tinhTrang;
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 
     public String getTenNguoiNhan() {
@@ -89,9 +89,7 @@ public class HoaDonViewModel {
 
     @Override
     public String toString() {
-        return "Hoa_Don_ViewModel{" + "id=" + id + ", ma=" + ma + ", ngayThanhToan=" + ngayThanhToan + ", tinhTrang=" + tinhTrang + ", tenNguoiNhan=" + tenNguoiNhan + ", diaChi=" + diaChi + ", sdt=" + sdt + '}';
+        return "HoaDonViewModel{" + "id=" + id + ", ma=" + ma + ", ngayThanhToan=" + ngayThanhToan + ", trangThai=" + trangThai + ", tenNguoiNhan=" + tenNguoiNhan + ", diaChi=" + diaChi + ", sdt=" + sdt + '}';
     }
 
-   
-    
 }

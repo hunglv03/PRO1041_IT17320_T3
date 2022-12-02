@@ -10,93 +10,37 @@ package ViewModels;
  * @author Admin
  */
 public class QLSPVM {
-    private String maSP;
-    private String tenSP;
-    private String mauSac;
-    private String chatlieu;
-    private String size;
-    private String ncc;
-    private int soLuong;
-    private double giaNhap;
+
+    private String moTa;
+    private double soLuongTon;//đây sửa nữa này
     private double giaBan;
+    private double giaNhap;
 
     public QLSPVM() {
     }
 
-    public QLSPVM(String maSP, String tenSP, String mauSac, String chatlieu, String size, String ncc, int soLuong, double giaNhap, double giaBan) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.mauSac = mauSac;
-        this.chatlieu = chatlieu;
-        this.size = size;
-        this.ncc = ncc;
-        this.soLuong = soLuong;
-        this.giaNhap = giaNhap;
+    public QLSPVM(String id, SanPhamViewmodel idSp, SizeVM idSize, MauSacViewModel idMauSac, NhaCungCapVM idNhaCungCap, ChatLieuViewModel idChatLieu, String moTa, double soLuongTon, double giaBan, double giaNhap) {
+
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
         this.giaBan = giaBan;
-    }
-
-    public String getMaSP() {
-        return maSP;
-    }
-
-    public void setMaSP(String maSP) {
-        this.maSP = maSP;
-    }
-
-    public String getTenSP() {
-        return tenSP;
-    }
-
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
-    }
-
-    public String getMauSac() {
-        return mauSac;
-    }
-
-    public void setMauSac(String mauSac) {
-        this.mauSac = mauSac;
-    }
-
-    public String getChatlieu() {
-        return chatlieu;
-    }
-
-    public void setChatlieu(String chatlieu) {
-        this.chatlieu = chatlieu;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getNcc() {
-        return ncc;
-    }
-
-    public void setNcc(String ncc) {
-        this.ncc = ncc;
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
-
-    public double getGiaNhap() {
-        return giaNhap;
-    }
-
-    public void setGiaNhap(double giaNhap) {
         this.giaNhap = giaNhap;
+    }
+
+    public String getMoTa() {
+        return moTa;
+    }
+
+    public void setMoTa(String moTa) {
+        this.moTa = moTa;
+    }
+
+    public double getSoLuongTon() {
+        return soLuongTon;
+    }
+
+    public void setSoLuongTon(double soLuongTon) {
+        this.soLuongTon = soLuongTon;
     }
 
     public double getGiaBan() {
@@ -107,9 +51,17 @@ public class QLSPVM {
         this.giaBan = giaBan;
     }
 
+    public double getGiaNhap() {
+        return giaNhap;
+    }
+
+    public void setGiaNhap(double giaNhap) {
+        this.giaNhap = giaNhap;
+    }
+
     @Override
     public String toString() {
-        return "QLSPVM{" + "maSP=" + maSP + ", tenSP=" + tenSP + ", mauSac=" + mauSac + ", chatlieu=" + chatlieu + ", size=" + size + ", ncc=" + ncc + ", soLuong=" + soLuong + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + '}';
+        return "QLSPVM{" + "moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaBan=" + giaBan + ", giaNhap=" + giaNhap + '}';
     }
 
 }

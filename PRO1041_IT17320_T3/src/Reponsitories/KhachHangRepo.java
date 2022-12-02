@@ -63,7 +63,7 @@ public class KhachHangRepo {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ps.execute();
-            System.out.println("Truy vấn thành công");
+            System.out.println("Xóa thành công");
         } catch (Exception e) {
             e.getMessage();
         }

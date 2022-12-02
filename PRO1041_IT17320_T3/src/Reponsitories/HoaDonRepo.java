@@ -19,14 +19,18 @@ public class HoaDonRepo {
     public boolean add(HoaDon hd) {
         try {
             Connection conn = DBContext.getConnection();
+<<<<<<< Updated upstream
             String sql = "INSERT INTO HOADON(MaHD,NgayThanhToan,TinhTrang,TenNguoiNhan) VALUES(?,?,?,?)";
+=======
+            String sql = "INSERT INTO HOADON(MaHD,NgayThanhToan,TrangThai,TenNguoiNhan,DiaChi,Sdt) VALUES(?,?,?,?,?,?)";
+>>>>>>> Stashed changes
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, hd.getMa());
             ps.setString(2, hd.getNgayThanhToan());
             ps.setInt(3, hd.getTinhTrang());
             ps.setString(4, hd.getTenNguoiNhan());           
             ps.execute();
-            System.out.println("Truy vấn thành công");
+            System.out.println("Thêm thành công");
             return true;
         } catch (Exception e) {
             e.getMessage();
@@ -48,7 +52,7 @@ public class HoaDonRepo {
             ps.setString(6, hd.getSdt());
             ps.setString(7, id);
             ps.execute();
-            System.out.println("Truy vấn thành công");
+            System.out.println("Sửa thành công");
             return false;
         } catch (Exception e) {
             e.getMessage();
@@ -64,7 +68,7 @@ public class HoaDonRepo {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ps.execute();
-            System.out.println("Truy vấn thành công");
+            System.out.println("Xóa thành công");
             return true;
         } catch (Exception e) {
             e.getMessage();
@@ -83,7 +87,7 @@ public class HoaDonRepo {
             ResultSet rs = ps.getResultSet();
             while(rs.next()){
                 lstHoaDon.add(new HoaDonViewModel(rs.getString("Id"), rs.getString("MaHD"), rs.getString("NgayThanhToan"),
-                        rs.getInt("TinhTrang"), rs.getString("TenNguoiNhan"), rs.getString("DiaChi"), rs.getString("Sdt")));
+                        rs.getInt("TrangThai"), rs.getString("TenNguoiNhan"), rs.getString("DiaChi"), rs.getString("Sdt")));
             }
             System.out.println("Truy vấn thành công");
         } catch (Exception e) {

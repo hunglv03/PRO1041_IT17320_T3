@@ -192,7 +192,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#xcc;NH TR&#x1ea0;NG"/>
+        <Property name="text" type="java.lang.String" value="TR&#x1ea0;NG TH&#xc1;I"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -256,7 +256,7 @@
                 <Column editable="true" title="ID" type="java.lang.Object"/>
                 <Column editable="true" title="M&#xc3;" type="java.lang.Object"/>
                 <Column editable="true" title="NG&#xc0;Y TT" type="java.lang.Object"/>
-                <Column editable="true" title="T&#xcc;NH TR&#x1ea0;NG" type="java.lang.Object"/>
+                <Column editable="true" title="TR&#x1ea0;NG TH&#xc1;I" type="java.lang.Object"/>
                 <Column editable="true" title="T&#xca;N NG&#x1af;&#x1edc;I NH&#x1eac;N" type="java.lang.Object"/>
                 <Column editable="true" title="&#x110;&#x1eca;A CH&#x1ec8;" type="java.lang.Object"/>
                 <Column editable="true" title="S&#x110;T" type="java.lang.Object"/>
