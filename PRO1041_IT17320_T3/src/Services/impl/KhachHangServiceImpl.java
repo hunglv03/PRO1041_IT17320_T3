@@ -38,4 +38,8 @@ public class KhachHangServiceImpl implements KhachHangService {
     public ArrayList<KhachHangVM> getall() {
         return this.khRepo.getall();
     }
+    
+    public KhachHang getListSDT(String sdt){
+        return this.khRepo.getListSDT(sdt);
+    }
 }

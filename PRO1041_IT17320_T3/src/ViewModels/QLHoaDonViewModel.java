@@ -13,18 +13,16 @@ public class QLHoaDonViewModel {
     private String maHD;
     private String ngayThanhToan;
     private int trangThai;
-    private String sdt;
     private String tenKH;
     private String tenNV;
 
     public QLHoaDonViewModel() {
     }
 
-    public QLHoaDonViewModel(String maHD, String ngayThanhToan, int trangThai, String sdt, String tenKH, String tenNV) {
+    public QLHoaDonViewModel(String maHD, String ngayThanhToan, int trangThai, String tenKH, String tenNV) {
         this.maHD = maHD;
         this.ngayThanhToan = ngayThanhToan;
         this.trangThai = trangThai;
-        this.sdt = sdt;
         this.tenKH = tenKH;
         this.tenNV = tenNV;
     }
@@ -53,13 +51,6 @@ public class QLHoaDonViewModel {
         this.trangThai = trangThai;
     }
 
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
 
     public String getTenKH() {
         return tenKH;
@@ -79,8 +70,10 @@ public class QLHoaDonViewModel {
 
     @Override
     public String toString() {
-        return "QLHoaDonViewModel{" + "maHD=" + maHD + ", ngayThanhToan=" + ngayThanhToan + ", trangThai=" + trangThai + ", sdt=" + sdt + ", tenKH=" + tenKH + ", tenNV=" + tenNV + '}';
+        return "QLHoaDonViewModel{" + "maHD=" + maHD + ", ngayThanhToan=" + ngayThanhToan + ", trangThai=" + trangThai + ", tenKH=" + tenKH + ", tenNV=" + tenNV + '}';
     }
+
+ 
     
     
 }

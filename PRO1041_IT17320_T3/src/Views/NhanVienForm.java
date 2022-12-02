@@ -37,7 +37,7 @@ public class NhanVienForm extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         for (NhanVienViewModel x : Service.GetAll()) {
             defaultTableModel.addRow(new Object[]{
-                x.getId(), x.getIdCV(), x.getMa(), x.getTen(), x.getEmail(), x.getNgaySinh(), x.getGioiTinh(), x.getSdt(), x.getDiaChi(), x.getTrangThai()
+                x.getId(), x.getIdCV(), x.getMa(), x.getTen(), x.getEmail(), x.getNgaySinh(), x.getGioiTinh(), x.getSdt(), x.getDiaChi(), TrangThai(x.getTrangThai())
             });
         }
     }
