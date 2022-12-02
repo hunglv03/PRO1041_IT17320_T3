@@ -6,6 +6,7 @@ package Services;
 
 import DomainModel.CTSanPham;
 import ViewModels.CTSanPhamViewModel;
+import ViewModels.SizeVM;
 import java.util.List;
 
 /**
@@ -21,5 +22,8 @@ public interface CTSanPhamService {
     public String xoa(CTSanPhamViewModel ct);
 
     public List<CTSanPhamViewModel> GetAll();
-    
+
+    public List<CTSanPhamViewModel> getAll(String input);
+
+
 }

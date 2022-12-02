@@ -9,6 +9,7 @@ import DomainModel.CTSanPham;
 import DomainModel.HoaDon;
 import ViewModels.HoaDonViewModel;
 import DomainModel.NhanVien;
+import DomainModel.Size;
 import Reponsitories.GioHangReponsitory;
 import Reponsitories.HoaDonRepo;
 import Services.CTSanPhamService;
@@ -71,7 +72,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private DefaultComboBoxModel _dcbNcc;
     private DefaultComboBoxModel _dcbSize;
     private DefaultComboBoxModel _dcbSp;
-    
+
     private MauSacService _ServiceMauSac;
     private ChatLieuService _ServiceChatLieu;
     private NhaCungCapService _ServiceNcc;
@@ -114,16 +115,20 @@ public class FromMenu1 extends javax.swing.JFrame {
         _ServiceSize = new SizeServiceImpl();
         _ServiceSp = new SanPhamServiceImpl();
         _ServiceCTSP = new CTSanPhamServiceImpl();
-        
+
         _dcbChatLieu = (DefaultComboBoxModel) cboidchatlieu.getModel();
         _dcbMauSac = (DefaultComboBoxModel) cboidmausac.getModel();
         _dcbNcc = (DefaultComboBoxModel) cboidncc.getModel();
         _dcbSize = (DefaultComboBoxModel) cboidsize.getModel();
         _dcbSp = (DefaultComboBoxModel) cboidsp.getModel();
 
+
         //setCBO();
         LoadHoaDon();
         LoadTable();
+        LoadHoaDonCho();
+        LoadTable(null);
+
         LoadCbo();
 
     }
@@ -138,6 +143,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         }
 
     }
+
     //
     private CTSanPham GetDataFromGui() {
         try {
@@ -170,6 +176,7 @@ public class FromMenu1 extends javax.swing.JFrame {
             return null;
         }
     }
+
     //
     public void LoadCbo() {
 
@@ -222,8 +229,50 @@ public class FromMenu1 extends javax.swing.JFrame {
             cboidsp.addItem(sanPhamViewmodel);
         }
     }
+
     //
-    public void LoadTable() {
+    public void LoadTable(String input) { // nhận vào list cho dễ. tôi viết cái khác nhé
+        _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
+        _DefaultTableModel.setRowCount(0);
+        int stt = 1;
+
+        for (CTSanPhamViewModel x : _ServiceCTSP.getAll(input)) {
+            _DefaultTableModel.addRow(new Object[]{
+                x.getId(),
+                x.getIdSp(),
+                x.getIdSize(),
+                x.getIdMauSac(),
+                x.getIdNhaCungCap(),
+                x.getIdChatLieu(),
+                x.getSoLuongTon(),
+                x.getGiaNhap(),
+                x.getGiaBan()
+            });
+        }
+    }
+
+    public void LoadTableNew(List<CTSanPhamViewModel> list) { // nhận vào list cho dễ. tôi viết cái khác nhé
+        _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
+        _DefaultTableModel.setRowCount(0);
+        int stt = 1;
+
+        for (CTSanPhamViewModel x : list) {
+            _DefaultTableModel.addRow(new Object[]{
+                x.getId(),
+                x.getIdSp(),
+                x.getIdSize(),
+                x.getIdMauSac(),
+                x.getIdNhaCungCap(),
+                x.getIdChatLieu(),
+                x.getSoLuongTon(),
+                x.getGiaNhap(),
+                x.getGiaBan()
+            });
+        }
+    }
+
+    //
+    public void LoadTableLoc(SizeVM obj) {
         _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
         _DefaultTableModel.setRowCount(0);
         int stt = 1;
@@ -278,7 +327,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 //            dtm.addRow(rowData);
 //        }
 //    }
-
 //    public void tableDSSanPham() {
 //        DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
 //        dtm.setRowCount(0);
@@ -291,7 +339,6 @@ public class FromMenu1 extends javax.swing.JFrame {
 //            dtm.addRow(rowData);
 //        }
 //    }
-
 //    public void getTable() {
 //        DefaultTableModel dtm = (DefaultTableModel) this.tbQuanLySanPham.getModel();
 //        dtm.setRowCount(0);
@@ -569,7 +616,20 @@ public class FromMenu1 extends javax.swing.JFrame {
 
         lblid.setText("-");
 
-        txttimkiem2.setText("Tìm kiếm....");
+        txttimkiem2.setText("Tìm kiếm");
+        txttimkiem2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txttimkiem2CaretUpdate(evt);
+            }
+        });
+        txttimkiem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txttimkiem2MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txttimkiem2MouseExited(evt);
+            }
+        });
 
         btnthem.setText("Thêm");
         btnthem.addActionListener(new java.awt.event.ActionListener() {
@@ -621,10 +681,38 @@ public class FromMenu1 extends javax.swing.JFrame {
         jLabel22.setText("Size");
 
         cbolocsize.setModel(new javax.swing.DefaultComboBoxModel<SizeVM>());
+        cbolocsize.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbolocsizeItemStateChanged(evt);
+            }
+        });
+        cbolocsize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbolocsizeMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cbolocsizeMouseExited(evt);
+            }
+        });
+        cbolocsize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbolocsizeActionPerformed(evt);
+            }
+        });
 
         jLabel23.setText("Màu sắc");
 
         cbolocmausac.setModel(new javax.swing.DefaultComboBoxModel<MauSacViewModel>());
+        cbolocmausac.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbolocmausacItemStateChanged(evt);
+            }
+        });
+        cbolocmausac.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cbolocmausacMouseExited(evt);
+            }
+        });
         cbolocmausac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbolocmausacActionPerformed(evt);
@@ -634,6 +722,16 @@ public class FromMenu1 extends javax.swing.JFrame {
         jLabel24.setText("Chất liệu");
 
         cbolocchatlieu.setModel(new javax.swing.DefaultComboBoxModel<ChatLieuViewModel>());
+        cbolocchatlieu.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbolocchatlieuItemStateChanged(evt);
+            }
+        });
+        cbolocchatlieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cbolocchatlieuMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1462,7 +1560,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         CTSanPham ctsp = GetDataFromGui();
         _ServiceCTSP.them(ctsp);
-        LoadTable();
+        LoadTable(null);
         System.out.println(ctsp);
     }//GEN-LAST:event_btnthemActionPerformed
 
@@ -1471,7 +1569,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         CTSanPham ctsp = GetDataFromGui();
         ctsp.setId(_IdWhenClick);
         JOptionPane.showMessageDialog(this, _ServiceCTSP.sua(ctsp));
-        LoadTable();
+        LoadTable(null);
     }//GEN-LAST:event_btnsuaActionPerformed
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
@@ -1479,7 +1577,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         CTSanPhamViewModel temp = new CTSanPhamViewModel();
         temp.setId(_IdWhenClick);
         JOptionPane.showMessageDialog(this, _ServiceCTSP.xoa(temp));
-        LoadTable();
+        LoadTable(null);
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void cboidmausacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboidmausacActionPerformed
@@ -1489,6 +1587,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private void cbolocmausacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbolocmausacActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbolocmausacActionPerformed
+
 
     private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
         // TODO add your handling code here:
@@ -1504,6 +1603,100 @@ public class FromMenu1 extends javax.swing.JFrame {
         LoadHoaDon();
         
     }//GEN-LAST:event_btntaohdActionPerformed
+
+    private void txttimkiem2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txttimkiem2CaretUpdate
+        // TODO add your handling code here:
+        if (txttimkiem2.getText().isEmpty()) {
+            LoadTable(null);
+            return;
+        }
+        LoadTable(txttimkiem2.getText());
+    }//GEN-LAST:event_txttimkiem2CaretUpdate
+
+    private void txttimkiem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txttimkiem2MouseClicked
+        // TODO add your handling code here:
+        txttimkiem2.setText("");
+    }//GEN-LAST:event_txttimkiem2MouseClicked
+
+    private void txttimkiem2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txttimkiem2MouseExited
+        // TODO add your handling code here:
+        txttimkiem2.setText("Tìm kiếm");
+        LoadTable(null);
+    }//GEN-LAST:event_txttimkiem2MouseExited
+
+    private void cbolocsizeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbolocsizeItemStateChanged
+//        int index = cbolocsize.getSelectedIndex();
+//        String id = _ServiceSize.getListSize().get(index).getId();
+//        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
+//        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
+//            if (x.getIdSize().getId().equals(id)) {
+//                listTemp.add(x);
+//            }
+//        }
+//        LoadTableNew(listTemp);
+    }//GEN-LAST:event_cbolocsizeItemStateChanged
+
+    private void cbolocmausacItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbolocmausacItemStateChanged
+        int index = cbolocmausac.getSelectedIndex();
+        String id = _ServiceMauSac.getAll().get(index).getId();
+        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
+        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
+            if (x.getIdMauSac().getId().equals(id)) {
+                listTemp.add(x);
+            }
+        }
+        LoadTableNew(listTemp);
+    }//GEN-LAST:event_cbolocmausacItemStateChanged
+
+    private void cbolocchatlieuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbolocchatlieuItemStateChanged
+        int index = cbolocchatlieu.getSelectedIndex();
+        String id = _ServiceChatLieu.GetAll().get(index).getId();
+        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
+        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
+            if (x.getIdChatLieu().getId().equals(id)) {
+                listTemp.add(x);
+            }
+        }
+        LoadTableNew(listTemp);
+    }//GEN-LAST:event_cbolocchatlieuItemStateChanged
+
+    private void cbolocsizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbolocsizeActionPerformed
+
+    }//GEN-LAST:event_cbolocsizeActionPerformed
+
+    private void cbolocsizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocsizeMouseClicked
+        // TODO add your handling code here:
+        //cbolocsize.setSelectedIndex(-1);
+        int index = cbolocsize.getSelectedIndex();
+        String id = _ServiceSize.getListSize().get(index).getId();
+        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
+        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
+            if (x.getIdSize().getId().equals(id)) {
+                listTemp.add(x);
+            }
+        }
+        if (index < 0) {
+            LoadTableNew(null);
+            return;
+        }
+        LoadTableNew(listTemp);
+    }//GEN-LAST:event_cbolocsizeMouseClicked
+
+    private void cbolocsizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocsizeMouseExited
+        // TODO add your handling code here:
+        LoadTable(null);
+    }//GEN-LAST:event_cbolocsizeMouseExited
+
+    private void cbolocmausacMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocmausacMouseExited
+        // TODO add your handling code here:
+        LoadTable(null);
+    }//GEN-LAST:event_cbolocmausacMouseExited
+
+    private void cbolocchatlieuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocchatlieuMouseExited
+        // TODO add your handling code here:
+        LoadTable(null);
+    }//GEN-LAST:event_cbolocchatlieuMouseExited
+
 
     /**
      * @param args the command line arguments
