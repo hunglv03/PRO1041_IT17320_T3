@@ -27,6 +27,7 @@ import Services.QLHoaDonService;
 import Services.QLSPService;
 import Services.SanPhamService;
 import Services.SizeService;
+import Services.CTSanPhamService;
 import Services.impl.CTSanPhamServiceImpl;
 import Services.impl.ChatLieuServiceImpl;
 import Services.impl.DsSanPhamServiceImpl;
@@ -62,7 +63,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.Random;
-
+import Reponsitories.HoaDonRepo;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -76,7 +78,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Admin
  */
 public class FromMenu1 extends javax.swing.JFrame {
-
+    private DefaultTableModel _DefaultTableModel;
     private DefaultComboBoxModel dfcbkh;
     private DefaultComboBoxModel dfnvbh;
 
@@ -113,21 +115,13 @@ public class FromMenu1 extends javax.swing.JFrame {
     GioHangReponsitory gioHangReponsitory = new GioHangReponsitory();
     private HoaDonChoService hdcService = new HoaDonChoServiceImpl();
 
-    
-    private KhachHangService khService=new KhachHangServiceImpl();
-    private NhanVienService nvService=new NhanVienServiceImpl();
-    private QLHoaDonService qlhd=new QLHoaDonServiceImpl();
-    public FromMenu1() {
-        initComponents();
-//        this.getTable();
-        findSanPham();
-        findMauSac();
-        findChatLieu();
-        findNCC();
-        findSize();
-        tableDSSanPham();
+    private KhachHangService khService = new KhachHangServiceImpl();
+    private NhanVienService nvService = new NhanVienServiceImpl();
+    private QLHoaDonService qlhd = new QLHoaDonServiceImpl();
 
+    
     private HoaDonRepo hoaDonRepo = new HoaDonRepo();
+
     public FromMenu1() {
         initComponents();
 //        this.getTable();
@@ -135,19 +129,23 @@ public class FromMenu1 extends javax.swing.JFrame {
         //tableDSSanPham();
 
         //LoadgioHang(gioHangReponsitory.GetAll());
-
+        findSanPham();
+        findMauSac();
+        findChatLieu();
+        findNCC();
+        findSize();
+        tableDSSanPham();
         lblNgayTao.setEnabled(false);
         Date date = new Date();// Return thời gian hiện tại với định dạng rất khó coi
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Định dạng lại date                                                                                           
         lblNgayTao.setText(sdf.format(date));
-
+       
         //
         _ServiceChatLieu = new ChatLieuServiceImpl();
         _ServiceMauSac = new MauSacServiceImpl();
         _ServiceNcc = new NhaCungCapServiceimpl();
         _ServiceSize = new SizeServiceImpl();
 
-        
         _dcbChatLieu = (DefaultComboBoxModel) cbChatLieu.getModel();
         _dcbMauSac = (DefaultComboBoxModel) cbMauSac.getModel();
         _dcbNcc = (DefaultComboBoxModel) cbNCC.getModel();
@@ -157,7 +155,6 @@ public class FromMenu1 extends javax.swing.JFrame {
         setCBO();
         LoadHoaDonCho();
         loadQLHoaDon();
-        
 
         _ServiceSp = new SanPhamServiceImpl();
         _ServiceCTSP = new CTSanPhamServiceImpl();
@@ -168,15 +165,13 @@ public class FromMenu1 extends javax.swing.JFrame {
         _dcbSize = (DefaultComboBoxModel) cboidsize.getModel();
         _dcbSp = (DefaultComboBoxModel) cboidsp.getModel();
 
-
         //setCBO();
         LoadHoaDon();
-        LoadTable();
+        LoadTable(null);
         LoadHoaDonCho();
         LoadTable(null);
 
         LoadCbo();
-
 
     }
 
@@ -191,14 +186,13 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     }
 
-    
     void addCbKh() {
         dfcbkh = (DefaultComboBoxModel) cbKhachHang.getModel();
         for (KhachHangVM kh : khService.getall()) {
             dfcbkh.addElement(kh.getSdt());
         }
     }
-    
+
     void addnvbh() {
         dfnvbh = (DefaultComboBoxModel) cbNhanVienBanHang.getModel();
         for (NhanVienViewModel nv : nvService.GetAll()) {
@@ -291,98 +285,101 @@ public class FromMenu1 extends javax.swing.JFrame {
             cboidsp.addItem(sanPhamViewmodel);
         }
     }
-    
-    public void loadQLHoaDon(){
+
+    public void loadQLHoaDon() {
         DefaultTableModel dtm = (DefaultTableModel) this.tbhd.getModel();
         dtm.setRowCount(0);
-        int stt=1;
+        int stt = 1;
         for (QLHoaDonViewModel hd : this.qlhd.getListQLHoaDon()) {
             Object[] rowData = {
-                stt++, hd.getMaHD(),hd.getNgayThanhToan(),hd.getTrangThai(),hd.getTenNV(),hd.getTenKH()
-            
+                stt++, hd.getMaHD(), hd.getNgayThanhToan(), hd.getTrangThai(), hd.getTenNV(), hd.getTenKH()
+
             };
             dtm.addRow(rowData);
         }
     }
+
     public void findSanPham() {
-        
+
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
-        Random rd=new Random();
+        Random rd = new Random();
         for (DsSanPhamViewModel d : this.dsService.findSanPham(find)) {
             Object[] rowData = {
-                "SP"+rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
-            
+                "SP" + rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
+
             };
             dtm.addRow(rowData);
         }
     }
+
     public void findMauSac() {
-        
+
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
-        Random rd=new Random();
+        Random rd = new Random();
         for (DsSanPhamViewModel d : this.dsService.findMauSac(findMS)) {
             Object[] rowData = {
-                "SP"+rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
-            
+                "SP" + rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
+
             };
             dtm.addRow(rowData);
         }
     }
-    
+
     public void findSize() {
-        
+
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
-        Random rd=new Random();
+        Random rd = new Random();
         for (DsSanPhamViewModel d : this.dsService.findSize(findSize)) {
             Object[] rowData = {
-                "SP"+rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
-            
+                "SP" + rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
+
             };
             dtm.addRow(rowData);
         }
     }
+
     public void findNCC() {
-        
+
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
-        Random rd=new Random();
+        Random rd = new Random();
         for (DsSanPhamViewModel d : this.dsService.findNCC(findNCC)) {
             Object[] rowData = {
-                "SP"+rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
-            
+                "SP" + rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
+
             };
             dtm.addRow(rowData);
         }
     }
+
     public void findChatLieu() {
-        
+
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
-        Random rd=new Random();
+        Random rd = new Random();
         for (DsSanPhamViewModel d : this.dsService.findChatLieu(findChatLieu)) {
             Object[] rowData = {
-                "SP"+rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
-            
+                "SP" + rd.nextInt(1000), d.getSanPham(), d.getSize(), d.getMauSac(), d.getNcc(), d.getChatLieu(), d.getSoLuong(), d.getGiaBan()
+
             };
             dtm.addRow(rowData);
         }
     }
+
     public void tableDSSanPham() {
         DefaultTableModel dtm = (DefaultTableModel) this.tbSanPham.getModel();
         dtm.setRowCount(0);
-        Random rd=new Random();
+        Random rd = new Random();
         for (DsSanPhamViewModel ds : this.dsService.getAll()) {
             Object[] rowData = {
-                "SP"+rd.nextInt(1000), ds.getSanPham(), ds.getSize(), ds.getMauSac(), ds.getNcc(), ds.getChatLieu(), ds.getSoLuong(), ds.getGiaBan()
-            
+                "SP" + rd.nextInt(1000), ds.getSanPham(), ds.getSize(), ds.getMauSac(), ds.getNcc(), ds.getChatLieu(), ds.getSoLuong(), ds.getGiaBan()
+
             };
             dtm.addRow(rowData);
-
-
-    //
+            //
     public void LoadTable(String input) { // nhận vào list cho dễ. tôi viết cái khác nhé
         _DefaultTableModel = (DefaultTableModel) tblctsanpham.getModel();
         _DefaultTableModel.setRowCount(0);
@@ -1251,7 +1248,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addComponent(cbKhachHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnThayDoi))
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1683,7 +1680,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void tbgiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbgiohangMouseClicked
         // TODO add your handling code here:
-        int row=tbgiohang.getSelectedRow();
+        int row = tbgiohang.getSelectedRow();
         lblTongTien.setText(tbgiohang.getValueAt(row, 4).toString());
         int row = tbgiohang.getSelectedRow();
         lblTongTien.setText(tbgiohang.getValueAt(row, 5).toString());
@@ -1727,8 +1724,8 @@ public class FromMenu1 extends javax.swing.JFrame {
             e.getMessage();
         }
         double tongTien = Double.parseDouble(lblTongTien.getText());
-        double tienThanhToan=tongTien*giamGia;
-        
+        double tienThanhToan = tongTien * giamGia;
+
         lblTienThanhToan.setText(String.valueOf(tienThanhToan));
     }//GEN-LAST:event_txtGiamGiaCaretUpdate
 
@@ -1748,7 +1745,7 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void cbKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKhachHangActionPerformed
         // TODO add your handling code here:
-        
+
         String sdt = cbKhachHang.getSelectedItem().toString();
         KhachHang kh = khService.getListSDT(sdt);
         if (kh != null) {
@@ -1782,10 +1779,12 @@ public class FromMenu1 extends javax.swing.JFrame {
         findChatLieu();
     }//GEN-LAST:event_cbFindChatLieuActionPerformed
 
-        double tienThanhToan = tongTien * giamGia;
+    double tienThanhToan = tongTien * giamGia;
 
-        lblTienThanhToan.setText(String.valueOf(giamGia));
-    }//GEN-LAST:event_txtGiamGiaCaretUpdate
+    lblTienThanhToan.setText (String.valueOf
+
+(giamGia));
+    }                                      
 
     private void tblctsanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblctsanphamMouseClicked
         // TODO add your handling code here:
@@ -2008,16 +2007,28 @@ public class FromMenu1 extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FromMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FromMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FromMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FromMenu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FromMenu1.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FromMenu1.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FromMenu1.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FromMenu1.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }        //</editor-fold>
 
         /* Create and display the form */
@@ -2034,8 +2045,6 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThayDoi;
-    private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnbanhang;
     private javax.swing.JButton btnexit;
     private javax.swing.JButton btnhd;
@@ -2044,17 +2053,13 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btntaohd;
     private javax.swing.JButton btnthem;
-    private javax.swing.JComboBox<String> cbChatLieu;
+    private javax.swing.JButton btnxoa;
     private javax.swing.JComboBox<String> cbFindChatLieu;
     private javax.swing.JComboBox<String> cbFindMS;
     private javax.swing.JComboBox<String> cbFindNCC;
     private javax.swing.JComboBox<String> cbFindSize;
     private javax.swing.JComboBox<String> cbKhachHang;
-    private javax.swing.JComboBox<String> cbMauSac;
-    private javax.swing.JComboBox<String> cbNCC;
     private javax.swing.JComboBox<String> cbNhanVienBanHang;
-    private javax.swing.JComboBox<String> cbSize;
-    private javax.swing.JButton btnxoa;
     private javax.swing.JComboBox<ChatLieuViewModel> cboidchatlieu;
     private javax.swing.JComboBox<MauSacViewModel> cboidmausac;
     private javax.swing.JComboBox<NhaCungCapVM> cboidncc;
@@ -2069,8 +2074,6 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2114,11 +2117,7 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblMaHD;
     private javax.swing.JLabel lblNgayTao;
     private javax.swing.JLabel lblTienThanhToan;
@@ -2135,9 +2134,6 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtGiamGia;
     private javax.swing.JTextField txtKhachHang;
-    private javax.swing.JTextField txtMa;
-    private javax.swing.JTextField txtSoLuong;
-    private javax.swing.JTextField txtTenSP;
     private javax.swing.JTextField txtTienKhachTra;
     private javax.swing.JTextField txtgiaban;
     private javax.swing.JTextField txtgianhap;
