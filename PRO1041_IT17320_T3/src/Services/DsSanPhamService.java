@@ -17,4 +17,10 @@ public interface DsSanPhamService {
     
     ArrayList<DsSanPhamViewModel> findSanPham(String sanPham);
     
+    ArrayList<DsSanPhamViewModel> findMauSac(String mauSac);
+    
+    ArrayList<DsSanPhamViewModel> findSize(String size);
+    ArrayList<DsSanPhamViewModel> findNCC(String ncc);
+    ArrayList<DsSanPhamViewModel> findChatLieu(String chatLieu);
+    
 }

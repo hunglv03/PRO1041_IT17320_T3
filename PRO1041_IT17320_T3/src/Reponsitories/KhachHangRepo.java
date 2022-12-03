@@ -12,13 +12,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Admin
  */
 public class KhachHangRepo {
-    
+
     public void insert(KhachHang kh) {
         try {
             Connection conn = DBContext1.getConnection();
@@ -27,8 +29,8 @@ public class KhachHangRepo {
             ps.setString(1, kh.getMaKH());
             ps.setString(2, kh.getTenKH());
             ps.setInt(3, kh.getGioiTinh());
-            ps.setString(4, kh.getDiaChi());
-            ps.setString(5, kh.getSdt());
+            ps.setString(4, kh.getSdt());
+            ps.setString(5, kh.getDiaChi());
             ps.setInt(6, kh.getTrangThai());
             ps.execute();
             System.out.println("Thêm thành công");
@@ -36,7 +38,7 @@ public class KhachHangRepo {
             e.getMessage();
         }
     }
-    
+
     public void update(KhachHang kh, String id) {
         try {
             Connection conn = DBContext1.getConnection();
@@ -45,8 +47,8 @@ public class KhachHangRepo {
             ps.setString(1, kh.getMaKH());
             ps.setString(2, kh.getTenKH());
             ps.setInt(3, kh.getGioiTinh());
-            ps.setString(4, kh.getDiaChi());
-            ps.setString(5, kh.getSdt());
+            ps.setString(4, kh.getSdt());
+            ps.setString(5, kh.getDiaChi());
             ps.setInt(6, kh.getTrangThai());
             ps.setString(7, id);
             ps.execute();
@@ -55,7 +57,7 @@ public class KhachHangRepo {
             e.getMessage();
         }
     }
-    
+
     public void delete(String id) {
         try {
             Connection conn = DBContext1.getConnection();
@@ -68,7 +70,7 @@ public class KhachHangRepo {
             e.getMessage();
         }
     }
-    
+
     public ArrayList<KhachHangVM> getall() {
         ArrayList<KhachHangVM> listKhachHang = new ArrayList<>();
         try {
@@ -93,6 +95,33 @@ public class KhachHangRepo {
             e.getMessage();
         }
         return listKhachHang;
-        
+
+    }
+
+    public KhachHang getListSDT(String sdt) {
+        KhachHang KH = null;
+        try {
+            Connection conn = DBContext1.getConnection();
+            String sql = "select * from KhachHang where Sdt=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, sdt);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                String ma = rs.getString("MaKH");
+                String hoTen = rs.getString("TenKH");
+
+                int gioiTinh = rs.getInt("GioiTinh");
+
+                String dc = rs.getString("DiaChi");
+                int tt = rs.getInt("TrangThai");
+                KH = new KhachHang(id, ma, hoTen, gioiTinh, sdt, dc, tt);
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NhanVienReponsitory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return KH;
     }
 }
