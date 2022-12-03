@@ -176,8 +176,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         LoadTable(null);
 
         LoadCbo();
-
-
+        LoadCboLoc();
     }
 
     public String getTrangThaiHDC(int tt) {
@@ -240,6 +239,26 @@ public class FromMenu1 extends javax.swing.JFrame {
     }
 
     //
+    public void LoadCboLoc(){
+        cbolocchatlieu.removeAllItems();
+        List<ChatLieuViewModel> dsChatLieu1 = _ServiceChatLieu.GetAll();
+        for (ChatLieuViewModel chatLieuViewModel : dsChatLieu1) {
+            cbolocchatlieu.addItem(chatLieuViewModel);
+        }
+        //
+        cbolocmausac.removeAllItems();
+        List<MauSacViewModel> dsMauSac1 = _ServiceMauSac.getAll();
+        for (MauSacViewModel mauSac : dsMauSac1) {
+            cbolocmausac.addItem(mauSac);
+        }
+        //
+        cbolocsize.removeAllItems();
+        List<SizeVM> dsSize1 = _ServiceSize.getListSize();
+        for (SizeVM size : dsSize1) {
+            cbolocsize.addItem(size);
+        }
+    }
+    //
     public void LoadCbo() {
 
         cboidchatlieu.removeAllItems();
@@ -248,11 +267,11 @@ public class FromMenu1 extends javax.swing.JFrame {
             cboidchatlieu.addItem(chatLieuViewModel);
         }
         //
-        cbolocchatlieu.removeAllItems();
-        List<ChatLieuViewModel> dsChatLieu1 = _ServiceChatLieu.GetAll();
-        for (ChatLieuViewModel chatLieuViewModel : dsChatLieu) {
-            cbolocchatlieu.addItem(chatLieuViewModel);
-        }
+//        cbolocchatlieu.removeAllItems();
+//        List<ChatLieuViewModel> dsChatLieu1 = _ServiceChatLieu.GetAll();
+//        for (ChatLieuViewModel chatLieuViewModel : dsChatLieu) {
+//            cbolocchatlieu.addItem(chatLieuViewModel);
+//        }
 
         //
         cboidmausac.removeAllItems();
@@ -261,11 +280,11 @@ public class FromMenu1 extends javax.swing.JFrame {
             cboidmausac.addItem(mauSac);
         }
         //
-        cbolocmausac.removeAllItems();
-        List<MauSacViewModel> dsMauSac1 = _ServiceMauSac.getAll();
-        for (MauSacViewModel mauSac : dsMauSac) {
-            cbolocmausac.addItem(mauSac);
-        }
+//        cbolocmausac.removeAllItems();
+//        List<MauSacViewModel> dsMauSac1 = _ServiceMauSac.getAll();
+//        for (MauSacViewModel mauSac : dsMauSac) {
+//            cbolocmausac.addItem(mauSac);
+//        }
         //
         cboidncc.removeAllItems();
         List<NhaCungCapVM> dsNcc = _ServiceNcc.getAll();
@@ -279,11 +298,11 @@ public class FromMenu1 extends javax.swing.JFrame {
             cboidsize.addItem(size);
         }
         //
-        cbolocsize.removeAllItems();
-        List<SizeVM> dsSize1 = _ServiceSize.getListSize();
-        for (SizeVM size : dsSize) {
-            cbolocsize.addItem(size);
-        }
+//        cbolocsize.removeAllItems();
+//        List<SizeVM> dsSize1 = _ServiceSize.getListSize();
+//        for (SizeVM size : dsSize) {
+//            cbolocsize.addItem(size);
+//        }
         //
         cboidsp.removeAllItems();
         List<SanPhamViewmodel> dsSp = _ServiceSp.getAll();
@@ -581,6 +600,12 @@ public class FromMenu1 extends javax.swing.JFrame {
         cbolocmausac = new javax.swing.JComboBox<MauSacViewModel>();
         jLabel24 = new javax.swing.JLabel();
         cbolocchatlieu = new javax.swing.JComboBox<ChatLieuViewModel>();
+        btnthemsp = new javax.swing.JButton();
+        btnthemncc = new javax.swing.JButton();
+        btnthemmausac = new javax.swing.JButton();
+        btnthemsize = new javax.swing.JButton();
+        btnthemchatlieu = new javax.swing.JButton();
+        btnreset = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -891,6 +916,53 @@ public class FromMenu1 extends javax.swing.JFrame {
             }
         });
 
+        btnthemsp.setText("Thêm");
+        btnthemsp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnthemspActionPerformed(evt);
+            }
+        });
+
+        btnthemncc.setText("Thêm");
+        btnthemncc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnthemnccActionPerformed(evt);
+            }
+        });
+
+        btnthemmausac.setText("Thêm");
+        btnthemmausac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnthemmausacActionPerformed(evt);
+            }
+        });
+
+        btnthemsize.setText("Thêm");
+        btnthemsize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnthemsizeActionPerformed(evt);
+            }
+        });
+
+        btnthemchatlieu.setText("Thêm");
+        btnthemchatlieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnthemchatlieuActionPerformed(evt);
+            }
+        });
+
+        btnreset.setText("Reset");
+        btnreset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnresetMouseClicked(evt);
+            }
+        });
+        btnreset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnresetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -898,7 +970,6 @@ public class FromMenu1 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -916,7 +987,7 @@ public class FromMenu1 extends javax.swing.JFrame {
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel17)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -924,19 +995,33 @@ public class FromMenu1 extends javax.swing.JFrame {
                                                 .addGap(33, 33, 33)
                                                 .addComponent(lblid, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(57, 57, 57)
-                                                .addComponent(cboidsp, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cboidsize, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cboidmausac, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cboidncc, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cboidchatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(31, 31, 31)))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGap(57, 57, 57)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(cboidmausac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(cboidsize, 0, 111, Short.MAX_VALUE)
+                                                                .addComponent(cboidsp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(cboidncc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(cboidchatlieu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGap(8, 8, 8)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(btnthemmausac)
+                                                            .addComponent(btnthemncc)
+                                                            .addComponent(btnthemchatlieu)))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(btnthemsp, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(btnthemsize, javax.swing.GroupLayout.Alignment.LEADING)))))))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 323, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -950,27 +1035,30 @@ public class FromMenu1 extends javax.swing.JFrame {
                                 .addComponent(btnxoa))
                             .addComponent(txtgianhap, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(0, 286, Short.MAX_VALUE))
+                        .addContainerGap(292, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txttimkiem2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbolocsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbolocmausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnreset)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txttimkiem2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbolocsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbolocmausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbolocchatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(324, 324, 324)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane7)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -987,30 +1075,36 @@ public class FromMenu1 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(cboidsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboidsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnthemsp))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(cboidsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboidsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnthemsize))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel9)
                             .addComponent(txtsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboidmausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboidmausac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnthemmausac))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel10)
                             .addComponent(txtgiaban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboidncc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cboidncc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnthemncc)))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(cboidchatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboidchatlieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnthemchatlieu)
+                            .addComponent(btnreset))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txttimkiem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1031,8 +1125,8 @@ public class FromMenu1 extends javax.swing.JFrame {
                             .addComponent(btnsua)
                             .addComponent(btnxoa))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addGap(290, 290, 290))
         );
 
         NV.addTab("SP", jPanel2);
@@ -1605,6 +1699,7 @@ public class FromMenu1 extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnvActionPerformed
@@ -1916,15 +2011,15 @@ public class FromMenu1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txttimkiem2MouseExited
 
     private void cbolocsizeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbolocsizeItemStateChanged
-//        int index = cbolocsize.getSelectedIndex();
-//        String id = _ServiceSize.getListSize().get(index).getId();
-//        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
-//        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
-//            if (x.getIdSize().getId().equals(id)) {
-//                listTemp.add(x);
-//            }
-//        }
-//        LoadTableNew(listTemp);
+        int index = cbolocsize.getSelectedIndex();
+        String id = _ServiceSize.getListSize().get(index).getId();
+        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
+        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
+            if (x.getIdSize().getId().equals(id)) {
+                listTemp.add(x);
+            }
+        }
+        LoadTableNew(listTemp);
     }//GEN-LAST:event_cbolocsizeItemStateChanged
 
     private void cbolocmausacItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbolocmausacItemStateChanged
@@ -1957,38 +2052,77 @@ public class FromMenu1 extends javax.swing.JFrame {
 
     private void cbolocsizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocsizeMouseClicked
         // TODO add your handling code here:
-        //cbolocsize.setSelectedIndex(-1);
         int index = cbolocsize.getSelectedIndex();
-        String id = _ServiceSize.getListSize().get(index).getId();
-        List<CTSanPhamViewModel> listTemp = new ArrayList<>();
-        for (CTSanPhamViewModel x : _ServiceCTSP.GetAll()) {
-            if (x.getIdSize().getId().equals(id)) {
-                listTemp.add(x);
-            }
-        }
-        if (index < 0) {
+        if (index == -1) {
             LoadTableNew(null);
             return;
         }
-        LoadTableNew(listTemp);
     }//GEN-LAST:event_cbolocsizeMouseClicked
 
     private void cbolocsizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocsizeMouseExited
         // TODO add your handling code here:
-        LoadTable(null);
+        //LoadTable(null);
     }//GEN-LAST:event_cbolocsizeMouseExited
 
     private void cbolocmausacMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocmausacMouseExited
         // TODO add your handling code here:
-        LoadTable(null);
+        //LoadTable(null);
     }//GEN-LAST:event_cbolocmausacMouseExited
 
     private void cbolocchatlieuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbolocchatlieuMouseExited
         // TODO add your handling code here:
-        LoadTable(null);
+        // LoadTable(null);
     }//GEN-LAST:event_cbolocchatlieuMouseExited
 
+    private void btnthemspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemspActionPerformed
+        // TODO add your handling code here:
+        SanPhamForm frmsp = new SanPhamForm();
+        frmsp.setVisible(true);
+        frmsp.setLocationRelativeTo(null);
+        frmsp.setDefaultCloseOperation(HIDE_ON_CLOSE);
+    }//GEN-LAST:event_btnthemspActionPerformed
 
+    private void btnthemsizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemsizeActionPerformed
+        // TODO add your handling code here:
+        SizeForm frmsize = new SizeForm();
+        frmsize.setVisible(true);
+        frmsize.setLocationRelativeTo(null);
+        frmsize.setDefaultCloseOperation(HIDE_ON_CLOSE);
+    }//GEN-LAST:event_btnthemsizeActionPerformed
+
+    private void btnthemmausacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemmausacActionPerformed
+        // TODO add your handling code here:
+        MauSacForm frmms = new MauSacForm();
+        frmms.setVisible(true);
+        frmms.setLocationRelativeTo(null);
+        frmms.setDefaultCloseOperation(HIDE_ON_CLOSE);
+    }//GEN-LAST:event_btnthemmausacActionPerformed
+
+    private void btnthemnccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemnccActionPerformed
+        // TODO add your handling code here:
+        NhaCungCapForm frmncc = new NhaCungCapForm();
+        frmncc.setVisible(true);
+        frmncc.setLocationRelativeTo(null);
+        frmncc.setDefaultCloseOperation(HIDE_ON_CLOSE);
+    }//GEN-LAST:event_btnthemnccActionPerformed
+
+    private void btnthemchatlieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemchatlieuActionPerformed
+        // TODO add your handling code here:
+        FrmChatLieu frmcl = new FrmChatLieu();
+        frmcl.setVisible(true);
+        frmcl.setLocationRelativeTo(null);
+        frmcl.setDefaultCloseOperation(HIDE_ON_CLOSE);
+    }//GEN-LAST:event_btnthemchatlieuActionPerformed
+
+    private void btnresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresetActionPerformed
+        // TODO add your handling code here:
+//        LoadCbo();
+    }//GEN-LAST:event_btnresetActionPerformed
+
+    private void btnresetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnresetMouseClicked
+        // TODO add your handling code here:
+        LoadCbo();
+    }//GEN-LAST:event_btnresetMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2040,10 +2174,16 @@ public class FromMenu1 extends javax.swing.JFrame {
     private javax.swing.JButton btnexit;
     private javax.swing.JButton btnhd;
     private javax.swing.JButton btnnv;
+    private javax.swing.JButton btnreset;
     private javax.swing.JButton btnsp;
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btntaohd;
     private javax.swing.JButton btnthem;
+    private javax.swing.JButton btnthemchatlieu;
+    private javax.swing.JButton btnthemmausac;
+    private javax.swing.JButton btnthemncc;
+    private javax.swing.JButton btnthemsize;
+    private javax.swing.JButton btnthemsp;
     private javax.swing.JComboBox<String> cbChatLieu;
     private javax.swing.JComboBox<String> cbFindChatLieu;
     private javax.swing.JComboBox<String> cbFindMS;
