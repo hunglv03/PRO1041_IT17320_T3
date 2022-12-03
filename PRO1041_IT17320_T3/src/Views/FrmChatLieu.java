@@ -68,6 +68,11 @@ public class FrmChatLieu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FrmChatLieu");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("CHẤT LIỆU");
@@ -212,6 +217,10 @@ public class FrmChatLieu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, _Service.xoaChatLieu(temp));
         LoadTable();
     }//GEN-LAST:event_btnxoaActionPerformed
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseExited
 
     /**
      * @param args the command line arguments
