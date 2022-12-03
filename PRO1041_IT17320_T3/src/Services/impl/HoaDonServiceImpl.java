@@ -17,21 +17,21 @@ import java.util.ArrayList;
  */
 public class HoaDonServiceImpl implements HoaDonService {
 
-    private HoaDonRepo nccRepo;
+    private HoaDonRepo hdRepo;
     public HoaDonServiceImpl(){
-        this.nccRepo=new HoaDonRepo();
+        this.hdRepo=new HoaDonRepo();
     }
-    public void insert(HoaDon hd){
-        this.nccRepo.add(hd);
-    }
+//    public void insert(HoaDon hd){
+//        this.nccRepo.add(hd);
+//    }
     public void update(HoaDon hd,String id){
-        this.nccRepo.update(hd,id);
+        this.hdRepo.update(hd,id);
     }
     public void delete(String id){
-        this.nccRepo.delete(id);
+        this.hdRepo.delete(id);
     }
     public ArrayList<HoaDonViewModel> getAll(){
-        return this.nccRepo.GetAll();
+        return this.hdRepo.GetAll();
     }
     
     public static void main(String[] args) {
@@ -39,6 +39,14 @@ public class HoaDonServiceImpl implements HoaDonService {
         for (HoaDonViewModel x : hd.getAll()) {
             x.toString();
         }
+    }
+
+    @Override
+    public String add(HoaDon hd) {
+        if (hdRepo.add(hd)) {
+            return "Them thanh cong";
+        }
+        return "Them that bai";
     }
 
 

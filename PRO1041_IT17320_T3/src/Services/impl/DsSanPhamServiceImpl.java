@@ -28,4 +28,17 @@ public class DsSanPhamServiceImpl implements DsSanPhamService{
     public ArrayList<DsSanPhamViewModel> findSanPham(String sanPham){
         return this.dsRepo.findSanPham(sanPham);
     }
+    
+    public ArrayList<DsSanPhamViewModel> findMauSac(String mauSac){
+        return this.dsRepo.findMauSac(mauSac);
+    }
+    public ArrayList<DsSanPhamViewModel> findSize(String size){
+        return this.dsRepo.findMauSac(size);
+    }
+    public ArrayList<DsSanPhamViewModel> findNCC(String ncc){
+        return this.dsRepo.findMauSac(ncc);
+    }
+    public ArrayList<DsSanPhamViewModel> findChatLieu(String chatLieu){
+        return this.dsRepo.findMauSac(chatLieu);
+    }
 }
