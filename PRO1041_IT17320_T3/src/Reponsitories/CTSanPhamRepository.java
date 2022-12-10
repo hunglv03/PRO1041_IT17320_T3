@@ -47,7 +47,7 @@ public class CTSanPhamRepository {
                 + "	join ChatLieu c on b.IdChatLieu = c.Id\n"
                 + "	join NhaCungCap x on b.IDNhaCungCap = x.Id";
         List<CTSanPhamViewModel> _lstCTSanPham = new ArrayList<>();
-        try ( Connection conn = DBContex2.getConnection()) {
+        try (Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(SELECT_CHITIETSP);
             while (rs.next()) {
@@ -113,7 +113,7 @@ public class CTSanPhamRepository {
 
     //add
     public boolean Add(CTSanPham obj) {
-        try ( Connection conn = DBContex2.getConnection()) {
+        try (Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             PreparedStatement stmt = conn.prepareStatement(INSERT_SQL);
             String idSP = null;
@@ -156,9 +156,33 @@ public class CTSanPhamRepository {
     }
 
     final String UPDATE_SQL = "UPDATE CHITIETSP SET IdSP = ?, IdSize = ?, IdMauSac = ?, IDNhaCungCap = ?, IdChatLieu = ?, MoTa = ?, SoLuongTon = ?, GiaBan = ?, GiaNhap = ? WHERE ID = ?";
+    final String UPDATE_SQL1 = "UPDATE CHITIETSP SET IdSP = ?, IdSize = ?, IdMauSac = ?, IDNhaCungCap = ?, IdChatLieu = ?, MoTa = ?, GiaBan = ?, GiaNhap = ? WHERE SoLuongTon = ?";
 
     public boolean Update(CTSanPham obj) { //để là model
-        try ( Connection conn = DBContex2.getConnection()) {
+        try (Connection conn = DBContex2.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);
+            stmt.setString(1, obj.getIdSp());
+            stmt.setString(2, obj.getIdSize());
+            stmt.setString(3, obj.getIdMauSac());
+            stmt.setString(4, obj.getIdNhaCungCap());
+            stmt.setString(5, obj.getIdChatLieu());
+            stmt.setString(6, obj.getMoTa());
+            stmt.setDouble(7, obj.getGiaBan());
+            stmt.setDouble(8, obj.getGiaNhap());
+            stmt.setDouble(9, obj.getSoLuongTon());
+            stmt.executeUpdate();
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Lỗi không thể kết nối tại Update1");
+            return false;
+        }
+    }
+
+    //
+    public boolean Update1(CTSanPham obj) { //để là model
+        try (Connection conn = DBContex2.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_SQL);
             stmt.setString(1, obj.getIdSp());
             stmt.setString(2, obj.getIdSize());
@@ -179,9 +203,10 @@ public class CTSanPhamRepository {
             return false;
         }
     }
+    //
 
     public boolean Delete(CTSanPhamViewModel obj) { //xóa theo id hoặc mã cho dễ . mà cái này cuxgn k care lắm
-        try ( Connection conn = DBContex2.getConnection()) {
+        try (Connection conn = DBContex2.getConnection()) {
             Statement st = conn.createStatement();
             PreparedStatement stmt = conn.prepareStatement(DELETE_SQL);
             stmt.setString(1, obj.getId());

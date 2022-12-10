@@ -11,6 +11,8 @@ package DomainModel;
  */
 public class HoaDon {
     private String id;
+    private String idKH;
+    private String idNV;
     private String ma;
     private String ngayThanhToan;
     private int tinhTrang;
@@ -18,8 +20,10 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String id, String ma, String ngayThanhToan, int tinhTrang) {
+    public HoaDon(String id, String idKH, String idNV, String ma, String ngayThanhToan, int tinhTrang) {
         this.id = id;
+        this.idKH = idKH;
+        this.idNV = idNV;
         this.ma = ma;
         this.ngayThanhToan = ngayThanhToan;
         this.tinhTrang = tinhTrang;
@@ -31,6 +35,22 @@ public class HoaDon {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIdKH() {
+        return idKH;
+    }
+
+    public void setIdKH(String idKH) {
+        this.idKH = idKH;
+    }
+
+    public String getIdNV() {
+        return idNV;
+    }
+
+    public void setIdNV(String idNV) {
+        this.idNV = idNV;
     }
 
     public String getMa() {
@@ -57,11 +77,11 @@ public class HoaDon {
         this.tinhTrang = tinhTrang;
     }
 
+    @Override
+    public String toString() {
+        return "HoaDon{" + "id=" + id + ", idKH=" + idKH + ", idNV=" + idNV + ", ma=" + ma + ", ngayThanhToan=" + ngayThanhToan + ", tinhTrang=" + tinhTrang + '}';
+    }
 
-    
-
-    
-    
     
     
 }

@@ -92,7 +92,7 @@ public class KhachHangVM {
 
     @Override
     public String toString() {
-        return "KhachHangVM{" + "id=" + id + ", maKH=" + maKH + ", tenKH=" + tenKH + ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", trangThai=" + trangThai + '}';
+        return tenKH;
     }
 
 }

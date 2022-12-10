@@ -19,11 +19,12 @@ public interface CTSanPhamService {
 
     public String sua(CTSanPham ct);
 
+    public String sua1(CTSanPham ct);
+
     public String xoa(CTSanPhamViewModel ct);
 
     public List<CTSanPhamViewModel> GetAll();
 
     public List<CTSanPhamViewModel> getAll(String input);
-
 
 }

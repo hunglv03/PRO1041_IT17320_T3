@@ -10,6 +10,7 @@ package ViewModels;
  * @author Admin
  */
 public class DsSanPhamViewModel {
+    private String id;
     private String sanPham;
     private String size;
     private String mauSac;
@@ -21,7 +22,8 @@ public class DsSanPhamViewModel {
     public DsSanPhamViewModel() {
     }
 
-    public DsSanPhamViewModel(String sanPham, String size, String mauSac, String ncc, String chatLieu, int soLuong, double giaBan) {
+    public DsSanPhamViewModel(String id, String sanPham, String size, String mauSac, String ncc, String chatLieu, int soLuong, double giaBan) {
+        this.id = id;
         this.sanPham = sanPham;
         this.size = size;
         this.mauSac = mauSac;
@@ -29,6 +31,14 @@ public class DsSanPhamViewModel {
         this.chatLieu = chatLieu;
         this.soLuong = soLuong;
         this.giaBan = giaBan;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSanPham() {
@@ -86,6 +96,13 @@ public class DsSanPhamViewModel {
     public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
+
+//    @Override
+//    public String toString() {
+//        return "DsSanPhamViewModel{" + "id=" + id + ", sanPham=" + sanPham + ", size=" + size + ", mauSac=" + mauSac + ", ncc=" + ncc + ", chatLieu=" + chatLieu + ", soLuong=" + soLuong + ", giaBan=" + giaBan + '}';
+//    }
+
+    
     
     
 }

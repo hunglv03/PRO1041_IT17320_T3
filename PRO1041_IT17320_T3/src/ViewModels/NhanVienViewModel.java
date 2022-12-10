@@ -24,11 +24,11 @@ public class NhanVienViewModel {
     public NhanVienViewModel() {
     }
 
-    public NhanVienViewModel(String id, String idCV, String ma, String ten, String email, String ngaySinh, int gioiTinh, String sdt, String diaChi, int trangThai) {
+    public NhanVienViewModel(String id, String idCV, String manv, String tennv, String email, String ngaySinh, int gioiTinh, String sdt, String diaChi, int trangThai) {
         this.id = id;
         this.idCV = idCV;
-        this.manv = ma;
-        this.tennv = ten;
+        this.manv = manv;
+        this.tennv = tennv;
         this.email = email;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
@@ -53,20 +53,20 @@ public class NhanVienViewModel {
         this.idCV = idCV;
     }
 
-    public String getMa() {
+    public String getManv() {
         return manv;
     }
 
-    public void setMa(String ma) {
-        this.manv = ma;
+    public void setManv(String manv) {
+        this.manv = manv;
     }
 
-    public String getTen() {
+    public String getTennv() {
         return tennv;
     }
 
-    public void setTen(String ten) {
-        this.tennv = ten;
+    public void setTennv(String tennv) {
+        this.tennv = tennv;
     }
 
     public String getEmail() {
@@ -118,9 +118,10 @@ public class NhanVienViewModel {
     }
 
     
+
+    
     @Override
     public String toString() {
-        return "NhanVienViewModel{" + "id=" + id + ", idCV=" + idCV + ", ma=" + manv + ", ten=" + tennv + ", email=" + email + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", trangThai=" + trangThai + '}';
+        return tennv;
     }
-    
 }

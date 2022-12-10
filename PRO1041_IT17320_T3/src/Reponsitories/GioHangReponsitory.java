@@ -5,6 +5,7 @@
  */
 package Reponsitories;
 
+import DomainModel.HoaDon;
 import Util.DBContext1;
 import ViewModels.GioHangViewModel;
 import ViewModels.HoaDonViewModel;
@@ -47,8 +48,8 @@ public class GioHangReponsitory {
         }
     }
     
-        public ArrayList<HoaDonViewModel> getListHoaDon() {
-        ArrayList<HoaDonViewModel> listHD = new ArrayList<>();
+        public ArrayList<HoaDon> getListHoaDon() {
+        ArrayList<HoaDon> listHD = new ArrayList<>();
         try {
             Connection conn = DBContext1.getConnection();
             String sql = "Select Id,Ma,NgayThanhToan,TinhTrang From HoaDon where TinhTrang = ?";
@@ -62,7 +63,7 @@ public class GioHangReponsitory {
                 String mahd = rs.getString("MaHD");
                 String ngaytao = rs.getString("NgayThanhToan");
                 String tt = rs.getString("TinhTrang");
-                HoaDonViewModel hd = new HoaDonViewModel(id, tt, ngaytao, 0);
+                HoaDon hd = new HoaDon(id, tt, ngaytao, 0);
                 listHD.add(hd);
             }
         } catch (Exception ex) {
@@ -87,4 +88,6 @@ public class GioHangReponsitory {
         }
 
     }
+    
+    
 }

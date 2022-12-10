@@ -11,6 +11,8 @@ package ViewModels;
  */
 public class HoaDonViewModel {
     private String id;
+    private KhachHangVM idKH;
+    private NhanVienViewModel idNV;;
     private String ma;
     private String ngayThanhToan;
     private int tinhTrang;
@@ -18,8 +20,10 @@ public class HoaDonViewModel {
     public HoaDonViewModel() {
     }
 
-    public HoaDonViewModel(String id, String ma, String ngayThanhToan, int tinhTrang) {
+    public HoaDonViewModel(String id, KhachHangVM idKH, NhanVienViewModel idNV, String ma, String ngayThanhToan, int tinhTrang) {
         this.id = id;
+        this.idKH = idKH;
+        this.idNV = idNV;
         this.ma = ma;
         this.ngayThanhToan = ngayThanhToan;
         this.tinhTrang = tinhTrang;
@@ -31,6 +35,22 @@ public class HoaDonViewModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public KhachHangVM getIdKH() {
+        return idKH;
+    }
+
+    public void setIdKH(KhachHangVM idKH) {
+        this.idKH = idKH;
+    }
+
+    public NhanVienViewModel getIdNV() {
+        return idNV;
+    }
+
+    public void setIdNV(NhanVienViewModel idNV) {
+        this.idNV = idNV;
     }
 
     public String getMa() {
@@ -57,7 +77,10 @@ public class HoaDonViewModel {
         this.tinhTrang = tinhTrang;
     }
 
-    
+    @Override
+    public String toString() {
+        return "HoaDonViewModel{" + "id=" + id + ", idKH=" + idKH + ", idNV=" + idNV + ", ma=" + ma + ", ngayThanhToan=" + ngayThanhToan + ", tinhTrang=" + tinhTrang + '}';
+    }
 
    
     

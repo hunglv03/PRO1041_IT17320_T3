@@ -5,6 +5,7 @@
  */
 package Services.impl;
 
+import DomainModel.HoaDon;
 import Reponsitories.GioHangReponsitory;
 import Services.GioHangService;
 import ViewModels.GioHangViewModel;
@@ -28,7 +29,7 @@ public class GioHangServiceImpl implements GioHangService{
         return gioHangReponsitory.GetAll();
     }
     
-    public ArrayList<HoaDonViewModel> getListHoaDon(){
+    public ArrayList<HoaDon> getListHoaDon(){
         return this.gioHangReponsitory.getListHoaDon();
     }
     

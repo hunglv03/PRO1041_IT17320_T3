@@ -8,6 +8,7 @@ package Services;
 import DomainModel.HoaDon;
 import ViewModels.HoaDonViewModel;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,12 +16,12 @@ import java.util.ArrayList;
  */
 public interface HoaDonService {
 
-    ArrayList<HoaDonViewModel> getAll();
+    public List<HoaDonViewModel> GetAll();
 
-    String add(HoaDon hd);
+    String them(HoaDon hd);
 
-    void update(HoaDon hd, String id);
+    public void add(HoaDon hd);
 
-    void delete(String id);
+    public Iterable<HoaDonViewModel> getAll();
 
 }

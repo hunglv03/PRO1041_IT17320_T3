@@ -37,7 +37,7 @@ public class NhanVienForm extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         for (NhanVienViewModel x : Service.GetAll()) {
             defaultTableModel.addRow(new Object[]{
-                x.getId(), x.getIdCV(), x.getMa(), x.getTen(), x.getEmail(), x.getNgaySinh(), x.getGioiTinh(), x.getSdt(), x.getDiaChi(), TrangThai(x.getTrangThai())
+                x.getId(), x.getIdCV(), x.getManv(), x.getTennv(), x.getEmail(), x.getNgaySinh(), x.getGioiTinh(), x.getSdt(), x.getDiaChi(), TrangThai(x.getTrangThai())
             });
         }
     }
@@ -317,8 +317,8 @@ public class NhanVienForm extends javax.swing.JFrame {
         }
         idwhenclick = tbNV.getModel().getValueAt(row, 0).toString();
         NhanVienViewModel temp = Service.GetNVByID(idwhenclick);
-        txtMa.setText(temp.getMa());
-        txtTen.setText(temp.getTen());
+        txtMa.setText(temp.getManv());
+        txtTen.setText(temp.getTennv());
         txtEmail.setText(temp.getEmail());
         txtNgaySinh.setText(temp.getNgaySinh());
         txtSdt.setText(temp.getSdt());

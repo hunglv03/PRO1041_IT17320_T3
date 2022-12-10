@@ -5,22 +5,30 @@
  */
 package Services;
 
+import ViewModels.ChatLieuViewModel;
 import ViewModels.DsSanPhamViewModel;
+import ViewModels.MauSacViewModel;
+import ViewModels.NhaCungCapVM;
+import ViewModels.SizeVM;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
 public interface DsSanPhamService {
-    ArrayList<DsSanPhamViewModel> getAll();
+    
+    ArrayList<DsSanPhamViewModel> GetAll();
+    ArrayList<DsSanPhamViewModel> getAll(String input);
     
     ArrayList<DsSanPhamViewModel> findSanPham(String sanPham);
     
-    ArrayList<DsSanPhamViewModel> findMauSac(String mauSac);
     
-    ArrayList<DsSanPhamViewModel> findSize(String size);
-    ArrayList<DsSanPhamViewModel> findNCC(String ncc);
-    ArrayList<DsSanPhamViewModel> findChatLieu(String chatLieu);
+    
+    ArrayList<DsSanPhamViewModel> GetAllSize(String input);
+    ArrayList<DsSanPhamViewModel> GetAllCL(String input);
+    ArrayList<DsSanPhamViewModel> GetAllMS(String input);
+    ArrayList<DsSanPhamViewModel> GetAllNCC(String input);
     
 }

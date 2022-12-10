@@ -71,6 +71,14 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
         }
         return tempctsp;
     }
+
+    @Override
+    public String sua1(CTSanPham ct) {
+        if (repoCTSP.Update1(ct)) {
+            return "Sửa thành công ";
+        }
+        return "Sửa không thành công ";
+    }
 }
 
 
