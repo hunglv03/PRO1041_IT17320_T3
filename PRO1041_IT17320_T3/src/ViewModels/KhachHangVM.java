@@ -92,7 +92,7 @@ public class KhachHangVM {
 
     @Override
     public String toString() {
-        return tenKH;
+        return sdt;
     }
 
 }

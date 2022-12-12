@@ -63,7 +63,7 @@ public class GioHangReponsitory {
                 String mahd = rs.getString("MaHD");
                 String ngaytao = rs.getString("NgayThanhToan");
                 String tt = rs.getString("TinhTrang");
-                HoaDon hd = new HoaDon(id, tt, ngaytao, 0);
+                HoaDon hd = new HoaDon(id, id, id, tt, ngaytao, 0);
                 listHD.add(hd);
             }
         } catch (Exception ex) {

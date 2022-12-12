@@ -197,19 +197,19 @@ public class FormMenuChinh extends javax.swing.JFrame {
         this.btnHuyHoaDon.setIcon(huy);
         Icon thanhtoan = new ImageIcon("pay.png");
         this.btnThanhToan.setIcon(thanhtoan);
-        
+
         chayChu();
     }
 
     public void chayChu() {
         Thread t1 = new Thread() {
             public void run() {
-                String txt=lblChu.getText() + " ";
-                while (true) {                    
-                    txt=txt.charAt(txt.length()-1)+txt.substring(0, txt.length()-1);
-                    try{
+                String txt = lblChu.getText() + " ";
+                while (true) {
+                    txt = txt.charAt(txt.length() - 1) + txt.substring(0, txt.length() - 1);
+                    try {
                         sleep(1500);
-                    }catch(InterruptedException ex){
+                    } catch (InterruptedException ex) {
                         //Logger.getLoggger(FormMenuChinh.getName()).log(Level.SEVERE,null,ex);
                     }
                     lblChu.setText(txt);
@@ -607,7 +607,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
         int stt = 1;
         for (HoaDonViewModel x : hoaDonService.GetAll()) {
             defaultTableModelHoaDon1.addRow(new Object[]{
-                x.getId(),
+                stt++,
                 x.getIdKH(),
                 x.getIdNV(),
                 x.getMa(),
@@ -698,6 +698,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
         cbNhanVien = new javax.swing.JComboBox<NhanVienViewModel>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lbltenkhachhang = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -1111,6 +1112,14 @@ public class FormMenuChinh extends javax.swing.JFrame {
 
         cbKhachHang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbKhachHang.setModel(new javax.swing.DefaultComboBoxModel<KhachHangVM>());
+        cbKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbKhachHangMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cbKhachHangMouseExited(evt);
+            }
+        });
         cbKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKhachHangActionPerformed(evt);
@@ -1143,7 +1152,6 @@ public class FormMenuChinh extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
@@ -1151,24 +1159,30 @@ public class FormMenuChinh extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbKhachHang, 0, 107, Short.MAX_VALUE)
-                            .addComponent(cbNhanVien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cbNhanVien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbltenkhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(lbltenkhachhang, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(cbKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(cbNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2194,9 +2208,8 @@ public class FormMenuChinh extends javax.swing.JFrame {
 
     private void btnLamMoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLamMoiMouseClicked
         // TODO add your handling code here:
-        cbKhachHang.removeAllItems();
-        cbNhanVien.removeAllItems();
-
+        //LoadCbo();
+        ClearThanhToan();
     }//GEN-LAST:event_btnLamMoiMouseClicked
 
     private void txtTienKhachDuaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaCaretUpdate
@@ -2263,13 +2276,8 @@ public class FormMenuChinh extends javax.swing.JFrame {
 
     private void cbKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKhachHangActionPerformed
         // TODO add your handling code here:
-        //        String sdt = cbKhachHang.getSelectedItem().toString();
-        //        KhachHang kh = khService.getListSDT(sdt);
-        //        if (kh != null) {
-        //            txtKhachHang.setText(kh.getTenKH());
-        //        } else {
-        //            txtKhachHang.setText("");
-        //        }
+        KhachHangVM idKh = (KhachHangVM) cbKhachHang.getSelectedItem();
+        lbltenkhachhang.setText(idKh.getTenKH());
     }//GEN-LAST:event_cbKhachHangActionPerformed
 
     private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
@@ -2277,17 +2285,17 @@ public class FormMenuChinh extends javax.swing.JFrame {
         HoaDonChoViewModel hdc = new HoaDonChoViewModel();
         for (int i = 1; i < listHDC.size() + 2; i++) {
             hdc.setMaHD("HD" + i);
-            hdc.setNgayTao("2022/12/8");
+            hdc.setNgayTao(java.time.LocalDate.now().toString());
         }
         hdc.setTrangThai(1);
         listHDC.add(hdc);
         LoadHoaDonCho();
-        
-        
+
+
     }//GEN-LAST:event_btntaohdActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-       // TODO add your handling code here:
+        // TODO add your handling code here:
         int row1 = tbhdc.getSelectedRow();
         listHDC.remove(row1);
         LoadHoaDonCho();
@@ -2298,7 +2306,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
         hoaDonService.them(hd);
         //getData();
         LoadHoaDon();
-        System.out.println(hd);
+        System.out.println(hd.getIdKH());
         JOptionPane.showMessageDialog(this, "Thanh Toán Thành Công");
 
         //        int rowhd = tbhdc.getSelectedRow();
@@ -2323,23 +2331,20 @@ public class FormMenuChinh extends javax.swing.JFrame {
         //        LoadHoaDon(listhd);
         //        JOptionPane.showMessageDialog(this, "Thanh toan thanh cong");
         //        this.ClearThanhToan();
-        
-        txtDisplay.setText("                                         Mono Shop\n"+"                              ------------------------------\n"+"                                  Hóa Đơn Bán Hàng\n"+"____________________******___________________\n"+"Tổng Tiền:          "+lblTongTien.getText()+ "\nGiảm Giá:           "+txtGiamGia.getText()+ "\nTiền Thanh Toán:    "+lblTienThanhToan.getText()+"\nTiền Khách Đưa:     "+txtTienKhachDua.getText()+"\nTiền Thừa:          "+lblTienThua.getText()+"\nNgày Tạo:           "+lblNgayTao.getText()+"\n                             Cảm Ơn Quý Khách");
+        txtDisplay.setText("                                         Mono Shop\n" + "                              ------------------------------\n" + "                                  Hóa Đơn Bán Hàng\n" + "____________________******___________________\n" + "Tổng Tiền:          " + lblTongTien.getText() + "\nGiảm Giá:           " + txtGiamGia.getText() + "\nTiền Thanh Toán:    " + lblTienThanhToan.getText() + "\nTiền Khách Đưa:     " + txtTienKhachDua.getText() + "\nTiền Thừa:          " + lblTienThua.getText() + "\nNgày Tạo:           " + lblNgayTao.getText() + "\n                             Cảm Ơn Quý Khách");
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void docFile() throws FileNotFoundException, IOException, DocumentException {
         Document document = new Document();
 
         try {
-        	
+
             PdfWriter.getInstance(document, new FileOutputStream("HoaDon.pdf"));
 
-            
             document.open();
-            
-           
+
             document.add(new Paragraph(txtDisplay.getText()));
-           
+
             document.close();
 
         } catch (DocumentException e) {
@@ -2347,9 +2352,9 @@ public class FormMenuChinh extends javax.swing.JFrame {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    
+
     }
-    
+
     private void txtCLMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCLMouseExited
         // TODO add your handling code here:
         txtCL.setText("Tim Kiem CL");
@@ -2479,13 +2484,21 @@ public class FormMenuChinh extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             this.docFile();
-            JOptionPane.showMessageDialog(this,"Xuất file PDF thành công");
+            JOptionPane.showMessageDialog(this, "Xuất file PDF thành công");
         } catch (IOException ex) {
             Logger.getLogger(FormMenuChinh.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(FormMenuChinh.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnInHDActionPerformed
+
+    private void cbKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbKhachHangMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbKhachHangMouseClicked
+
+    private void cbKhachHangMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbKhachHangMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbKhachHangMouseExited
 
     public void ClearThanhToan() {
         lblID.setText("");
@@ -2629,6 +2642,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
     private javax.swing.JLabel lblTienThua;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JLabel lblid;
+    private javax.swing.JLabel lbltenkhachhang;
     private javax.swing.JTextArea tarmota;
     private javax.swing.JTable tbSanPham;
     private javax.swing.JTable tbgiohang;

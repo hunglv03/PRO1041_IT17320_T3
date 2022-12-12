@@ -57,4 +57,14 @@ public class HoaDonServiceImpl implements HoaDonService {
 //        return "Update that bai";
 //    }
 
+    @Override
+    public void add(HoaDon hd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Iterable<HoaDonViewModel> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
