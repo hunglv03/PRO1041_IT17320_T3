@@ -16,11 +16,11 @@ import java.util.logging.Logger;
  * @author Phong
  */
 public class DBContex2 {
-    private static final String USERNAME = "sa";
-    private static final String PASSWORD = "0123456789";
+    private static final String USERNAME = "hunglvph25428";
+    private static final String PASSWORD = "123456";
     private static final String SERVER = "localhost";
     private static final String PORT = "1433";
-    private static final String DATABASE_NAME = "DBDUAN1__NHOM3";
+    private static final String DATABASE_NAME = "DBDUAN1_NHOM31";
     private static final boolean USING_SSL = true;
     
     private static String CONNECT_STRING;

@@ -698,7 +698,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
         cbNhanVien = new javax.swing.JComboBox<NhanVienViewModel>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        lbltenkhachhang = new javax.swing.JLabel();
+        lblsdtkhachhang = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -1102,10 +1102,10 @@ public class FormMenuChinh extends javax.swing.JFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Tên Khách Hàng");
+        jLabel11.setText("SĐT Khách Hàng");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("SDT Khách Hàng");
+        jLabel12.setText("Tên Khách Hàng");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Tên Nhân Viên");
@@ -1167,7 +1167,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(lbltenkhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblsdtkhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
@@ -1176,7 +1176,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(lbltenkhachhang, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                    .addComponent(lblsdtkhachhang, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -2276,8 +2276,8 @@ public class FormMenuChinh extends javax.swing.JFrame {
 
     private void cbKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKhachHangActionPerformed
         // TODO add your handling code here:
-        KhachHangVM idKh = (KhachHangVM) cbKhachHang.getSelectedItem();
-        lbltenkhachhang.setText(idKh.getTenKH());
+        KhachHangVM idkh = (KhachHangVM) cbKhachHang.getSelectedItem();
+        lblsdtkhachhang.setText(idkh.getSdt());
     }//GEN-LAST:event_cbKhachHangActionPerformed
 
     private void btntaohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntaohdActionPerformed
@@ -2642,7 +2642,7 @@ public class FormMenuChinh extends javax.swing.JFrame {
     private javax.swing.JLabel lblTienThua;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JLabel lblid;
-    private javax.swing.JLabel lbltenkhachhang;
+    private javax.swing.JLabel lblsdtkhachhang;
     private javax.swing.JTextArea tarmota;
     private javax.swing.JTable tbSanPham;
     private javax.swing.JTable tbgiohang;
